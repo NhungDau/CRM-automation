@@ -1,11 +1,12 @@
-import org.openqa.selenium.WebDriver;
+import model.User;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import constant.Driver;
 import page.LoginPage;
 
-import java.sql.Driver;
+
 
 public class TC02 {
 
@@ -24,7 +25,7 @@ public class TC02 {
 
     @Test
     public void TC02() {
-        loginPage.login("vyvanviet@gmail.com","abc123");
+        loginPage.login(User.defaultUser());
     }
 
     @AfterMethod

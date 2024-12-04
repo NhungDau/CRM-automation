@@ -1,4 +1,4 @@
-package page;
+package constant;
 
 import org.openqa.selenium.WebDriver;
 
