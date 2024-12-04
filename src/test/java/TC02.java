@@ -5,18 +5,20 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import constant.Driver;
 import page.LoginPage;
-
+import page.ShowAllCustomerPage;
 
 
 public class TC02 {
 
     LoginPage loginPage;
+    ShowAllCustomerPage showAllCustomerPage;
 
 
     @BeforeMethod
     public void initData() {
         Driver.driver = new ChromeDriver();
         loginPage = new LoginPage();
+        showAllCustomerPage = new ShowAllCustomerPage();
         Driver.driver.manage().window().maximize();
         Driver.driver.get("http://14.176.232.213:8080/CRMweb/faces/login.xhtml");
 
@@ -26,6 +28,7 @@ public class TC02 {
     @Test
     public void TC02() {
         loginPage.login(User.defaultUser());
+        showAllCustomerPage.openShowAllCampaignsPage();
     }
 
     @AfterMethod

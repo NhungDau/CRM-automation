@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-public class ShowAllCustomerPage {
+public class ShowAllCustomerPage extends BasePage  {
     By campaignsNavigationLabelLocator = By.xpath("//span[@class='nav-label'][text()='Campaigns']");
     By showAllCampaignsLabelLocator = By.xpath("//ul[@class='nav nav-second-level collapse in']//a[text()='Show All Campaigns']");
 
@@ -77,9 +77,7 @@ public class ShowAllCustomerPage {
         list.get(list.size()-1).click();
     }
 
+    //open CAipaign
 
-    public void openShowAllCampaignsPage() {
-        Driver.driver.findElement(campaignsNavigationLabelLocator).click();
-        Driver.driver.findElement(showAllCampaignsLabelLocator).click();
-    }
+
 }

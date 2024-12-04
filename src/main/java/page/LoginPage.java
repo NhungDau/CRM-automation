@@ -12,7 +12,6 @@ public class LoginPage {
 
 
 
-
     public void enterEmail(String email) {
         Driver.driver.findElement(emailTextBoxLocator).sendKeys(email);
     }
