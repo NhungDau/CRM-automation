@@ -90,4 +90,5 @@ public class BasePage {
         Driver.driver.findElement(reportNavigationLabelLocator).click();
         Driver.driver.findElement(campaignReportsLabelLocator).click();
     }
+
 }
