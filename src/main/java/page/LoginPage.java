@@ -9,22 +9,18 @@ public class LoginPage {
     By loginButtonLocator = By.xpath("//input[@value='Login'][@class='btn btn-primary pull-right']");
 
 
-    WebDriver driver;
 
-    public LoginPage(WebDriver driver) {
-        this.driver = driver;
-    }
 
     public void enterEmail(String email) {
-        driver.findElement(emailTextBoxLocator).sendKeys(email);
+        Driver.driver.findElement(emailTextBoxLocator).sendKeys(email);
     }
 
     public void enterPassword(String password) {
-        driver.findElement(passwordTextBoxLocator).sendKeys(password);
+        Driver.driver.findElement(passwordTextBoxLocator).sendKeys(password);
     }
 
     public void clickLoginButton() {
-        driver.findElement(loginButtonLocator).click();
+        Driver.driver.findElement(loginButtonLocator).click();
     }
 
     public void login(String email, String password) {
