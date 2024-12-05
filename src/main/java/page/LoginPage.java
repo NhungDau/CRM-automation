@@ -1,8 +1,8 @@
 package page;
 
-import constant.Driver;
 import model.User;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 
 public class LoginPage {
     //By emailTextBoxLocator = By.xpath("//input[@id='campaigntypeform:email']");
@@ -11,17 +11,22 @@ public class LoginPage {
     By loginButtonLocator = By.xpath("//input[@value='Login'][@class='btn btn-primary pull-right']");
 
 
+    WebDriver driver;
+
+    public LoginPage(WebDriver driver) {
+        this.driver = driver;
+    }
 
     public void enterEmail(String email) {
-        Driver.driver.findElement(emailTextBoxLocator).sendKeys(email);
+        driver.findElement(emailTextBoxLocator).sendKeys(email);
     }
 
     public void enterPassword(String password) {
-        Driver.driver.findElement(passwordTextBoxLocator).sendKeys(password);
+        driver.findElement(passwordTextBoxLocator).sendKeys(password);
     }
 
     public void clickLoginButton() {
-        Driver.driver.findElement(loginButtonLocator).click();
+        driver.findElement(loginButtonLocator).click();
     }
 
     public void login(User user) {

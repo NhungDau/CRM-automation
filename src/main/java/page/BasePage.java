@@ -1,9 +1,10 @@
 package page;
 
-import constant.Driver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 
 public class BasePage {
+
     By customerNavigationLabelLocator = By.xpath("//span[@class='nav-label'][text()='Customer']");
     By showAllCustomersLabelLocator = By.xpath("//ul[@class='nav nav-second-level collapse in']//a[text()='Show All Customers']");
     By createCustomerLabelLocator = By.xpath("//ul[@class='nav nav-second-level collapse in']//a[text()='Create Customer']");
@@ -24,71 +25,78 @@ public class BasePage {
     By reportNavigationLabelLocator = By.xpath("//span[@class='nav-label'][text()='Report']");
     By campaignReportsLabelLocator = By.xpath("//ul[@class='nav nav-second-level collapse in']//a[text()='Campaign Reports']");
 
+
+    WebDriver driver;
+
+    public BasePage(WebDriver driver) {
+        this.driver = driver;
+    }
+
     //open showAllCustomer page
     public void openShowAllCustomersPage() {
-        Driver.driver.findElement(customerNavigationLabelLocator).click();
-        Driver.driver.findElement(showAllCustomersLabelLocator).click();
+        driver.findElement(customerNavigationLabelLocator).click();
+        driver.findElement(showAllCustomersLabelLocator).click();
     }
     //open create customer page
     public void openCreateCustomerPage() {
-        Driver.driver.findElement(customerNavigationLabelLocator).click();
-        Driver.driver.findElement(createCustomerLabelLocator).click();
+        driver.findElement(customerNavigationLabelLocator).click();
+        driver.findElement(createCustomerLabelLocator).click();
     }
     //open showAllReminder page
     public void openShowAllRemindersPage() {
-        Driver.driver.findElement(remindersNavigationLabelLocator).click();
-        Driver.driver.findElement(showAllRemindersLabelLocator).click();
+        driver.findElement(remindersNavigationLabelLocator).click();
+        driver.findElement(showAllRemindersLabelLocator).click();
     }
     //open showAllCampaign page
     public void openShowAllCampaignsPage() {
-        Driver.driver.findElement(campaignsNavigationLabelLocator).click();
-        Driver.driver.findElement(showAllCampaignsLabelLocator).click();
+        driver.findElement(campaignsNavigationLabelLocator).click();
+        driver.findElement(showAllCampaignsLabelLocator).click();
     }
 
     //open create campaign page
     public void openCreateCampaignPage() {
-        Driver.driver.findElement(campaignsNavigationLabelLocator).click();
-        Driver.driver.findElement(createCampaignLabelLocator).click();
+        driver.findElement(campaignsNavigationLabelLocator).click();
+        driver.findElement(createCampaignLabelLocator).click();
     }
 
     //open showAllCampaignTypesLabelLocator page
     public void openShowAllCampaignTypesPage() {
-        Driver.driver.findElement(campaignsNavigationLabelLocator).click();
-        Driver.driver.findElement(showAllCampaignTypesLabelLocator).click();
+        driver.findElement(campaignsNavigationLabelLocator).click();
+        driver.findElement(showAllCampaignTypesLabelLocator).click();
     }
 
     //open create campaign page
     public void openCreateCampaignTypePage() {
-        Driver.driver.findElement(campaignsNavigationLabelLocator).click();
-        Driver.driver.findElement(createCampaignTypesLabelLocator).click();
+        driver.findElement(campaignsNavigationLabelLocator).click();
+        driver.findElement(createCampaignTypesLabelLocator).click();
     }
 
     //open showAllOpportunities page
     public void openShowAllOpportunitiesPage() {
-        Driver.driver.findElement(opportunitiesNavigationLabelLocator).click();
-        Driver.driver.findElement(showAllOpportunitysLabelLocator).click();
+        driver.findElement(opportunitiesNavigationLabelLocator).click();
+        driver.findElement(showAllOpportunitysLabelLocator).click();
     }
     //open showAllOrders page
     public void openShowAllOrdersPage() {
-        Driver.driver.findElement(ordersNavigationLabelLocator).click();
-        Driver.driver.findElement(showAllOrdersLabelLocator).click();
+        driver.findElement(ordersNavigationLabelLocator).click();
+        driver.findElement(showAllOrdersLabelLocator).click();
     }
 
     //open create revenue page
     public void openCreateRevenuePage() {
-        Driver.driver.findElement(revenuesNavigationLabelLocator).click();
-        Driver.driver.findElement(createRevenueLabelLocator).click();
+        driver.findElement(revenuesNavigationLabelLocator).click();
+        driver.findElement(createRevenueLabelLocator).click();
     }
 
     //open search revenue page
     public void openSearchRevenuePage() {
-        Driver.driver.findElement(revenuesNavigationLabelLocator).click();
-        Driver.driver.findElement(searchRevenueLabelLocator).click();
+        driver.findElement(revenuesNavigationLabelLocator).click();
+        driver.findElement(searchRevenueLabelLocator).click();
     }
     //open Campaign report page
     public void openCampaignReportsPage() {
-        Driver.driver.findElement(reportNavigationLabelLocator).click();
-        Driver.driver.findElement(campaignReportsLabelLocator).click();
+        driver.findElement(reportNavigationLabelLocator).click();
+        driver.findElement(campaignReportsLabelLocator).click();
     }
 
 }

@@ -1,8 +1,8 @@
 package page;
 
-import constant.Driver;
 import model.Customer;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
@@ -21,59 +21,59 @@ public class ShowAllCustomerPage extends BasePage  {
     By getListCustomerByNameLocator = By.xpath("//a[@class='ui-link ui-widget']");
 
 
+    WebDriver driver;
 
+    public ShowAllCustomerPage(WebDriver driver, WebDriver driver1) {
+        super(driver);
+        this.driver = driver1;
+    }
 
     //click New Customer button
     public void clickNewCustomerButton(){
-        Driver.driver.findElement(newCustomerButtonLocator).click();
+        driver.findElement(newCustomerButtonLocator).click();
     }
 
     //enter name
     public void enterName(String sdflksjdhf){
-        Driver.driver.findElement(nameTextboxLocator).sendKeys(sdflksjdhf);
+        driver.findElement(nameTextboxLocator).sendKeys(sdflksjdhf);
     }
     //enter email
     public void enterEmail(String email){
-        Driver.driver.findElement(emailTextboxLocator).sendKeys(email);
+
+        driver.findElement(emailTextboxLocator).sendKeys(email);
     }
     //enter phone
     public void enterPhone(String phone){
-        Driver.driver.findElement(phoneTextboxLocator).sendKeys(phone);
+
+        driver.findElement(phoneTextboxLocator).sendKeys(phone);
     }
     //enter address
     public void enterAddress(String address){
-        Driver.driver.findElement(addressTextboxLocator).sendKeys(address);
-    }
-    //create new customer
-//    public void createCustomer(String name, String email, String phone, String address){
-//        //enter value
-//        Driver.driver.findElement(nameTextboxLocator).sendKeys(name);
-//        Driver.driver.findElement(emailTextboxLocator).sendKeys(email);
-//        Driver.driver.findElement(phoneTextboxLocator).sendKeys(phone);
-//        Driver.driver.findElement(addressTextboxLocator).sendKeys(address);
-//        //click create a customer button
-//        Driver.driver.findElement(createCustomerLocator).click();
-//    }
 
+        driver.findElement(addressTextboxLocator).sendKeys(address);
+    }
+
+    //create new customer
     public void createCustomer(Customer customer){
-        //        //enter value
+        //enter value
         enterName(customer.getName());
         enterEmail(customer.getEmail());
         enterPhone(customer.getPhone());
         enterAddress(customer.getAddress());
-//        click create a customer button
-        Driver.driver.findElement(createCustomerLocator).click();
+        //click create a customer button
+        driver.findElement(createCustomerLocator).click();
     }
 
 
     //click go to last page button
     public void clickGoToLastPageButton(){
-        Driver.driver.findElement(lastPageButtonLocator).click();
+
+        driver.findElement(lastPageButtonLocator).click();
     }
 
     //click to the newest customer
     public void openLastCustomer(){
-        List<WebElement> list = Driver.driver.findElements(getListCustomerByNameLocator);
+        List<WebElement> list = driver.findElements(getListCustomerByNameLocator);
         list.get(list.size()-1).click();
     }
 
