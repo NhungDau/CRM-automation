@@ -12,8 +12,8 @@ public class ProductOrderInformation {
         this.productPrice = productPrice;
     }
 
-    public ProductOrderInformation() {
-    }
+
+
 
     public String getProductName() {
         return productName;
@@ -40,6 +40,6 @@ public class ProductOrderInformation {
     }
 
     public ProductOrderInformation productOrderInformation(String productName, double price, int quantity){
-        return new ProductOrderInformation(this.productName,productPrice,productQuantity);
+        return new ProductOrderInformation(productName,productPrice,productQuantity);
     }
 }

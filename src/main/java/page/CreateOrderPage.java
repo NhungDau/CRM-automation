@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Random;
 
-public class CreateOrderPage extends ProductOrderInformation {
+public class CreateOrderPage  {
 
     By getListProductByNameLocator = By.xpath("//tr[td/input[@type='checkbox']]/td[2]");
     By getListCheckboxLocator = By.xpath("//tr/td/input[@type='checkbox']");
@@ -53,7 +53,8 @@ public class CreateOrderPage extends ProductOrderInformation {
         return Double.parseDouble(list.get(index).getText());
     }
 
-    public void addOrderByIndex(int a){
+    public void addOrderByIndex(){
+        ProductOrderInformation productOrderInformation;
         List<WebElement> list = driver.findElements(getListProductByNameLocator);
 
         int index = random.nextInt(list.size()+1);
@@ -68,7 +69,8 @@ public class CreateOrderPage extends ProductOrderInformation {
         String productName = list.get(index).getText();
         //get product price
         double price = getProductPriceByIndex(index);
-        productOrderInformation(productName,price,quantity);
+        //productOrderInformation.productOrderInformation(productName,price,quantity);
+        productOrderInformation = new ProductOrderInformation(productName, price, quantity);
 
 
 

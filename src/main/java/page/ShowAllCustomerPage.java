@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-public class ShowAllCustomerPage extends BasePage  {
+public class ShowAllCustomerPage  {
     By campaignsNavigationLabelLocator = By.xpath("//span[@class='nav-label'][text()='Campaigns']");
     By showAllCampaignsLabelLocator = By.xpath("//ul[@class='nav nav-second-level collapse in']//a[text()='Show All Campaigns']");
 
@@ -23,9 +23,8 @@ public class ShowAllCustomerPage extends BasePage  {
 
     WebDriver driver;
 
-    public ShowAllCustomerPage(WebDriver driver, WebDriver driver1) {
-        super(driver);
-        this.driver = driver1;
+    public ShowAllCustomerPage(WebDriver driver) {
+        this.driver = driver;
     }
 
     //click New Customer button
