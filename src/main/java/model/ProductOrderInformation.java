@@ -5,15 +5,16 @@ public class ProductOrderInformation {
     private String productName;
     private Integer productQuantity;
     private Double productPrice;
+    private Double totalPrice;
+    private String paymentDate;
 
-    public ProductOrderInformation(String productName, Double productPrice, Integer productQuantity) {
+    public ProductOrderInformation(String productName, Double productPrice, Integer productQuantity, Double totalPrice, String paymentDate) {
         this.productName = productName;
-        this.productQuantity = productQuantity;
         this.productPrice = productPrice;
+        this.productQuantity = productQuantity;
+        this.totalPrice = totalPrice;
+        this.paymentDate = paymentDate;
     }
-
-
-
 
     public String getProductName() {
         return productName;
@@ -39,7 +40,27 @@ public class ProductOrderInformation {
         this.productPrice = productPrice;
     }
 
-    public ProductOrderInformation productOrderInformation(String productName, double price, int quantity){
-        return new ProductOrderInformation(productName,productPrice,productQuantity);
+    public Double getTotalPrice() {
+        return totalPrice;
     }
+
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public String getPaymentDate() {
+        return paymentDate;
+    }
+
+    public void setPaymentDate(String paymentDate) {
+        this.paymentDate = paymentDate;
+    }
+
+    public ProductOrderInformation productOrderInformationInCreateOrderPage(String productName, double price, int quantity ,double totalPrice, String paymentDate){
+        return new ProductOrderInformation(productName,price,quantity,totalPrice,paymentDate);
+    }
+    public ProductOrderInformation productOrderInformationInCustomerInformationPage(String productName, double price, int quantity ,double totalPrice, String paymentDate){
+        return new ProductOrderInformation(productName,price,quantity,totalPrice,paymentDate);
+    }
+
 }

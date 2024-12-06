@@ -69,8 +69,9 @@ public class CreateOrderPage  {
         String productName = list.get(index).getText();
         //get product price
         double price = getProductPriceByIndex(index);
+        double totalPrice = price*quantity;
         //productOrderInformation.productOrderInformation(productName,price,quantity);
-        productOrderInformation = new ProductOrderInformation(productName, price, quantity);
+        productOrderInformation = new ProductOrderInformation(productName, price,quantity,totalPrice,paymentdate);
 
 
 
