@@ -12,7 +12,7 @@ public class ShowAllCustomerPage  {
     By showAllCampaignsLabelLocator = By.xpath("//ul[@class='nav nav-second-level collapse in']//a[text()='Show All Campaigns']");
 
     By newCustomerButtonLocator = By.xpath("//a[text()='New Customer']");
-    By nameTextboxLocator = By.id("j_idt70:name");
+    By nameTextboxLocator = By.xpath("//input[@id='j_idt70:name']");
     By emailTextboxLocator = By.id("j_idt70:email");
     By phoneTextboxLocator = By.id("j_idt70:phone");
     By addressTextboxLocator = By.id("j_idt70:address");

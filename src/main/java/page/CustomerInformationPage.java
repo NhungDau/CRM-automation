@@ -2,6 +2,7 @@ package page;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.Test;
 
 public class CustomerInformationPage {
     By addOrderButtonLocator = By.xpath("//a[text()='Add order']");
@@ -13,7 +14,10 @@ public class CustomerInformationPage {
     }
 
     //click add order button
-    public void clickAddOrderButton(){
+    public void clickAddOrderButton() {
+
         driver.findElement(addOrderButtonLocator).click();
     }
+
+
 }

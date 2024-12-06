@@ -2,6 +2,8 @@ package model;
 
 import com.github.javafaker.Faker;
 
+import java.util.Objects;
+
 public class Customer {
 
     private static final Faker faker = new Faker();
@@ -50,6 +52,19 @@ public class Customer {
     }
 
     public static Customer random() {
-        return new Customer(faker.name().firstName(),faker.internet().emailAddress(),faker.phoneNumber().phoneNumber(),faker.address().fullAddress());
+        return new Customer(faker.name().firstName(),faker.internet().emailAddress(),faker.numerify("#########"),faker.address().fullAddress());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Customer customer = (Customer) o;
+        return Objects.equals(name, customer.name) && Objects.equals(email, customer.email) && Objects.equals(phone, customer.phone) && Objects.equals(address, customer.address);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, email, phone, address);
     }
 }
