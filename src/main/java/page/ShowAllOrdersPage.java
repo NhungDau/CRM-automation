@@ -32,6 +32,9 @@ public class ShowAllOrdersPage {
         driver.findElement(searchByCustomerNameTextboxLocator).sendKeys(customername);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.findElement(searchByCustomerNameTextboxLocator).sendKeys(Keys.ENTER);
+        WebDriverWait wait2 = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(getListCustomerNameLocator));
+
     }
 
     //click customer name

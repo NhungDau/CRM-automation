@@ -46,6 +46,7 @@ public class TC01 {
         loginPage.login(User.defaultUser());
         showAllCustomerPage.clickNewCustomerButton();
         showAllCustomerPage.createCustomer(customer);
+
         showAllCustomerPage.clickGoToLastPageButton();
         showAllCustomerPage.openLastCustomer();
         customerInformationPage.clickAddOrderButton();
@@ -55,7 +56,7 @@ public class TC01 {
         showAllOrdersPage.clickLastCustomerName();
 //        customerInformationPage.clickLastPaymentDate();
 //        orderInformationPage.getCustomerOderInformation();
-//l
+//
 //        softAssert.assertEquals(createOrderPage.getProductOrderInformation(),orderInformationPage.getProductOrderInformation(),"Product information is not correct");
 //        softAssert.assertAll();
 
