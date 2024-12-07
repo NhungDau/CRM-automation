@@ -17,6 +17,7 @@ public class CreateOrderPage  {
     By getListQuantityTextBoxLocator = By.xpath("//tr[td/input[@type='checkbox']]/td[4]/input");
     By getListProductPriceLocator = By.xpath("//tr[td/input[@type='checkbox']]/td[3]");
     By paymentDateTextboxLocator = By.xpath("//input[@id='j_idt74:pd']");
+    By createOrderButtonLocator = By.xpath("//input[@value='Create order']");
 
 
     Random random = new Random();
@@ -26,6 +27,8 @@ public class CreateOrderPage  {
     String paymentdate = today.format(formatter);
 
     int quantity = random.nextInt(20)+1;
+
+    ProductOrderInformation productOrderInformation;
 
     WebDriver driver;
 
@@ -47,6 +50,11 @@ public class CreateOrderPage  {
         List<WebElement> list = driver.findElements(getListQuantityTextBoxLocator);
         list.get(index).sendKeys(String.valueOf(quantity));
     }
+
+    //click create order button
+    public void clickCreateOrderButton(){
+        driver.findElement(createOrderButtonLocator).click();
+    }
     //get product price
     public double getProductPriceByIndex(int index){
         List<WebElement> list = driver.findElements(getListProductPriceLocator);
@@ -54,7 +62,7 @@ public class CreateOrderPage  {
     }
 
     public void addOrderByIndex(){
-        ProductOrderInformation productOrderInformation;
+
         List<WebElement> list = driver.findElements(getListProductByNameLocator);
 
         int index = random.nextInt(list.size()+1);
@@ -72,9 +80,14 @@ public class CreateOrderPage  {
         double totalPrice = price*quantity;
         //productOrderInformation.productOrderInformation(productName,price,quantity);
         productOrderInformation = new ProductOrderInformation(productName, price,quantity,totalPrice,paymentdate);
+        //click create order button
+        clickCreateOrderButton();
 
 
+    }
 
+    public ProductOrderInformation getProductOrderInformation(){
+        return productOrderInformation;
     }
 
 }

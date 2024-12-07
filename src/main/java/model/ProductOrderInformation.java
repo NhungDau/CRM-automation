@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public class ProductOrderInformation {
 
     private String productName;
@@ -63,4 +65,16 @@ public class ProductOrderInformation {
         return new ProductOrderInformation(productName,price,quantity,totalPrice,paymentDate);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProductOrderInformation that = (ProductOrderInformation) o;
+        return Objects.equals(productName, that.productName) && Objects.equals(productQuantity, that.productQuantity) && Objects.equals(productPrice, that.productPrice) && Objects.equals(totalPrice, that.totalPrice) && Objects.equals(paymentDate, that.paymentDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(productName, productQuantity, productPrice, totalPrice, paymentDate);
+    }
 }

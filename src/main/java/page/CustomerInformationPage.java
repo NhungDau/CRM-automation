@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class CustomerInformationPage {
     By addOrderButtonLocator = By.xpath("//a[text()='Add order']");
-    By paymentDateLinkLocator = By.xpath("//tr/td/a");
+    By lastPaymentDateLocator = By.xpath("//tr/td/a");
     WebDriver driver;
 
     public CustomerInformationPage(WebDriver driver) {
@@ -19,9 +19,9 @@ public class CustomerInformationPage {
         driver.findElement(addOrderButtonLocator).click();
     }
 
-    //click last payment date to open orer information page
+    //click last payment date to open order information page
     public void clickLastPaymentDate(){
-        driver.findElement(paymentDateLinkLocator).click();
+        driver.findElement(lastPaymentDateLocator).click();
     }
 
     //get order information

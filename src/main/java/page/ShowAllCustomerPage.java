@@ -4,7 +4,10 @@ import model.Customer;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 
 public class ShowAllCustomerPage  {
@@ -17,7 +20,7 @@ public class ShowAllCustomerPage  {
     By phoneTextboxLocator = By.id("j_idt70:phone");
     By addressTextboxLocator = By.id("j_idt70:address");
     By createCustomerLocator = By.xpath("//input[@value='Create a customer']");
-    By lastPageButtonLocator = By.xpath("//span[@class='ui-paginator-last ui-state-default ui-corner-all ui-state-disabled']");
+    By lastPageButtonLocator = By.xpath("//span[@class='ui-icon ui-icon-seek-end']");
     By getListCustomerByNameLocator = By.xpath("//a[@class='ui-link ui-widget']");
 
 
@@ -72,11 +75,14 @@ public class ShowAllCustomerPage  {
 
     //click to the newest customer
     public void openLastCustomer(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(getListCustomerByNameLocator));
+
         List<WebElement> list = driver.findElements(getListCustomerByNameLocator);
         list.get(list.size()-1).click();
     }
 
-    //open CAipaign
+
 
 
 }
