@@ -55,7 +55,7 @@ public class TC01 {
         showAllOrdersPage.clickLastCustomerName();
 //        customerInformationPage.clickLastPaymentDate();
 //        orderInformationPage.getCustomerOderInformation();
-//
+//l
 //        softAssert.assertEquals(createOrderPage.getProductOrderInformation(),orderInformationPage.getProductOrderInformation(),"Product information is not correct");
 //        softAssert.assertAll();
 
