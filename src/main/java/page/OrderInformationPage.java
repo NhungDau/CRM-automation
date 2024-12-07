@@ -28,6 +28,7 @@ public class OrderInformationPage {
         String paymentDate = driver.findElement(paymentDateLocator).getText();
 
         productOrderInformation = new ProductOrderInformation(productName,price,quantity,totalPrice, paymentDate);
+
     }
 
     public ProductOrderInformation getProductOrderInformation(){
