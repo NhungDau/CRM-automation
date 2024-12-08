@@ -50,6 +50,7 @@ public class TC01 {
         showAllCustomerPage.openLastCustomer();
         customerInformationPage.clickAddOrderButton();
         createOrderPage.addOrderByIndex();
+        createOrderPage.getProductOrderInformation();
         basePage.openShowAllOrdersPage();
         showAllOrdersPage.searchByCustomerName(customer.getName());
         showAllOrdersPage.clickLastCustomerName();
@@ -58,7 +59,7 @@ public class TC01 {
         System.out.println("Create Order: " + createOrderPage.getProductOrderInformation());
         System.out.println("Order Information Page: " + orderInformationPage.getProductOrderInformation());
 
-//        softAssert.assertEquals(createOrderPage.getProductOrderInformation(),orderInformationPage.getProductOrderInformation(),"Product information is not correct");
+        softAssert.assertEquals(createOrderPage.getProductOrderInformation(),orderInformationPage.getProductOrderInformation(),"Product information is not correct");
         softAssert.assertAll();
 
     }

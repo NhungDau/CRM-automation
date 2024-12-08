@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.Random;
 
 public class ShowAllCustomerPage  {
     By campaignsNavigationLabelLocator = By.xpath("//span[@class='nav-label'][text()='Campaigns']");
@@ -22,7 +23,12 @@ public class ShowAllCustomerPage  {
     By createCustomerLocator = By.xpath("//input[@value='Create a customer']");
     By lastPageButtonLocator = By.xpath("//span[@class='ui-icon ui-icon-seek-end']");
     By getListCustomerByNameLocator = By.xpath("//a[@class='ui-link ui-widget']");
+    By searchByCustomerNameTextboxLocator = By.xpath("//input[@id='j_idt71:tbl:j_idt72:filter']");
 
+
+    Random random = new Random();
+    Customer customer;
+    String customerName;
 
     WebDriver driver;
 
@@ -76,13 +82,27 @@ public class ShowAllCustomerPage  {
     //click to the newest customer
     public void openLastCustomer(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(getListCustomerByNameLocator));
+        wait.until(ExpectedConditions.elementToBeClickable(getListCustomerByNameLocator));
 
         List<WebElement> list = driver.findElements(getListCustomerByNameLocator);
         list.get(list.size()-1).click();
     }
 
+    //click to customer name by random index
+    public void clickCustomerNameByIndex(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(getListCustomerByNameLocator));
 
+        List<WebElement> list = driver.findElements(getListCustomerByNameLocator);
+
+        int a = random.nextInt(list.size()+1);
+        customerName = list.get(a).getText();
+
+        list.get(a).click();
+    }
+    public String customerName(){
+        return customerName;
+    }
 
 
 }
