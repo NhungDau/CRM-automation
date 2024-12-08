@@ -19,7 +19,7 @@ public class CampaignsInformationPage {
     By campaignDescriptionLocator = By.xpath("//label[@class='col-lg-2 control-label'][text()='Description']/..//div/span[@class='form-control']");
     By addCustomerButtonLocator = By.xpath("//a[@class='btn btn-primary'][text()='Add customer']");
     By newlyAddedCustomerLocator = By.xpath("//tr/td/a");
-
+    By customerNameLabelLocator = By.xpath("//table/tbody//td/a");
     WebDriver driver;
 
     public CampaignsInformationPage(WebDriver driver) {
@@ -30,13 +30,16 @@ public class CampaignsInformationPage {
         driver.findElement(addCustomerButtonLocator).click();
     }
 
+    //open latest customer information page
     public void openTheLastCustomerInformationPage() {
         List<WebElement> listCustomer = driver.findElements(newlyAddedCustomerLocator);
                 listCustomer.get(listCustomer.size()-1).click();
     }
 
-    public void getCutomerInformation() {
-
+    //get latest customer name
+    public String getNewCutomerName() {
+        List<WebElement> listCustomer = driver.findElements(customerNameLabelLocator);
+        return listCustomer.get(listCustomer.size() - 1).getText();
     }
 
     public Campaign getCampaignInformation() {
