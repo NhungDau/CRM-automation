@@ -16,8 +16,8 @@ public class BasePage {
     By remindersNavigationLabelLocator = By.xpath("//span[@class='nav-label'][text()='Reminders']");
     By showAllRemindersLabelLocator = By.xpath("//ul[@class='nav nav-second-level collapse in']//a[text()='Show All Reminders']");
     By campaignsNavigationLabelLocator = By.xpath("//span[@class='nav-label'][text()='Campaigns']");
-    By showAllCampaignsLabelLocator = By.xpath("//ul[@class='nav nav-second-level collapse in']//a[text()='Create Campaign']");
-    By createCampaignLabelLocator = By.xpath("//ul[@class='nav nav-second-level collapse in']//a[text()='Show All Reminders']");
+    By showAllCampaignsLabelLocator = By.xpath("//ul[@class='nav nav-second-level collapse in']//a[text()='Show All Campaigns']");
+    By createCampaignLabelLocator = By.xpath("//ul[@class='nav nav-second-level collapse in']//a[text()='Create Campaign']");
     By showAllCampaignTypesLabelLocator = By.xpath("//ul[@class='nav nav-second-level collapse in']//a[text()='Show All Campaign Types']");
     By createCampaignTypesLabelLocator = By.xpath("//ul[@class='nav nav-second-level collapse in']//a[text()='Create Campaign Type']");
     By opportunitiesNavigationLabelLocator = By.xpath("//span[@class='nav-label'][text()='Opportunities']");
@@ -32,6 +32,7 @@ public class BasePage {
 
 
     WebDriver driver;
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
@@ -55,6 +56,8 @@ public class BasePage {
     //open showAllCampaign page
     public void openShowAllCampaignsPage() {
         driver.findElement(campaignsNavigationLabelLocator).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(showAllCampaignsLabelLocator));
+        wait.until(ExpectedConditions.elementToBeClickable(showAllCampaignsLabelLocator));
         driver.findElement(showAllCampaignsLabelLocator).click();
     }
 
