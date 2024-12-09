@@ -11,7 +11,7 @@ import java.time.Duration;
 import java.util.List;
 import java.util.Random;
 
-public class ShowAllCustomerPage  {
+public class ShowAllCustomerPage extends BasePage {
     By campaignsNavigationLabelLocator = By.xpath("//span[@class='nav-label'][text()='Campaigns']");
     By showAllCampaignsLabelLocator = By.xpath("//ul[@class='nav nav-second-level collapse in']//a[text()='Show All Campaigns']");
 
@@ -30,11 +30,9 @@ public class ShowAllCustomerPage  {
     Customer customer;
     String customerName;
 
-    WebDriver driver;
 
     public ShowAllCustomerPage(WebDriver driver) {
-        this.driver = driver;
-    }
+        super(driver);    }
 
     //click New Customer button
     public void clickNewCustomerButton(){

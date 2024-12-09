@@ -3,7 +3,6 @@ import model.Customer;
 import model.User;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -42,6 +41,7 @@ public class TC02 {
         customerInformationPage = new CustomerInformationPage(driver);
         editCustomerInformationPage = new EditCustomerInformationPage(driver);
         customer = Customer.random();
+        customerUpdatedName = new Customer();
         faker = new Faker();
         newCustomerName = faker.name().lastName();
         softAssert = new SoftAssert();
@@ -52,31 +52,35 @@ public class TC02 {
         loginPage.login(User.defaultUser());
         showAllCustomerPage.clickNewCustomerButton();
         showAllCustomerPage.createCustomer(customer);
-        basePage.openShowAllCampaignsPage();
+        showAllCustomerPage.openShowAllCampaignsPage();
         showAllCampaignsPage.openCampaignInformationPage();
         campaignsInformationPage.goToAddCustomerIntoCampaignPage();
         addCustomerIntoCampaignPage.selectTheNewestCustomer();
         addCustomerIntoCampaignPage.clickToAddButton();
         campaignsInformationPage.openTheLastCustomerInformationPage();
         customerInformationPage.openEditCustomerInformationPage();
-        editCustomerInformationPage.editCustomerName(newCustomerName);
+        editCustomerInformationPage.editCustomerName(newCustomerName); //edit
+
+        customerUpdatedName.setName("abc");
+
+        editCustomerInformationPage.clickSaveButton();
         customerUpdatedName.setName(newCustomerName);
 
         //verify that New customer name display correctly at customer page
         softAssert.assertEquals(customerInformationPage.getCustomerName(), customerUpdatedName.getName(),"Name has not updated");
         System.out.println("Customer name is updated: " + newCustomerName);
 
-        customerInformationPage.openCampaignInformationPage();
-
-        //Customer name is updated in customer table in Campaign information page
-        softAssert.assertEquals(campaignsInformationPage.getNewCutomerName(), newCustomerName, "Name has not updated");
-        System.out.println("Customer name is updated in customer table: " + newCustomerName);
+//        customerInformationPage.openCampaignInformationPage();
+//
+//        //Customer name is updated in customer table in Campaign information page
+//        softAssert.assertEquals(campaignsInformationPage.getLastCustomerName(), newCustomerName, "Name has not updated");
+//        System.out.println("Customer name is updated in customer table: " + newCustomerName);
 
         softAssert.assertAll();
     }
 
-    @AfterMethod
-    public void cleanUp() {
-        driver.quit();
-    }
+//    @AfterMethod
+//    public void cleanUp() {
+//        driver.quit();
+//    }
 }

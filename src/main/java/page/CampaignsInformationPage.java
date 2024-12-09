@@ -42,7 +42,7 @@ public class CampaignsInformationPage {
     }
 
     //get latest customer name
-    public String getNewCutomerName() {
+    public String getLastCustomerName() {
         List<WebElement> listCustomer = driver.findElements(customerNameLabelLocator);
         return listCustomer.get(listCustomer.size() - 1).getText();
     }

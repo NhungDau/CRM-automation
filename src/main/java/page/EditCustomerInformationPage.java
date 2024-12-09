@@ -32,7 +32,20 @@ public class EditCustomerInformationPage {
         return driver.findElement(customerPhoneTextBoxLocator).getText();
     }
     public void editCustomerName(String newCustomerName) {
+        driver.findElement(customerNameTextBoxLocator).clear();
         driver.findElement(customerNameTextBoxLocator).sendKeys(newCustomerName);
+
+    }
+
+    public void clickSaveButton() {
         driver.findElement(saveButtonLocator).click();
+    }
+
+    public void editCustomer(Customer customer) {
+        if (customer.getEmail() != null) {
+        }
+        if (customer.getName() != null) {
+            editCustomerName(customer.getName());
+        }
     }
 }

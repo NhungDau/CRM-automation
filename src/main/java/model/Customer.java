@@ -58,7 +58,7 @@ public class Customer {
     }
 
     public static Customer random() {
-        return new Customer(faker.name().firstName(),faker.internet().emailAddress(),faker.numerify("#########"),faker.address().fullAddress());
+        return new Customer(faker.name().firstName(),faker.internet().emailAddress("ivietech"),faker.numerify("#########"),faker.address().fullAddress());
     }
 
     @Override
@@ -72,5 +72,8 @@ public class Customer {
     @Override
     public int hashCode() {
         return Objects.hash(name, email, phone, address);
+    }
+
+    public Customer() {
     }
 }

@@ -11,6 +11,10 @@ public class CustomerInformationPage {
     By paymentDateLocator = By.xpath("//tr/td/a");
     By priceLocator = By.xpath("//tr/td[2]");
     By addOpportunityButtonLocator = By.xpath("//a[text()='Add opportunity']");
+    By campaignNameLabelLocator = By.xpath("//h5[text()='Campaigns']/../../div[@class='ibox-content']//table//td/a");
+    By editCustomerInformationButtonLocator = By.xpath("//a[@class='btn btn-primary'][text()='Edit']");
+    By customerNameLabelLocator = By.xpath("//label[@class='col-lg-1'][text()='Name:']/../div/span");
+
     WebDriver driver;
 
     String paymentDate;
@@ -55,4 +59,15 @@ public class CustomerInformationPage {
 
     }
 
+    public void openEditCustomerInformationPage() {
+        driver.findElement(editCustomerInformationButtonLocator).click();
+    }
+
+    public String getCustomerName() {
+        return driver.findElement(customerNameLabelLocator).getText();
+    }
+
+    public void openCampaignInformationPage() {
+        driver.findElement(campaignNameLabelLocator).click();
+    }
 }
