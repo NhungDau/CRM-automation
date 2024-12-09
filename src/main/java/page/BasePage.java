@@ -56,7 +56,7 @@ public class BasePage {
     //open showAllCampaign page
     public void openShowAllCampaignsPage() {
         driver.findElement(campaignsNavigationLabelLocator).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(showAllCampaignsLabelLocator));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.elementToBeClickable(showAllCampaignsLabelLocator));
         driver.findElement(showAllCampaignsLabelLocator).click();
     }
@@ -88,7 +88,7 @@ public class BasePage {
     public void openShowAllOrdersPage() {
         driver.findElement(ordersNavigationLabelLocator).click();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(showAllOrdersLabelLocator));
+        wait.until(ExpectedConditions.elementToBeClickable(showAllOrdersLabelLocator));
 
         driver.findElement(showAllOrdersLabelLocator).click();
     }
