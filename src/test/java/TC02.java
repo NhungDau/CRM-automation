@@ -49,9 +49,14 @@ public class TC02 {
 
     @Test
     public void TC02() {
+        //login
         loginPage.login(User.defaultUser());
+
+        //Add new customer
         showAllCustomerPage.clickNewCustomerButton();
         showAllCustomerPage.createCustomer(customer);
+
+
         showAllCustomerPage.openShowAllCampaignsPage();
         showAllCampaignsPage.openCampaignInformationPage();
         campaignsInformationPage.goToAddCustomerIntoCampaignPage();
