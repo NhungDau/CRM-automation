@@ -82,8 +82,6 @@ public class CreateOrderPage  {
         productOrderInformation = new ProductOrderInformation(productName, price,quantity,totalPrice,paymentdate);
         //click create order button
         clickCreateOrderButton();
-
-
     }
 
     public ProductOrderInformation getProductOrderInformation(){

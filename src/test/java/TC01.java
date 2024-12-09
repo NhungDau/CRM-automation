@@ -51,6 +51,12 @@ public class TC01 {
         customerInformationPage.clickAddOrderButton();
         createOrderPage.addOrderByIndex();
         createOrderPage.getProductOrderInformation();
+
+        //4.verify new order created successfully and display in customer information page
+        customerInformationPage.isOrderDisplay();
+        softAssert.assertEquals(customerInformationPage.getPaymentDate(),createOrderPage.getProductOrderInformation().getPaymentDate(),"Payment date is not correct");
+        softAssert.assertEquals(customerInformationPage.getPrice(),createOrderPage.getProductOrderInformation().getProductPrice(),"Price is not correct");
+
         basePage.openShowAllOrdersPage();
         showAllOrdersPage.searchByCustomerName(customer.getName());
         showAllOrdersPage.clickLastCustomerName();
