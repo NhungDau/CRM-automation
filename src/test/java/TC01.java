@@ -38,21 +38,27 @@ public class TC01 {
         driver.manage().window().maximize();
         driver.get("http://14.176.232.213:8080/CRMweb/faces/login.xhtml");
 
+        softAssert = new SoftAssert();
         customer = Customer.random();
     }
 
     @Test
     public void TC01() {
+        //login
         loginPage.login(User.defaultUser());
+
+        //create new customer
         showAllCustomerPage.clickNewCustomerButton();
         showAllCustomerPage.createCustomer(customer);
+
+        //open the newly created customer to add new order
         showAllCustomerPage.clickGoToLastPageButton();
         showAllCustomerPage.openLastCustomer();
         customerInformationPage.clickAddOrderButton();
         createOrderPage.addOrderByIndex();
         createOrderPage.getProductOrderInformation();
 
-        //4.verify new order created successfully and display in customer information page
+        //step 4.verify new order created successfully and display in customer information page
         customerInformationPage.isOrderDisplay();
         softAssert.assertEquals(customerInformationPage.getPaymentDate(),createOrderPage.getProductOrderInformation().getPaymentDate(),"Payment date is not correct");
         softAssert.assertEquals(customerInformationPage.getPrice(),createOrderPage.getProductOrderInformation().getProductPrice(),"Price is not correct");
@@ -61,10 +67,11 @@ public class TC01 {
         showAllOrdersPage.searchByCustomerName(customer.getName());
         showAllOrdersPage.clickLastCustomerName();
         customerInformationPage.clickLastPaymentDate();
-        orderInformationPage.getCustomerOderInformation();
-        System.out.println("Create Order: " + createOrderPage.getProductOrderInformation());
-        System.out.println("Order Information Page: " + orderInformationPage.getProductOrderInformation());
+//        orderInformationPage.getCustomerOderInformation();
+//        System.out.println("Create Order: " + createOrderPage.getProductOrderInformation());
+//        System.out.println("Order Information Page: " + orderInformationPage.getProductOrderInformation());
 
+        //verify after add new order in create order page, product name/price/quanity/total price are same in oder in formation page
         softAssert.assertEquals(createOrderPage.getProductOrderInformation(),orderInformationPage.getProductOrderInformation(),"Product information is not correct");
         softAssert.assertAll();
 

@@ -32,7 +32,14 @@ public class OrderInformationPage {
     }
 
     public ProductOrderInformation getProductOrderInformation(){
-        return productOrderInformation;
+//        return productOrderInformation;
+        String productName = driver.findElement(productNameLocator).getText();
+        Integer quantity = Integer.parseInt(driver.findElement(quantityLocator).getText());
+        Double price = Double.parseDouble(driver.findElement(priceLocator).getText());
+        Double totalPrice = Double.parseDouble(driver.findElement(totalPriceLocator).getText());
+        String paymentDate = driver.findElement(paymentDateLocator).getText();
+
+        return new ProductOrderInformation(productName,price,quantity,totalPrice,paymentDate);
     }
 
 }

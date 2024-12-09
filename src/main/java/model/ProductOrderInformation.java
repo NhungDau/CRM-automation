@@ -18,6 +18,30 @@ public class ProductOrderInformation {
         this.paymentDate = paymentDate;
     }
 
+    @Override
+    public String toString() {
+        return "ProductOrderInformation{" +
+                "productName='" + productName + '\'' +
+                ", productQuantity=" + productQuantity +
+                ", productPrice=" + productPrice +
+                ", totalPrice=" + totalPrice +
+                ", paymentDate='" + paymentDate + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProductOrderInformation that = (ProductOrderInformation) o;
+        return Objects.equals(productName, that.productName) && Objects.equals(productQuantity, that.productQuantity) && Objects.equals(productPrice, that.productPrice) && Objects.equals(totalPrice, that.totalPrice) && Objects.equals(paymentDate, that.paymentDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(productName, productQuantity, productPrice, totalPrice, paymentDate);
+    }
+
     public String getProductName() {
         return productName;
     }
@@ -58,23 +82,4 @@ public class ProductOrderInformation {
         this.paymentDate = paymentDate;
     }
 
-    public ProductOrderInformation productOrderInformationInCreateOrderPage(String productName, double price, int quantity ,double totalPrice, String paymentDate){
-        return new ProductOrderInformation(productName,price,quantity,totalPrice,paymentDate);
-    }
-    public ProductOrderInformation productOrderInformationInCustomerInformationPage(String productName, double price, int quantity ,double totalPrice, String paymentDate){
-        return new ProductOrderInformation(productName,price,quantity,totalPrice,paymentDate);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ProductOrderInformation that = (ProductOrderInformation) o;
-        return Objects.equals(productName, that.productName) && Objects.equals(productQuantity, that.productQuantity) && Objects.equals(productPrice, that.productPrice) && Objects.equals(totalPrice, that.totalPrice) && Objects.equals(paymentDate, that.paymentDate);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(productName, productQuantity, productPrice, totalPrice, paymentDate);
-    }
 }
