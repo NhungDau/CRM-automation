@@ -2,6 +2,7 @@ package page;
 
 import model.Customer;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -24,6 +25,7 @@ public class ShowAllCustomerPage extends BasePage {
     By lastPageButtonLocator = By.xpath("//span[@class='ui-icon ui-icon-seek-end']");
     By getListCustomerByNameLocator = By.xpath("//a[@class='ui-link ui-widget']");
     By searchByCustomerNameTextboxLocator = By.xpath("//input[@id='j_idt71:tbl:j_idt72:filter']");
+    By dynamicCustomerNameLocator;
 
 
     Random random = new Random();
@@ -32,35 +34,39 @@ public class ShowAllCustomerPage extends BasePage {
 
 
     public ShowAllCustomerPage(WebDriver driver) {
-        super(driver);    }
+        super(driver);
+    }
 
     //click New Customer button
-    public void clickNewCustomerButton(){
+    public void clickNewCustomerButton() {
         driver.findElement(newCustomerButtonLocator).click();
     }
 
     //enter name
-    public void enterName(String sdflksjdhf){
+    public void enterName(String sdflksjdhf) {
         driver.findElement(nameTextboxLocator).sendKeys(sdflksjdhf);
     }
+
     //enter email
-    public void enterEmail(String email){
+    public void enterEmail(String email) {
 
         driver.findElement(emailTextboxLocator).sendKeys(email);
     }
+
     //enter phone
-    public void enterPhone(String phone){
+    public void enterPhone(String phone) {
 
         driver.findElement(phoneTextboxLocator).sendKeys(phone);
     }
+
     //enter address
-    public void enterAddress(String address){
+    public void enterAddress(String address) {
 
         driver.findElement(addressTextboxLocator).sendKeys(address);
     }
 
     //create new customer
-    public void createCustomer(Customer customer){
+    public void createCustomer(Customer customer) {
         //enter value
         enterName(customer.getName());
         enterEmail(customer.getEmail());
@@ -72,13 +78,13 @@ public class ShowAllCustomerPage extends BasePage {
 
 
     //click go to last page button
-    public void clickGoToLastPageButton(){
+    public void clickGoToLastPageButton() {
 
         driver.findElement(lastPageButtonLocator).click();
     }
 
     //click to the newest customer
-    public void openLastCustomer(){
+    public void openLastCustomer() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.elementToBeClickable(getListCustomerByNameLocator));
         try {
@@ -87,22 +93,37 @@ public class ShowAllCustomerPage extends BasePage {
             throw new RuntimeException(e);
         }
         List<WebElement> list = driver.findElements(getListCustomerByNameLocator);
-        list.get(list.size()-1).click();
+        list.get(list.size() - 1).click();
+    }
+
+    //open customer information page by customer object
+    public void openCustomerInformationByObject(Customer customer) {
+        String xpathValue = String.format("//a[@class='ui-link ui-widget'][text()='%s']", customer.getName());
+        dynamicCustomerNameLocator = By.xpath(xpathValue);
+        driver.findElement(dynamicCustomerNameLocator).click();
+    }
+
+    //search customer name by object
+    public void searchCustomerNameByObject(Customer customer) {
+        driver.findElement(searchByCustomerNameTextboxLocator).sendKeys(customer.getName());
+        wait.until(ExpectedConditions.textToBePresentInElement(driver.findElement(getListCustomerByNameLocator), customer.getName()));
+        driver.findElement(searchByCustomerNameTextboxLocator).sendKeys(Keys.ENTER);
     }
 
     //click to customer name by random index
-    public void clickCustomerNameByIndex(){
+    public void clickCustomerNameByIndex() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.elementToBeClickable(getListCustomerByNameLocator));
 
         List<WebElement> list = driver.findElements(getListCustomerByNameLocator);
 
-        int a = random.nextInt(list.size()+1);
+        int a = random.nextInt(list.size() + 1);
         customerName = list.get(a).getText();
 
         list.get(a).click();
     }
-    public String customerName(){
+
+    public String customerName() {
         return customerName;
     }
 

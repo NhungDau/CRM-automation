@@ -60,6 +60,8 @@ public class TC04 {
 
         //Verify that new campaign type can be selected
         softAssert.assertEquals(createCampaignPage.getSelectedCampaignType(), campaignType.getTypeName(), "Not found new camaign type");
+        //getSelected nhưng lại ra full list type??
+
         System.out.println("Newly created campaign type in the Type field of create campaign page");
 
         softAssert.assertAll();
