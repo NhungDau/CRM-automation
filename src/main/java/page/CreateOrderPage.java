@@ -4,7 +4,10 @@ import model.ProductOrderInformation;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -19,16 +22,6 @@ public class CreateOrderPage  {
     By paymentDateTextboxLocator = By.xpath("//input[@id='j_idt74:pd']");
     By createOrderButtonLocator = By.xpath("//input[@value='Create order']");
 
-
-    Random random = new Random();
-    LocalDate today = LocalDate.now();
-    // date format yyy-mm-dd
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    String paymentdate = today.format(formatter);
-
-    int quantity = random.nextInt(20)+1;
-
-    ProductOrderInformation productOrderInformation;
 
     WebDriver driver;
 
@@ -47,6 +40,9 @@ public class CreateOrderPage  {
     }
     //enter product quantity
     public void enterQuantityByIndex(int index){
+        Random random = new Random();
+        int quantity = random.nextInt(20)+1;
+
         List<WebElement> list = driver.findElements(getListQuantityTextBoxLocator);
         list.get(index).sendKeys(String.valueOf(quantity));
     }
@@ -61,31 +57,45 @@ public class CreateOrderPage  {
         return Double.parseDouble(list.get(index).getText());
     }
 
-    public void addOrderByIndex(){
+    public void addOrderByIndex(int a){
 
         List<WebElement> list = driver.findElements(getListProductByNameLocator);
 
-        int index = random.nextInt(list.size()+1);
-
         //enter payment date
+        LocalDate today = LocalDate.now();
+            // date format yyy-mm-dd
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String paymentdate = today.format(formatter);
+
         enterPaymentDate(paymentdate);
+
         //check checkbox
-        clickCheckboxByIndex(index);
+        clickCheckboxByIndex(a);
         //enter quantity
-        enterQuantityByIndex(index);
-        //get product name
-        String productName = list.get(index).getText();
-        //get product price
-        double price = getProductPriceByIndex(index);
-        double totalPrice = price*quantity;
-        //productOrderInformation.productOrderInformation(productName,price,quantity);
-        productOrderInformation = new ProductOrderInformation(productName, price,quantity,totalPrice,paymentdate);
-        //click create order button
-        clickCreateOrderButton();
+        enterQuantityByIndex(a);
+
     }
 
-    public ProductOrderInformation getProductOrderInformation(){
-        return productOrderInformation;
+    public ProductOrderInformation getProductOrderInformation(int a){
+
+        ProductOrderInformation product =  new ProductOrderInformation();
+
+        product.setProductName(driver.findElements(getListProductByNameLocator).get(a).getText());
+
+        Double price = Double.parseDouble(driver.findElements(getListProductPriceLocator).get(a).getText());
+        product.setProductPrice(price);
+
+
+        Integer quantity = Integer.parseInt(driver.findElements(getListQuantityTextBoxLocator).get(a).getText());
+        product.setProductQuantity(quantity);
+
+        product.setTotalPrice(price*quantity);
+
+        product.setPaymentDate(driver.findElement(paymentDateTextboxLocator).getText());
+
+        return product;
     }
+
+
 
 }

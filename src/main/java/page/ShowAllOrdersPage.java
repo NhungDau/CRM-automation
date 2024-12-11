@@ -12,7 +12,7 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShowAllOrdersPage {
+public class ShowAllOrdersPage extends BasePage {
 
     By searchByCustomerNameTextboxLocator = By.xpath("//input[@id='j_idt70:carTable:j_idt71:filter']");
     By getListCustomerNameLocator = By.xpath("//tr//td[1]//a[@class='ui-link ui-widget']");
@@ -24,7 +24,7 @@ public class ShowAllOrdersPage {
     WebDriver driver;
 
     public ShowAllOrdersPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
     //search by customer name

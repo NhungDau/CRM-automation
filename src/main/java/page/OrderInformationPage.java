@@ -20,26 +20,28 @@ public class OrderInformationPage {
         this.driver = driver;
     }
 
-    public void getCustomerOderInformation(){
-        String productName = driver.findElement(productNameLocator).getText();
-        Integer quantity = Integer.parseInt(driver.findElement(quantityLocator).getText());
-        Double price = Double.parseDouble(driver.findElement(priceLocator).getText());
-        Double totalPrice = Double.parseDouble(driver.findElement(totalPriceLocator).getText());
-        String paymentDate = driver.findElement(paymentDateLocator).getText();
+//    public void getCustomerOderInformation(){
+//        String productName = driver.findElement(productNameLocator).getText();
+//        Integer quantity = Integer.parseInt(driver.findElement(quantityLocator).getText());
+//        Double price = Double.parseDouble(driver.findElement(priceLocator).getText());
+//        Double totalPrice = Double.parseDouble(driver.findElement(totalPriceLocator).getText());
+//        String paymentDate = driver.findElement(paymentDateLocator).getText();
+//
+//        productOrderInformation = new ProductOrderInformation(productName,price,quantity,totalPrice, paymentDate);
+//
+//    }
 
-        productOrderInformation = new ProductOrderInformation(productName,price,quantity,totalPrice, paymentDate);
+    public ProductOrderInformation getCustomerOrderInformation(){
 
-    }
+        ProductOrderInformation a = new ProductOrderInformation();
 
-    public ProductOrderInformation getProductOrderInformation(){
-//        return productOrderInformation;
-        String productName = driver.findElement(productNameLocator).getText();
-        Integer quantity = Integer.parseInt(driver.findElement(quantityLocator).getText());
-        Double price = Double.parseDouble(driver.findElement(priceLocator).getText());
-        Double totalPrice = Double.parseDouble(driver.findElement(totalPriceLocator).getText());
-        String paymentDate = driver.findElement(paymentDateLocator).getText();
+        a.setProductName(driver.findElement(productNameLocator).getText());
+        a.setProductQuantity(Integer.parseInt(driver.findElement(quantityLocator).getText()));
+        a.setProductPrice(Double.parseDouble(driver.findElement(priceLocator).getText()));
+        a.setTotalPrice(Double.parseDouble(driver.findElement(totalPriceLocator).getText()));
+        a.setPaymentDate(driver.findElement(paymentDateLocator).getText());
 
-        return new ProductOrderInformation(productName,price,quantity,totalPrice,paymentDate);
+        return a;
     }
 
 }

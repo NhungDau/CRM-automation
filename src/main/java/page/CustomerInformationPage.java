@@ -1,5 +1,6 @@
 package page;
 
+import model.ProductOrderInformation;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -19,6 +20,7 @@ public class CustomerInformationPage {
     By customerNameLabelLocator = By.xpath("//label[@class='col-lg-1'][text()='Name:']/../div/span");
 
     WebDriver driver;
+
 
     String paymentDate;
     Double price;
@@ -46,13 +48,13 @@ public class CustomerInformationPage {
     }
 
     //check newest order display
-    public void isOrderDisplay(OrderInformationPage o){
+    public void isOrderDisplay(){
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        o =  new OrderInformationPage()
+
         List<WebElement> list = driver.findElements(paymentDateLocator);
         paymentDate = list.get(list.size()-1).getText();
 
@@ -60,14 +62,17 @@ public class CustomerInformationPage {
         price = Double.parseDouble(list1.get(list1.size()-1).getText());
     }
 
-//    public String getPaymentDate(){
-//        return paymentDate;
-//    }
-//
-//    public  Double getPrice(){
-//        return price;
-//
-//    }
+    //get payment date
+    public String getPaymentDate(){
+        return getPaymentDate();
+    }
+
+    //get price
+    public  String getProductPrice(){
+        return getProductPrice();
+    }
+
+
 
     public void openEditCustomerInformationPage() {
         driver.findElement(editCustomerInformationButtonLocator).click();

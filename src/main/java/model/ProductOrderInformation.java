@@ -81,5 +81,5 @@ public class ProductOrderInformation {
     public void setPaymentDate(String paymentDate) {
         this.paymentDate = paymentDate;
     }
-
+    public ProductOrderInformation(){}
 }

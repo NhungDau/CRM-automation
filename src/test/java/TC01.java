@@ -55,27 +55,30 @@ public class TC01 {
         showAllCustomerPage.clickGoToLastPageButton();
         showAllCustomerPage.openLastCustomer();
         customerInformationPage.clickAddOrderButton();
-        createOrderPage.addOrderByIndex();
-        createOrderPage.getProductOrderInformation();
+        createOrderPage.addOrderByIndex(5);
+        createOrderPage.getProductOrderInformation(5);
+        createOrderPage.clickCreateOrderButton();
 
         //step 4.verify new order created successfully and display in customer information page
         customerInformationPage.isOrderDisplay();
-        customerInformationPage.getPrice();
-        customerInformationPage.getCustomerName();
-        softAssert.assertEquals(customerInformationPage.getPaymentDate(),createOrderPage.getProductOrderInformation().getPaymentDate(),"Payment date is not correct");
-        softAssert.assertEquals(customerInformationPage.getPrice(),createOrderPage.getProductOrderInformation().getProductPrice(),"Price is not correct");
+        customerInformationPage.getProductPrice();
+        softAssert.assertEquals(customerInformationPage.getPaymentDate(),createOrderPage.getProductOrderInformation(5).getPaymentDate(),"Payment date is not correct");
+        softAssert.assertEquals(customerInformationPage.getProductPrice(),createOrderPage.getProductOrderInformation(5).getProductPrice(),"Price is not correct");
 
-//        basePage.openShowAllOrdersPage();
-//        showAllOrdersPage.searchByCustomerName(customer.getName());
-//        showAllOrdersPage.clickLastCustomerName();
-//        customerInformationPage.clickLastPaymentDate();
-////        orderInformationPage.getCustomerOderInformation();
-////        System.out.println("Create Order: " + createOrderPage.getProductOrderInformation());
-////        System.out.println("Order Information Page: " + orderInformationPage.getProductOrderInformation());
-//
-//        //verify after add new order in create order page, product name/price/quanity/total price are same in oder in formation page
-//        softAssert.assertEquals(createOrderPage.getProductOrderInformation(),orderInformationPage.getProductOrderInformation(),"Product information is not correct");
-//        softAssert.assertAll();
+        //go to show all order page
+        showAllOrdersPage.openShowAllOrdersPage();
+
+        //search by customer name
+        showAllOrdersPage.searchByCustomerName(customer.getName());
+
+        //go to order information page
+        showAllOrdersPage.clickLastCustomerName();
+        customerInformationPage.clickLastPaymentDate();
+        orderInformationPage.getCustomerOrderInformation();
+
+        //verify after add new order in create order page, product name/price/quanity/total price are same in oder in formation page
+        softAssert.assertEquals(createOrderPage.getProductOrderInformation(5),orderInformationPage.getCustomerOrderInformation(),"Product information is not correct");
+        softAssert.assertAll();
 
     }
 
