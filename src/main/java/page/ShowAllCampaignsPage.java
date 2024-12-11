@@ -21,6 +21,7 @@ public class ShowAllCampaignsPage {
         List<WebElement> listOfCampaign = driver.findElements(campaignNameLabelLocator);
         int randomIndex = random.nextInt(listOfCampaign.size());
         listOfCampaign.get(randomIndex).click();
-
     }
+
+
 }

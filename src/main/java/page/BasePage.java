@@ -64,6 +64,8 @@ public class BasePage {
     //open create campaign page
     public void openCreateCampaignPage() {
         driver.findElement(campaignsNavigationLabelLocator).click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(createCampaignLabelLocator));
         driver.findElement(createCampaignLabelLocator).click();
     }
 
@@ -76,6 +78,8 @@ public class BasePage {
     //open create campaign page
     public void openCreateCampaignTypePage() {
         driver.findElement(campaignsNavigationLabelLocator).click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(createCampaignTypesLabelLocator));
         driver.findElement(createCampaignTypesLabelLocator).click();
     }
 

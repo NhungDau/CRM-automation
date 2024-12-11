@@ -81,7 +81,11 @@ public class ShowAllCustomerPage extends BasePage {
     public void openLastCustomer(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.elementToBeClickable(getListCustomerByNameLocator));
-
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         List<WebElement> list = driver.findElements(getListCustomerByNameLocator);
         list.get(list.size()-1).click();
     }
