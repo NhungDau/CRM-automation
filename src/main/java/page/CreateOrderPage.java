@@ -58,6 +58,12 @@ public class CreateOrderPage  {
     }
 
     public void addOrderByIndex(int a){
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
 
         List<WebElement> list = driver.findElements(getListProductByNameLocator);
 
