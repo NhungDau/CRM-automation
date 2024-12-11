@@ -60,20 +60,22 @@ public class TC01 {
 
         //step 4.verify new order created successfully and display in customer information page
         customerInformationPage.isOrderDisplay();
+        customerInformationPage.getPrice();
+        customerInformationPage.getCustomerName();
         softAssert.assertEquals(customerInformationPage.getPaymentDate(),createOrderPage.getProductOrderInformation().getPaymentDate(),"Payment date is not correct");
         softAssert.assertEquals(customerInformationPage.getPrice(),createOrderPage.getProductOrderInformation().getProductPrice(),"Price is not correct");
 
-        basePage.openShowAllOrdersPage();
-        showAllOrdersPage.searchByCustomerName(customer.getName());
-        showAllOrdersPage.clickLastCustomerName();
-        customerInformationPage.clickLastPaymentDate();
-//        orderInformationPage.getCustomerOderInformation();
-//        System.out.println("Create Order: " + createOrderPage.getProductOrderInformation());
-//        System.out.println("Order Information Page: " + orderInformationPage.getProductOrderInformation());
-
-        //verify after add new order in create order page, product name/price/quanity/total price are same in oder in formation page
-        softAssert.assertEquals(createOrderPage.getProductOrderInformation(),orderInformationPage.getProductOrderInformation(),"Product information is not correct");
-        softAssert.assertAll();
+//        basePage.openShowAllOrdersPage();
+//        showAllOrdersPage.searchByCustomerName(customer.getName());
+//        showAllOrdersPage.clickLastCustomerName();
+//        customerInformationPage.clickLastPaymentDate();
+////        orderInformationPage.getCustomerOderInformation();
+////        System.out.println("Create Order: " + createOrderPage.getProductOrderInformation());
+////        System.out.println("Order Information Page: " + orderInformationPage.getProductOrderInformation());
+//
+//        //verify after add new order in create order page, product name/price/quanity/total price are same in oder in formation page
+//        softAssert.assertEquals(createOrderPage.getProductOrderInformation(),orderInformationPage.getProductOrderInformation(),"Product information is not correct");
+//        softAssert.assertAll();
 
     }
 

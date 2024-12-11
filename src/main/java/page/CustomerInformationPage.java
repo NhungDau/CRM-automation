@@ -3,13 +3,16 @@ package page;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 
 public class CustomerInformationPage {
     By addOrderButtonLocator = By.xpath("//a[text()='Add order']");
     By paymentDateLocator = By.xpath("//tr/td/a");
-    By priceLocator = By.xpath("//tr/td[2]");
+    By priceLocator = By.xpath("//th[text()='Total Price']/../..//../tbody//tr//td[2]");
     By addOpportunityButtonLocator = By.xpath("//a[text()='Add opportunity']");
     By campaignNameLabelLocator = By.xpath("//h5[text()='Campaigns']/../../div[@class='ibox-content']//table//td/a");
     By editCustomerInformationButtonLocator = By.xpath("//a[@class='btn btn-primary'][text()='Edit']");
@@ -20,6 +23,7 @@ public class CustomerInformationPage {
     String paymentDate;
     Double price;
 
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     public CustomerInformationPage(WebDriver driver) {
         this.driver = driver;
     }
@@ -42,7 +46,13 @@ public class CustomerInformationPage {
     }
 
     //check newest order display
-    public void isOrderDisplay(){
+    public void isOrderDisplay(OrderInformationPage o){
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        o =  new OrderInformationPage()
         List<WebElement> list = driver.findElements(paymentDateLocator);
         paymentDate = list.get(list.size()-1).getText();
 
@@ -50,14 +60,14 @@ public class CustomerInformationPage {
         price = Double.parseDouble(list1.get(list1.size()-1).getText());
     }
 
-    public String getPaymentDate(){
-        return paymentDate;
-    }
-
-    public  Double getPrice(){
-        return price;
-
-    }
+//    public String getPaymentDate(){
+//        return paymentDate;
+//    }
+//
+//    public  Double getPrice(){
+//        return price;
+//
+//    }
 
     public void openEditCustomerInformationPage() {
         driver.findElement(editCustomerInformationButtonLocator).click();
