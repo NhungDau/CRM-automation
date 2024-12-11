@@ -26,7 +26,6 @@ public class TC02 {
     WebDriver driver;
     SoftAssert softAssert;
 
-
     @BeforeMethod
     public void initData() {
         driver = new ChromeDriver();

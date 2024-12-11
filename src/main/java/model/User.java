@@ -28,8 +28,11 @@ public class User {
         this.password = password;
     }
 
-    public static User defaultUser(){
+
+    public static User defaultUser() {
         return new User(Constant.DEFAULT_EMAIL, Constant.DEFAULT_PASSWORD);
 
     }
+
+
 }
