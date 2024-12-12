@@ -13,14 +13,8 @@ public class TC03 {
     WebDriver driver;
     LoginPage loginPage;
     ShowAllCustomerPage showAllCustomerPage;
-    Customer customer;
-    CreateOrderPage createOrderPage;
     CustomerInformationPage customerInformationPage;
-    BasePage basePage;
-    ShowAllOrdersPage showAllOrdersPage;
-    OrderInformationPage orderInformationPage;
     CreateOpportunityPage createOpportunityPage;
-    ShowAllOpportunitiesPage showAllOpportunitiesPage;
 
     SoftAssert softAssert;
 
@@ -30,16 +24,11 @@ public class TC03 {
         loginPage = new LoginPage(driver);
         showAllCustomerPage = new ShowAllCustomerPage(driver);
         createOpportunityPage = new CreateOpportunityPage(driver);
-        createOrderPage = new CreateOrderPage(driver);
         customerInformationPage = new CustomerInformationPage(driver);
-        showAllOpportunitiesPage = new ShowAllOpportunitiesPage(driver);
-        basePage = new BasePage(driver);
-        showAllOrdersPage = new ShowAllOrdersPage(driver);
-        orderInformationPage = new OrderInformationPage(driver);
+
         driver.manage().window().maximize();
         driver.get("http://14.176.232.213:8080/CRMweb/faces/login.xhtml");
 
-        customer = Customer.random();
     }
 
     @Test
@@ -66,15 +55,6 @@ public class TC03 {
 
 
         softAssert.assertAll();
-
-
-
-
-
-
-
-
-
     }
 
 //    @AfterMethod

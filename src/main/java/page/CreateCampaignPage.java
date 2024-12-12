@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class CreateCampaignPage {
+public class CreateCampaignPage extends BasePage {
     By campaignNameTextBoxLocator = By.id("j_idt70:cn");
     By campaignTypeListLocator = By.name("j_idt70:j_idt74");
     By statusDropdownListLocator = By.name("j_idt70:j_idt77");
@@ -21,7 +21,7 @@ public class CreateCampaignPage {
     WebDriver driver;
 
     public CreateCampaignPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
     public void enterCampaignName(String campaignName) {
