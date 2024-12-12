@@ -18,6 +18,7 @@ public class CustomerInformationPage {
     By campaignNameLabelLocator = By.xpath("//h5[text()='Campaigns']/../../div[@class='ibox-content']//table//td/a");
     By editCustomerInformationButtonLocator = By.xpath("//a[@class='btn btn-primary'][text()='Edit']");
     By customerNameLabelLocator = By.xpath("//label[@class='col-lg-1'][text()='Name:']/../div/span");
+    By addCampaignButtonLocator = By.xpath("//a[@class='btn btn-primary'][text()='Add campaign']");
 
     WebDriver driver;
 
@@ -84,5 +85,16 @@ public class CustomerInformationPage {
 
     public void openCampaignInformationPage() {
         driver.findElement(campaignNameLabelLocator).click();
+    }
+
+    //open Add customer into campaign page
+    public void clickAddCampaignButton() {
+        driver.findElement(addCampaignButtonLocator).click();
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(customerNameLabelLocator));
+    }
+
+    public void openAddCustomerIntoCampaignPage() {
+        driver.findElement(addCampaignButtonLocator).click();
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(customerNameLabelLocator));
     }
 }

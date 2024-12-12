@@ -74,14 +74,16 @@ public class Campaign {
         this.actualCost = actualCost;
     }
 
-//    public Campaign(String name, String type, String status, String startDate, String endDate, Double expectedRevenue, Double budgetedCost, Double actualCost) {
-//        this.name = name;
-//        this.type = type;
-//        this.status = status;
-//        this.startDate = startDate;
-//        this.endDate = endDate;
-//        this.expectedRevenue = expectedRevenue;
-//        this.budgetedCost = budgetedCost;
-//        this.actualCost = actualCost;
-//    }
+    public Campaign(String name, String type, String status, String startDate, String endDate, Double expectedRevenue, Double budgetedCost, Double actualCost) {
+        this.name = name;
+        this.type = type;
+        this.status = status;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.expectedRevenue = expectedRevenue;
+        this.budgetedCost = budgetedCost;
+        this.actualCost = actualCost;
+    }
+
+
 }

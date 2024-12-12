@@ -56,7 +56,7 @@ public class TC04 {
         showAllCampaignTypePage.openCreateCampaignPage();
 
         //select the new campaign type
-        createCampaignPage.selectTypeOption(campaignType);
+        createCampaignPage.selectTypeOptionByCampaignType(campaignType);
 
         //Verify that new campaign type can be selected
         softAssert.assertEquals(createCampaignPage.getSelectedCampaignType(), campaignType.getTypeName(), "Not found new camaign type");
