@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public class Campaign {
     String name;
     String type;
@@ -85,5 +87,19 @@ public class Campaign {
         this.actualCost = actualCost;
     }
 
+    public Campaign() {
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Campaign campaign = (Campaign) o;
+        return Objects.equals(name, campaign.name) && Objects.equals(type, campaign.type) && Objects.equals(status, campaign.status) && Objects.equals(startDate, campaign.startDate) && Objects.equals(endDate, campaign.endDate) && Objects.equals(expectedRevenue, campaign.expectedRevenue) && Objects.equals(budgetedCost, campaign.budgetedCost) && Objects.equals(actualCost, campaign.actualCost);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, type, status, startDate, endDate, expectedRevenue, budgetedCost, actualCost);
+    }
 }

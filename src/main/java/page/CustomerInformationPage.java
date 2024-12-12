@@ -1,6 +1,7 @@
 package page;
 
 import model.OpportunityInformation;
+import model.Campaign;
 import model.ProductOrderInformation;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -20,6 +21,14 @@ public class CustomerInformationPage {
     By editCustomerInformationButtonLocator = By.xpath("//a[@class='btn btn-primary'][text()='Edit']");
     By customerNameLabelLocator = By.xpath("//label[@class='col-lg-1'][text()='Name:']/../div/span");
     By addCampaignButtonLocator = By.xpath("//a[@class='btn btn-primary'][text()='Add campaign']");
+    By campaignTypeLabelLocator = By.xpath("//h5[text()='Campaigns']/../../div[@class='ibox-content']//table//tbody//td[2]");
+    By campaignStatusLabelLocator = By.xpath("//h5[text()='Campaigns']/../../div[@class='ibox-content']//table//tbody//td[3]");
+    By campaignStartDateLabelLocator = By.xpath("//h5[text()='Campaigns']/../../div[@class='ibox-content']//table//tbody//td[4]");
+    By campaignEndDateLabelLocator = By.xpath("//h5[text()='Campaigns']/../../div[@class='ibox-content']//table//tbody//td[5]");
+    By campaignExpectedRevenueLabelLocator = By.xpath("//h5[text()='Campaigns']/../../div[@class='ibox-content']//table//tbody//td[6]");
+    By campaignBudgetedCostLabelLocator = By.xpath("//h5[text()='Campaigns']/../../div[@class='ibox-content']//table//tbody//td[7]");
+    By campaignActualCostLabelLocator = By.xpath("//h5[text()='Campaigns']/../../div[@class='ibox-content']//table//tbody//td[8]");
+
     By opportunityStatusLocator = By.xpath("//div//h5[text()='Opportunity']/../following-sibling::div//tbody//tr//td[1]");
     By opportunityProductNameLocator = By.xpath("//div//h5[text()='Opportunity']/../following-sibling::div//tbody//tr//td[2]");
     By opportunityProductPriceLocator = By.xpath("//div//h5[text()='Opportunity']/../following-sibling::div//tbody//tr//td[3]");
@@ -31,6 +40,7 @@ public class CustomerInformationPage {
     Double price;
 
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
     public CustomerInformationPage(WebDriver driver) {
         this.driver = driver;
     }
@@ -43,17 +53,17 @@ public class CustomerInformationPage {
     }
 
     //click last payment date to open order information page
-    public void clickLastPaymentDate(){
+    public void clickLastPaymentDate() {
         driver.findElement(paymentDateLocator).click();
     }
 
     //click add opportunity button
-    public void clickAddOpportunityButton(){
+    public void clickAddOpportunityButton() {
         driver.findElement(addOpportunityButtonLocator).click();
     }
 
     //check newest order display
-    public void isOrderDisplay(){
+    public void isOrderDisplay() {
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
@@ -61,19 +71,19 @@ public class CustomerInformationPage {
         }
 
         List<WebElement> list = driver.findElements(paymentDateLocator);
-        paymentDate = list.get(list.size()-1).getText();
+        paymentDate = list.get(list.size() - 1).getText();
 
         List<WebElement> list1 = driver.findElements(priceLocator);
-        price = Double.parseDouble(list1.get(list1.size()-1).getText());
+        price = Double.parseDouble(list1.get(list1.size() - 1).getText());
     }
 
     //get payment date
-    public String getPaymentDate(){
+    public String getPaymentDate() {
         return getPaymentDate();
     }
 
     //get price
-    public  String getProductPrice(){
+    public String getProductPrice() {
         return getProductPrice();
     }
 
@@ -101,6 +111,20 @@ public class CustomerInformationPage {
         driver.findElement(addCampaignButtonLocator).click();
         wait.until(ExpectedConditions.invisibilityOfElementLocated(customerNameLabelLocator));
     }
+
+    public Campaign getCampaignInformation() {
+        Campaign campaign = new Campaign();
+        campaign.setName(driver.findElement(campaignNameLabelLocator).getText());
+        campaign.setType(driver.findElement(campaignTypeLabelLocator).getText());
+        campaign.setStatus(driver.findElement(campaignStatusLabelLocator).getText());
+        campaign.setStartDate(driver.findElement(campaignStartDateLabelLocator).getText());
+        campaign.setEndDate(driver.findElement(campaignEndDateLabelLocator).getText());
+        campaign.setExpectedRevenue(Double.parseDouble(driver.findElement(campaignExpectedRevenueLabelLocator).getText()));
+        campaign.setBudgetedCost(Double.parseDouble(driver.findElement(campaignBudgetedCostLabelLocator).getText()));
+        campaign.setActualCost(Double.parseDouble(driver.findElement(campaignActualCostLabelLocator).getText()));
+        return campaign;
+    }
+
 
     public OpportunityInformation getLastOpportunityInformation(){
         try {

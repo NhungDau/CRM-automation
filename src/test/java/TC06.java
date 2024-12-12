@@ -67,7 +67,9 @@ public class TC06 {
 
         addCampaignIntoCustomerPage.clickToAddButton();
 
-
+        //Verify customer information display correctly campaign
+        softAssert.assertEquals(customerInformationPage.getCampaignInformation(), campaign, "Added campaign is not consistent");
+        System.out.println("All colums of new campaign display correctly");
     }
 
     @AfterMethod
