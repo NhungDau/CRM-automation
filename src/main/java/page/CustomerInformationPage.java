@@ -93,7 +93,7 @@ public class CustomerInformationPage {
         wait.until(ExpectedConditions.invisibilityOfElementLocated(customerNameLabelLocator));
     }
 
-    public void openAddCustomerIntoCampaignPage() {
+    public void openAddCampaignIntoCustomerPage() {
         driver.findElement(addCampaignButtonLocator).click();
         wait.until(ExpectedConditions.invisibilityOfElementLocated(customerNameLabelLocator));
     }
