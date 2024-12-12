@@ -28,10 +28,6 @@ public class ShowAllCustomerPage extends BasePage {
     By dynamicCustomerNameLocator;
 
 
-    Random random = new Random();
-    Customer customer;
-    String customerName;
-
 
     public ShowAllCustomerPage(WebDriver driver) {
         super(driver);
@@ -43,8 +39,8 @@ public class ShowAllCustomerPage extends BasePage {
     }
 
     //enter name
-    public void enterName(String sdflksjdhf) {
-        driver.findElement(nameTextboxLocator).sendKeys(sdflksjdhf);
+    public void enterName(String name) {
+        driver.findElement(nameTextboxLocator).sendKeys(name);
     }
 
     //enter email
@@ -111,21 +107,18 @@ public class ShowAllCustomerPage extends BasePage {
     }
 
     //click to customer name by random index
-    public void clickCustomerNameByIndex() {
+    public void getCustomerNameByIndex(int a) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.elementToBeClickable(getListCustomerByNameLocator));
 
         List<WebElement> list = driver.findElements(getListCustomerByNameLocator);
-
-        int a = random.nextInt(list.size() + 1);
-        customerName = list.get(a).getText();
-
-        list.get(a).click();
+        Customer customer = new Customer();
+        customer.setName(list.get(a).getText());
     }
 
-    public String customerName() {
-        return customerName;
+    //click to customer name link by index
+    public void clickCustomerNameByIndex(int a){
+        driver.findElements(getListCustomerByNameLocator).get(a).click();
     }
-
 
 }

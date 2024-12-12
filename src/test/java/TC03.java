@@ -44,12 +44,28 @@ public class TC03 {
 
     @Test
     public void TC03() {
+        //login
         loginPage.login(User.defaultUser());
-        showAllCustomerPage.clickCustomerNameByIndex();
+
+        //go to customer information page
+        showAllCustomerPage.getCustomerNameByIndex(4);
+        showAllCustomerPage.clickCustomerNameByIndex(4);
+
+        //add opportunity
         customerInformationPage.clickAddOpportunityButton();
-        createOpportunityPage.createOpportunity();
-        basePage.openShowAllOpportunitiesPage();
-        showAllOpportunitiesPage.searchByCustomerName();
+
+        createOpportunityPage.createOpportunityByIndex(12);
+        createOpportunityPage.getOpportunityInformationopportunityInformation(12);
+        createOpportunityPage.clickAddOpportunityButton();
+
+        //get opportunity in customer information page
+        customerInformationPage.getLastOpportunityInformation();
+        softAssert.assertEquals(customerInformationPage.getLastOpportunityInformation(),
+                                createOpportunityPage.getOpportunityInformationopportunityInformation(12),
+                                "Opportunity information is not consistent");
+
+
+        softAssert.assertAll();
 
 
 
@@ -57,22 +73,7 @@ public class TC03 {
 
 
 
-//        showAllCustomerPage.clickNewCustomerButton();
-//        showAllCustomerPage.createCustomer(customer);
-//        showAllCustomerPage.clickGoToLastPageButton();
-//        showAllCustomerPage.openLastCustomer();
-//        customerInformationPage.clickAddOrderButton();
-//        createOrderPage.addOrderByIndex();
-//        basePage.openShowAllOrdersPage();
-//        showAllOrdersPage.searchByCustomerName(customer.getName());
-//        showAllOrdersPage.clickLastCustomerName();
-//        customerInformationPage.clickLastPaymentDate();
-//        orderInformationPage.getCustomerOderInformation();
-//        System.out.println("Create Order: " + createOrderPage.getProductOrderInformation());
-//        System.out.println("Order Information Page: " + orderInformationPage.getProductOrderInformation());
-//
-////        softAssert.assertEquals(createOrderPage.getProductOrderInformation(),orderInformationPage.getProductOrderInformation(),"Product information is not correct");
-//        softAssert.assertAll();
+
 
     }
 

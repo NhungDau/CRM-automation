@@ -28,42 +28,45 @@ public class CreateOpportunityPage {
     OpportunityInformation opportunityInformation;
 
 
-
     //create opportunity
-    public void createOpportunity(){
-        random = new Random();
-
-        WebElement dropdownElement = driver.findElement(statusDropdownLocator);
-        dropdown = new Select(dropdownElement);
-        List<WebElement> options = dropdown.getOptions();
-        Random random1 = new Random();
-        int randomOptionIndex = random1.nextInt(options.size());
-
-
-        List<WebElement> productNamelist = driver.findElements(productPriceLocator);
-        int a = random.nextInt(productNamelist.size()+1);
-
-        List<WebElement> priceList = driver.findElements(productPriceLocator);
-
+    public void createOpportunityByIndex(int a) {
 
         //click checkbox
         List<WebElement> checkboxlist = driver.findElements(checkboxLocator);
         checkboxlist.get(a).click();
+
         //select random status
+
+        dropdown = new Select(driver.findElement(statusDropdownLocator));
+        List<WebElement> options = dropdown.getOptions();
+        Random random1 = new Random();
+        int randomOptionIndex = random1.nextInt(options.size());
+
         dropdown.selectByIndex(randomOptionIndex);
-        //get status
-        String statusOptionTextValue = dropdown.getFirstSelectedOption().getText();
-        //get product name
-        String productName = productNamelist.get(a).getText();
-        //get product price
-        Double price = Double.parseDouble(priceList.get(a).getText());
-
-        //add information to object
-        opportunityInformation = new OpportunityInformation(statusOptionTextValue,productName, price);
-
-        //click add opportunity button
-        driver.findElement(createOpportunityLocator).click();
-
     }
 
+    //get opportunity information
+    public OpportunityInformation getOpportunityInformationopportunityInformation(int a) {
+        opportunityInformation = new OpportunityInformation();
+        //get status
+
+        List<WebElement> statusDropdown = driver.findElements(statusDropdownLocator);
+        WebElement dropdownByIndex = statusDropdown.get(a);
+        Select dropdown = new Select(dropdownByIndex);
+        opportunityInformation.setStatus(dropdown.getFirstSelectedOption().getText());
+
+        //get product name
+        opportunityInformation.setProductName(driver.findElements(productPriceLocator).get(a).getText());
+
+        //get product price
+        opportunityInformation.setPrice(Double.parseDouble(driver.findElements(productPriceLocator).get(a).getText()));
+
+
+        return opportunityInformation;
+    }
+
+    //click add oppotunity button
+    public void clickAddOpportunityButton() {
+        driver.findElement(createOpportunityLocator).click();
+    }
 }

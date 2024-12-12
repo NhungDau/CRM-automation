@@ -26,17 +26,17 @@ public class ShowAllOpportunitiesPage {
 
     ShowAllCustomerPage showAllCustomerPage;
 
-    //search by customer name
-    public void searchByCustomerName(){
-        showAllCustomerPage = new ShowAllCustomerPage(driver);
-        driver.findElement(searchByCustomerNameTextboxLocator).sendKeys(showAllCustomerPage.customerName());
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.textToBePresentInElementValue(searchByCustomerNameTextboxLocator, showAllCustomerPage.customerName()));
-
-        driver.findElement(searchByCustomerNameTextboxLocator).sendKeys(Keys.ENTER);
-        wait.until(ExpectedConditions.textToBe(getListCustomerByNameLocator, showAllCustomerPage.customerName()));
-
-    }
+//    //search by customer name
+//    public void searchByCustomerName(){
+//        showAllCustomerPage = new ShowAllCustomerPage(driver);
+//        driver.findElement(searchByCustomerNameTextboxLocator).sendKeys(showAllCustomerPage.customerName());
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//        wait.until(ExpectedConditions.textToBePresentInElementValue(searchByCustomerNameTextboxLocator, showAllCustomerPage.customerName()));
+//
+//        driver.findElement(searchByCustomerNameTextboxLocator).sendKeys(Keys.ENTER);
+//        wait.until(ExpectedConditions.textToBe(getListCustomerByNameLocator, showAllCustomerPage.customerName()));
+//
+//    }
 
 
 

@@ -19,10 +19,6 @@ public class Customer {
         this.address = address;
     }
 
-    public void Customer1(String name) {
-        this.name = name;
-    }
-
 
 
     public String getName() {

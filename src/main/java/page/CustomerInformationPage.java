@@ -1,5 +1,6 @@
 package page;
 
+import model.OpportunityInformation;
 import model.ProductOrderInformation;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -19,6 +20,9 @@ public class CustomerInformationPage {
     By editCustomerInformationButtonLocator = By.xpath("//a[@class='btn btn-primary'][text()='Edit']");
     By customerNameLabelLocator = By.xpath("//label[@class='col-lg-1'][text()='Name:']/../div/span");
     By addCampaignButtonLocator = By.xpath("//a[@class='btn btn-primary'][text()='Add campaign']");
+    By opportunityStatusLocator = By.xpath("//div//h5[text()='Opportunity']/../following-sibling::div//tbody//tr//td[1]");
+    By opportunityProductNameLocator = By.xpath("//div//h5[text()='Opportunity']/../following-sibling::div//tbody//tr//td[2]");
+    By opportunityProductPriceLocator = By.xpath("//div//h5[text()='Opportunity']/../following-sibling::div//tbody//tr//td[3]");
 
     WebDriver driver;
 
@@ -97,4 +101,26 @@ public class CustomerInformationPage {
         driver.findElement(addCampaignButtonLocator).click();
         wait.until(ExpectedConditions.invisibilityOfElementLocated(customerNameLabelLocator));
     }
+
+    public OpportunityInformation getLastOpportunityInformation(){
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        OpportunityInformation o = new OpportunityInformation();
+        List<WebElement> status = driver.findElements(opportunityStatusLocator);
+        o.setStatus(status.get(status.size()-1).getText());
+
+        List<WebElement> name = driver.findElements(opportunityProductNameLocator);
+        o.setProductName(name.get(name.size()-1).getText());
+
+        List<WebElement> price = driver.findElements(opportunityProductPriceLocator);
+        String stringPrice = price.get(name.size()-1).getText();
+        o.setPrice(Double.parseDouble(stringPrice.substring(0,stringPrice.length()-3)));
+
+        return o;
+    }
+
 }

@@ -50,4 +50,5 @@ public class OpportunityInformation {
     public int hashCode() {
         return Objects.hash(status, productName, price);
     }
+    public OpportunityInformation(){}
 }
