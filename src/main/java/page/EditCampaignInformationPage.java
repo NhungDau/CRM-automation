@@ -1,5 +1,6 @@
 package page;
 
+import model.Campaign;
 import model.CampaignType;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -28,28 +29,9 @@ public class EditCampaignInformationPage {
         driver.findElement(campaignNameTextBoxLocator).sendKeys(campaignName);
     }
 
-    public void selectTypeOptionByCampaignType(CampaignType campaignType) {
-        Select campaignTypeOption = new Select(driver.findElement(campaignTypeListLocator));
-        campaignTypeOption.selectByVisibleText(campaignType.getTypeName());
-    }
-
     public void selectTypeOption(String type) {
         Select campaignTypeOption = new Select(driver.findElement(campaignTypeListLocator));
         campaignTypeOption.selectByVisibleText(type);
-    }
-
-    public String getSelectedCampaignType() {
-        return driver.findElement(campaignTypeListLocator).getText();
-    }
-
-    public void selectDoneStatusOption() {
-        Select campaignStatusOption = new Select(driver.findElement(statusDropdownListLocator));
-        campaignStatusOption.selectByVisibleText("Done");
-    }
-
-    public void selectYetStatusOption() {
-        Select campaignStatusOption = new Select(driver.findElement(statusDropdownListLocator));
-        campaignStatusOption.selectByVisibleText("Yet");
     }
 
     public void selectStatusOption(String status) {
@@ -57,27 +39,75 @@ public class EditCampaignInformationPage {
         campaignStatusOption.selectByVisibleText(status);
     }
 
-    public void enterStartDate(String startDate) {
+    public void editStartDate(String startDate) {
         driver.findElement(startDateTextBoxLocator).sendKeys(startDate);
     }
 
-    public void enterEndDate(String endDate) {
+    public void editEndDate(String endDate) {
         driver.findElement(endDateTextBoxLocator).sendKeys(endDate);
     }
 
-    public void enterExpectedRevenue(double exRevenue) {
+    public void editExpectedRevenue(double exRevenue) {
+        driver.findElement(expectedRevenueTextBoxLocator).clear();
         driver.findElement(expectedRevenueTextBoxLocator).sendKeys(Double.toString(exRevenue));
     }
 
-    public void enterBudgetedCost(double budget ) {
+    public void editBudgetedCost(double budget) {
+        driver.findElement(budgetedCostTextBoxLocator).clear();
         driver.findElement(budgetedCostTextBoxLocator).sendKeys(Double.toString(budget));
     }
 
-    public void enterActualCost(double actual) {
+    public void editActualCost(double actual) {
+        driver.findElement(actualCostTextBoxLocator).clear();
         driver.findElement(actualCostTextBoxLocator).sendKeys(Double.toString(actual));
     }
 
-    public void enterDescription(String description) {
+    public void editDescription(String description) {
+        driver.findElement(descriptionTextBoxLocator).clear();
         driver.findElement(descriptionTextBoxLocator).sendKeys(description);
+    }
+
+    public void editCampaignInformation(Campaign campaign) {
+        if (campaign.getName() != null) {
+            editCampaignName(campaign.getName());
+        }
+        if (campaign.getType() != null) {
+            selectTypeOption(campaign.getType());
+        }
+        if (campaign.getStatus() != null) {
+            selectStatusOption(campaign.getStatus());
+        }
+        if (campaign.getStartDate() != null) {
+            editStartDate(campaign.getStartDate());
+        }
+        if (campaign.getEndDate() != null) {
+            editEndDate(campaign.getEndDate());
+        }
+        if (campaign.getExpectedRevenue() != null) {
+            editExpectedRevenue(campaign.getExpectedRevenue());
+        }
+        if (campaign.getBudgetedCost() != null) {
+            editBudgetedCost(campaign.getBudgetedCost());
+        }
+        if (campaign.getActualCost() != null) {
+            editActualCost(campaign.getActualCost());
+        }
+    }
+
+    public void clickSaveButton() {
+        driver.findElement(saveButtonLocator).click();
+    }
+
+    public Campaign getCampaignInformationAfterEdit() {
+        Campaign campaign = new Campaign();
+        campaign.setName(driver.findElement(campaignNameTextBoxLocator).getText());
+        campaign.setType(driver.findElement(campaignTypeListLocator).getText());
+        campaign.setStatus(driver.findElement(statusDropdownListLocator).getText());
+        campaign.setStartDate(driver.findElement(startDateTextBoxLocator).getText());
+        campaign.setEndDate(driver.findElement(endDateTextBoxLocator).getText());
+        campaign.setExpectedRevenue(Double.parseDouble(driver.findElement(expectedRevenueTextBoxLocator).getText()));
+        campaign.setBudgetedCost(Double.parseDouble(driver.findElement(budgetedCostTextBoxLocator).getText()));
+        campaign.setActualCost(Double.parseDouble(driver.findElement(actualCostTextBoxLocator).getText()));
+        return campaign;
     }
 }

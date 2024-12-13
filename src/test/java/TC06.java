@@ -3,6 +3,7 @@ import model.Customer;
 import model.User;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.json.JsonOutput;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -17,7 +18,9 @@ public class TC06 {
     AddCampaignIntoCustomerPage addCampaignIntoCustomerPage;
     ShowAllCampaignsPage showAllCampaignsPage;
     CampaignsInformationPage campaignsInformationPage;
+    EditCampaignInformationPage editCampaignInformationPage;
     Campaign campaign;
+    Campaign campaignUpdated;
     Customer customer;
     WebDriver driver;
 
@@ -35,8 +38,10 @@ public class TC06 {
         addCampaignIntoCustomerPage = new AddCampaignIntoCustomerPage(driver);
         showAllCampaignsPage = new ShowAllCampaignsPage(driver);
         campaignsInformationPage = new CampaignsInformationPage(driver);
+        editCampaignInformationPage = new EditCampaignInformationPage(driver);
         customer = Customer.random();
         campaign = new Campaign("Campaign01", "Sale", "Done", "2024-12-13", "2024-12-14", 100000.0, 10000.0, 50000.0);
+        campaignUpdated = new Campaign(null, null, null, null, null, 200.0, null, null);
         softAssert = new SoftAssert();
     }
 
@@ -82,7 +87,32 @@ public class TC06 {
 
         campaignsInformationPage.openEditCampaignInformationPage();
 
+        editCampaignInformationPage.editCampaignInformation(campaignUpdated);
+
+        editCampaignInformationPage.getCampaignInformationAfterEdit();
+
+        editCampaignInformationPage.clickSaveButton();
+
+        //Verify campaign information is updated
+        softAssert.assertEquals(campaignsInformationPage.getCampaignInformation(), editCampaignInformationPage.getCampaignInformationAfterEdit(), "Update incorrectly");
+        System.out.println("Update campaign correctly");
+
+        //Verify that campaign information is updated in Show all campaign
+        campaignsInformationPage.openShowAllCampaignsPage();
+
+
+        //Verify that campaign information is updated in Customer information
+        showAllCampaignsPage.openShowAllCustomersPage();
+
+        showAllCustomerPage.searchCustomerNameByObject(customer);
+
+        showAllCustomerPage.openCustomerInformationByObject(customer);
+
+        softAssert.assertEquals(customerInformationPage.getCampaignInformation(), editCampaignInformationPage.getCampaignInformationAfterEdit(), "Update incorrectly");
+        System.out.println("Update campaign correctly in customer information page");
+
     }
+
 
 //    @AfterMethod
 //    public void cleanUp() {

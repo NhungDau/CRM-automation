@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 
-public class CampaignsInformationPage {
+public class CampaignsInformationPage extends BasePage {
     By campaignNameLabelLocator = By.xpath("//label[@class='col-lg-2 control-label'][text()='Campaign Name']/..//div/span[@class='form-control']");
     By campaignTypeLabelLocator = By.xpath("//label[@class='col-sm-2 control-label'][text()='Type']/..//div/span[@class='form-control']");
     By campaignStatusLabelLocator = By.xpath("//label[@class='col-sm-2 control-label'][text()='Status']/..//div/span[@class='form-control']");
@@ -27,7 +27,7 @@ public class CampaignsInformationPage {
     WebDriver driver;
 
     public CampaignsInformationPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
     public void goToAddCustomerIntoCampaignPage() {
