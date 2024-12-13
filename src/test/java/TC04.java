@@ -29,7 +29,7 @@ public class TC04 {
         createCampaignsTypePage = new CreateCampaignsTypePage(driver);
         showAllCampaignTypePage = new ShowAllCampaignTypePage(driver);
         createCampaignPage = new CreateCampaignPage(driver);
-        campaignType = new CampaignType("Sale05");
+        campaignType = new CampaignType("Sale06");
         softAssert = new SoftAssert();
     }
 
@@ -66,9 +66,9 @@ public class TC04 {
 
         softAssert.assertAll();
     }
-        @AfterMethod
-    public void cleanUp() {
-        driver.quit();
-    }
+//        @AfterMethod
+//    public void cleanUp() {
+//        driver.quit();
+//    }
 
 }

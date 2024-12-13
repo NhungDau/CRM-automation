@@ -3,12 +3,12 @@ import model.Customer;
 import model.User;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.json.JsonOutput;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import page.*;
+
+import java.time.Duration;
 
 public class TC06 {
     LoginPage loginPage;
@@ -30,6 +30,7 @@ public class TC06 {
     public void initData() {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.get("http://14.176.232.213:8080/CRMweb/faces/login.xhtml");
         loginPage = new LoginPage(driver);
         showAllCustomerPage = new ShowAllCustomerPage(driver);
@@ -64,10 +65,11 @@ public class TC06 {
 
         createCampaignPage.clickCreateButton();
 
+        showAllCampaignsPage.openShowAllCustomersPage();
         //open customer information page
-        showAllCustomerPage.searchCustomerNameByObject(customer); //null???
+        showAllCustomerPage.searchCustomerByName(customer); //null???
 
-        showAllCustomerPage.openCustomerInformationByObject(customer);
+        showAllCustomerPage.openCustomerInformationByName(customer);
 
         //add new campaign
         customerInformationPage.clickAddCampaignButton();
@@ -104,9 +106,9 @@ public class TC06 {
         //Verify that campaign information is updated in Customer information
         showAllCampaignsPage.openShowAllCustomersPage();
 
-        showAllCustomerPage.searchCustomerNameByObject(customer);
+        showAllCustomerPage.searchCustomerByName(customer);
 
-        showAllCustomerPage.openCustomerInformationByObject(customer);
+        showAllCustomerPage.openCustomerInformationByName(customer);
 
         softAssert.assertEquals(customerInformationPage.getCampaignInformation(), editCampaignInformationPage.getCampaignInformationAfterEdit(), "Update incorrectly");
         System.out.println("Update campaign correctly in customer information page");

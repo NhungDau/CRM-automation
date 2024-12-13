@@ -18,7 +18,6 @@ public class CreateCampaignPage extends BasePage {
     By descriptionTextBoxLocator = By.id("j_idt70:de");
     By createButtonLocator = By.name("j_idt70:j_idt93");
 
-    WebDriver driver;
 
     public CreateCampaignPage(WebDriver driver) {
         super(driver);
@@ -39,17 +38,16 @@ public class CreateCampaignPage extends BasePage {
     }
 
     public String getSelectedCampaignType() {
-        return driver.findElement(campaignTypeListLocator).getText();
+        Select campaignTypeOption = new Select(driver.findElement(campaignTypeListLocator));
+        return campaignTypeOption.getFirstSelectedOption().getText();
     }
 
     public void selectDoneStatusOption() {
-        Select campaignStatusOption = new Select(driver.findElement(statusDropdownListLocator));
-        campaignStatusOption.selectByVisibleText("Done");
+        selectStatusOption("Done");
     }
 
     public void selectYetStatusOption() {
-        Select campaignStatusOption = new Select(driver.findElement(statusDropdownListLocator));
-        campaignStatusOption.selectByVisibleText("Yet");
+        selectStatusOption("Yet");
     }
 
     public void selectStatusOption(String status) {

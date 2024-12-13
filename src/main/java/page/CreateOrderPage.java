@@ -92,7 +92,7 @@ public class CreateOrderPage  {
         product.setProductPrice(price);
 
 
-        Integer quantity = Integer.parseInt(driver.findElements(getListQuantityTextBoxLocator).get(a).getText());
+        Integer quantity = Integer.parseInt(driver.findElements(getListQuantityTextBoxLocator).get(a).getAttribute("value"));
         product.setProductQuantity(quantity);
 
         product.setTotalPrice(price*quantity);

@@ -10,7 +10,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
-import java.util.Random;
 
 public class ShowAllCustomerPage extends BasePage {
     By campaignsNavigationLabelLocator = By.xpath("//span[@class='nav-label'][text()='Campaigns']");
@@ -93,16 +92,16 @@ public class ShowAllCustomerPage extends BasePage {
     }
 
     //open customer information page by customer object
-    public void openCustomerInformationByObject(Customer customer) {
+    public void openCustomerInformationByName(Customer customer) {
         String xpathValue = String.format("//a[@class='ui-link ui-widget'][text()='%s']", customer.getName());
         dynamicCustomerNameLocator = By.xpath(xpathValue);
         driver.findElement(dynamicCustomerNameLocator).click();
     }
 
     //search customer name by object
-    public void searchCustomerNameByObject(Customer customer) {
+    public void searchCustomerByName(Customer customer) {
         driver.findElement(searchByCustomerNameTextboxLocator).sendKeys(customer.getName());
-        wait.until(ExpectedConditions.textToBePresentInElement(driver.findElement(getListCustomerByNameLocator), customer.getName()));
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(getListCustomerByNameLocator, customer.getName()));
         driver.findElement(searchByCustomerNameTextboxLocator).sendKeys(Keys.ENTER);
     }
 

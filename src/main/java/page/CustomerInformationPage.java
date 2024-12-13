@@ -33,11 +33,8 @@ public class CustomerInformationPage extends BasePage {
     By opportunityProductNameLocator = By.xpath("//div//h5[text()='Opportunity']/../following-sibling::div//tbody//tr//td[2]");
     By opportunityProductPriceLocator = By.xpath("//div//h5[text()='Opportunity']/../following-sibling::div//tbody//tr//td[3]");
 
-    WebDriver driver;
 
 
-    String paymentDate;
-    Double price;
 
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
@@ -61,20 +58,15 @@ super(driver);    }
         driver.findElement(addOpportunityButtonLocator).click();
     }
 
-    //check newest order display
-    public void isOrderDisplay() {
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
-        List<WebElement> list = driver.findElements(paymentDateLocator);
-        paymentDate = list.get(list.size() - 1).getText();
-
-        List<WebElement> list1 = driver.findElements(priceLocator);
-        price = Double.parseDouble(list1.get(list1.size() - 1).getText());
-    }
+//    //check newest order display
+//    public  getLatestOrderInformation() {
+//        try {
+//            Thread.sleep(2000);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
+//
+//    }
 
     //get payment date
     public String getPaymentDate() {
