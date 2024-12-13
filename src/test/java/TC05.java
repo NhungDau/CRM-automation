@@ -49,10 +49,42 @@ public class TC05 {
         createCampaignPage.clickCreateButton();
 
         //search newly created campaign
+
         showAllCampaignsPage.searchByCampaignName(campaign.getName());
 
         showAllCampaignsPage.searchByCampaignType(campaign.getType());
 
+        showAllCampaignsPage.searchByStatus(campaign.getStatus());
+
+        showAllCampaignsPage.searchByStartDate(campaign.getStartDate());
+
+        showAllCampaignsPage.searchByEndDate(campaign.getEndDate());
+
+        // check whether newly created campaign can be searched
+        softAssert.assertEquals(showAllCampaignsPage.getCampaignInformation().getName()
+                                ,campaign.getName()
+                                ,"Campaign name is not consistent");
+
+        softAssert.assertEquals(showAllCampaignsPage.getCampaignInformation().getType()
+                                , campaign.getType()
+                                , "Campaign type is not consistent");
+
+        softAssert.assertEquals(showAllCampaignsPage.getCampaignInformation().getStatus()
+                                , campaign.getStatus()
+                                ,"Status is not consistent");
+
+        softAssert.assertEquals(showAllCampaignsPage.getCampaignInformation().getStartDate()
+                                , campaign.getStartDate()
+                                ,"Start date is not consistent");
+
+        softAssert.assertEquals(showAllCampaignsPage.getCampaignInformation().getEndDate()
+                                , campaign.getEndDate()
+                                , "End date is not consistent");
+
+        //go to report page
+        showAllCampaignsPage.openCampaignReportsPage();
+
+        //search newly created campaign
 
 
 
