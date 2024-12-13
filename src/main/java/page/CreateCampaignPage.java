@@ -86,6 +86,12 @@ public class CreateCampaignPage extends BasePage {
     }
 
     public void createNewCampaign(Campaign campaign) {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
         enterCampaignName(campaign.getName());
         selectTypeOption(campaign.getType());
         selectStatusOption(campaign.getStatus());

@@ -15,7 +15,7 @@ public class TC05 {
     LoginPage loginPage;
     CreateCampaignPage createCampaignPage;
     Campaign campaign;
-
+    ShowAllCampaignsPage showAllCampaignsPage;
 
     SoftAssert softAssert;
 
@@ -25,7 +25,7 @@ public class TC05 {
         loginPage = new LoginPage(driver);
         createCampaignPage = new CreateCampaignPage(driver);
         campaign = new Campaign("Super sale", "Sale", "Done", "2024-12-13", "2024-12-14", 356.0, 54.0, 88.4);
-
+        showAllCampaignsPage = new ShowAllCampaignsPage(driver);
 
         driver.manage().window().maximize();
         driver.get("http://14.176.232.213:8080/CRMweb/faces/login.xhtml");
@@ -49,6 +49,9 @@ public class TC05 {
         createCampaignPage.clickCreateButton();
 
         //search newly created campaign
+        showAllCampaignsPage.searchByCampaignName(campaign.getName());
+
+        showAllCampaignsPage.searchByCampaignType(campaign.getType());
 
 
 
