@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 
-public class CustomerInformationPage {
+public class CustomerInformationPage extends BasePage {
     By addOrderButtonLocator = By.xpath("//a[text()='Add order']");
     By paymentDateLocator = By.xpath("//tr/td/a");
     By priceLocator = By.xpath("//th[text()='Total Price']/../..//../tbody//tr//td[2]");
@@ -42,8 +42,7 @@ public class CustomerInformationPage {
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
     public CustomerInformationPage(WebDriver driver) {
-        this.driver = driver;
-    }
+super(driver);    }
 
 
     //click add order button

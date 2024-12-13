@@ -1,30 +1,30 @@
 package page;
 
-import model.Campaign;
 import model.CampaignType;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class CreateCampaignPage extends BasePage {
-    By campaignNameTextBoxLocator = By.id("j_idt70:cn");
-    By campaignTypeListLocator = By.name("j_idt70:j_idt74");
-    By statusDropdownListLocator = By.name("j_idt70:j_idt77");
-    By startDateTextBoxLocator = By.id("j_idt70:sd");
-    By endDateTextBoxLocator = By.id("j_idt70:ed");
-    By expectedRevenueTextBoxLocator = By.id("j_idt70:er");
-    By budgetedCostTextBoxLocator = By.id("j_idt70:bc");
-    By actualCostTextBoxLocator = By.id("j_idt70:ac");
-    By descriptionTextBoxLocator = By.id("j_idt70:de");
-    By createButtonLocator = By.name("j_idt70:j_idt93");
+public class EditCampaignInformationPage {
+    By campaignNameTextBoxLocator = By.name("j_idt72:j_idt75");
+    By campaignTypeListLocator = By.name("j_idt72:j_idt77");
+    By statusDropdownListLocator = By.name("j_idt72:j_idt81");
+    By startDateTextBoxLocator = By.id("j_idt72:sd");
+    By endDateTextBoxLocator = By.id("j_idt72:ed");
+    By expectedRevenueTextBoxLocator = By.id("j_idt72:er");
+    By budgetedCostTextBoxLocator = By.id("j_idt72:bc");
+    By actualCostTextBoxLocator = By.id("j_idt72:ac");
+    By descriptionTextBoxLocator = By.id("j_idt72:de");
+    By saveButtonLocator = By.xpath("//input[@value='Save']");
 
     WebDriver driver;
 
-    public CreateCampaignPage(WebDriver driver) {
-        super(driver);
+    public EditCampaignInformationPage(WebDriver driver) {
+        this.driver = driver;
     }
 
-    public void enterCampaignName(String campaignName) {
+    public void editCampaignName(String campaignName) {
+        driver.findElement(campaignNameTextBoxLocator).clear();
         driver.findElement(campaignNameTextBoxLocator).sendKeys(campaignName);
     }
 
@@ -80,29 +80,4 @@ public class CreateCampaignPage extends BasePage {
     public void enterDescription(String description) {
         driver.findElement(descriptionTextBoxLocator).sendKeys(description);
     }
-
-    public void clickCreateButton() {
-        driver.findElement(createButtonLocator).click();
-    }
-
-    public void createNewCampaign(Campaign campaign) {
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        enterCampaignName(campaign.getName());
-        selectTypeOption(campaign.getType());
-        selectStatusOption(campaign.getStatus());
-        enterStartDate(campaign.getStartDate());
-        enterEndDate(campaign.getEndDate());
-        enterExpectedRevenue(campaign.getExpectedRevenue());
-        enterBudgetedCost(campaign.getBudgetedCost());
-        enterActualCost(campaign.getActualCost());
-       // enterDescription();
-
-    }
-
-
 }
-

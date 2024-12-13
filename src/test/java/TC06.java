@@ -15,6 +15,8 @@ public class TC06 {
     CreateCampaignPage createCampaignPage;
     CustomerInformationPage customerInformationPage;
     AddCampaignIntoCustomerPage addCampaignIntoCustomerPage;
+    ShowAllCampaignsPage showAllCampaignsPage;
+    CampaignsInformationPage campaignsInformationPage;
     Campaign campaign;
     Customer customer;
     WebDriver driver;
@@ -31,6 +33,8 @@ public class TC06 {
         createCampaignPage = new CreateCampaignPage(driver);
         customerInformationPage = new CustomerInformationPage(driver);
         addCampaignIntoCustomerPage = new AddCampaignIntoCustomerPage(driver);
+        showAllCampaignsPage = new ShowAllCampaignsPage(driver);
+        campaignsInformationPage = new CampaignsInformationPage(driver);
         customer = Customer.random();
         campaign = new Campaign("Campaign01", "Sale", "Done", "2024-12-13", "2024-12-14", 100000.0, 10000.0, 50000.0);
         softAssert = new SoftAssert();
@@ -49,7 +53,7 @@ public class TC06 {
         //create new campaign
         showAllCustomerPage.openCreateCampaignPage();
 
-        createCampaignPage.createNewCampaign(campaign);
+        createCampaignPage.createNewCampaign(campaign); //ko nhap ten duoc??
 
         createCampaignPage.enterDescription("abc");
 
@@ -69,11 +73,19 @@ public class TC06 {
 
         //Verify customer information display correctly campaign
         softAssert.assertEquals(customerInformationPage.getCampaignInformation(), campaign, "Added campaign is not consistent");
-        System.out.println("All colums of new campaign display correctly");
+        System.out.println("All columns of new campaign display correctly");
+
+        //Edit campaign information
+        customerInformationPage.openShowAllCampaignsPage();
+
+        showAllCampaignsPage.openCampaignInformationPageByCampaignName(campaign.getName());
+
+        campaignsInformationPage.openEditCampaignInformationPage();
+
     }
 
-    @AfterMethod
-    public void cleanUp() {
-        driver.quit();
-    }
+//    @AfterMethod
+//    public void cleanUp() {
+//        driver.quit();
+//    }
 }

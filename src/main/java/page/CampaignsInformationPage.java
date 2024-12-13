@@ -23,6 +23,7 @@ public class CampaignsInformationPage {
     By addCustomerButtonLocator = By.xpath("//a[@class='btn btn-primary'][text()='Add customer']");
     By newlyAddedCustomerLocator = By.xpath("//tr/td/a");
     By customerNameLabelLocator = By.xpath("//table/tbody//td/a");
+    By editCampaignInformationButtonLocator = By.xpath("//a[@class='btn btn-primary'][text()='Edit']");
     WebDriver driver;
 
     public CampaignsInformationPage(WebDriver driver) {
@@ -38,7 +39,7 @@ public class CampaignsInformationPage {
     //open latest customer information page
     public void openTheLastCustomerInformationPage() {
         List<WebElement> listCustomer = driver.findElements(newlyAddedCustomerLocator);
-                listCustomer.get(listCustomer.size()-1).click();
+        listCustomer.get(listCustomer.size() - 1).click();
     }
 
     //get latest customer name
@@ -58,5 +59,10 @@ public class CampaignsInformationPage {
         campaign.setBudgetedCost(Double.parseDouble(driver.findElement(campaignBudgetedCostLocator).getText()));
         campaign.setActualCost(Double.parseDouble(driver.findElement(campaignActualCostLocator).getText()));
         return campaign;
+    }
+
+    //open edit campaign information page
+    public void openEditCampaignInformationPage() {
+        driver.findElement(editCampaignInformationButtonLocator).click();
     }
 }
