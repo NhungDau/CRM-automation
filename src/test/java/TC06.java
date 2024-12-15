@@ -3,6 +3,7 @@ import model.Customer;
 import model.User;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -21,6 +22,7 @@ public class TC06 {
     EditCampaignInformationPage editCampaignInformationPage;
     Campaign campaign;
     Campaign campaignUpdated;
+    Campaign campaignAfterEdit;
     Customer customer;
     WebDriver driver;
 
@@ -43,6 +45,7 @@ public class TC06 {
         customer = Customer.random();
         campaign = new Campaign("Campaign01", "Sale", "Done", "2024-12-13", "2024-12-14", 100000.0, 10000.0, 50000.0);
         campaignUpdated = new Campaign(null, null, null, null, null, 200.0, null, null);
+        campaignAfterEdit = new Campaign();
         softAssert = new SoftAssert();
     }
 
@@ -91,17 +94,23 @@ public class TC06 {
 
         editCampaignInformationPage.editCampaignInformation(campaignUpdated);
 
-        editCampaignInformationPage.getCampaignInformationAfterEdit();
+        campaignAfterEdit = editCampaignInformationPage.getCampaignInformationAfterEdit();
 
         editCampaignInformationPage.clickSaveButton();
 
         //Verify campaign information is updated
-        softAssert.assertEquals(campaignsInformationPage.getCampaignInformation(), editCampaignInformationPage.getCampaignInformationAfterEdit(), "Update incorrectly");
+        softAssert.assertEquals(campaignsInformationPage.getCampaignInformation(), campaignAfterEdit, "Update incorrectly");
         System.out.println("Update campaign correctly");
 
         //Verify that campaign information is updated in Show all campaign
         campaignsInformationPage.openShowAllCampaignsPage();
 
+        softAssert.assertEquals(showAllCampaignsPage.getCampaignInformation().getName(), campaignAfterEdit.getName(),"Campaign name is not updated");
+        softAssert.assertEquals(showAllCampaignsPage.getCampaignInformation().getType(), campaignAfterEdit.getType(),"Campaign type is not updated");
+        softAssert.assertEquals(showAllCampaignsPage.getCampaignInformation().getStatus(), campaignAfterEdit.getStatus(),"Campaign status is not updated");
+        softAssert.assertEquals(showAllCampaignsPage.getCampaignInformation().getStartDate(), campaignAfterEdit.getStartDate(),"Campaign start date is not updated");
+        softAssert.assertEquals(showAllCampaignsPage.getCampaignInformation().getEndDate(), campaignAfterEdit.getEndDate(), "Campaign end date is not updated");
+        System.out.println("Update campaign correctly in Show All Campaign page");
 
         //Verify that campaign information is updated in Customer information
         showAllCampaignsPage.openShowAllCustomersPage();
@@ -110,14 +119,14 @@ public class TC06 {
 
         showAllCustomerPage.openCustomerInformationByName(customer);
 
-        softAssert.assertEquals(customerInformationPage.getCampaignInformation(), editCampaignInformationPage.getCampaignInformationAfterEdit(), "Update incorrectly");
-        System.out.println("Update campaign correctly in customer information page");
+        softAssert.assertEquals(customerInformationPage.getCampaignInformation(), campaignAfterEdit, "Update incorrectly");
+        System.out.println("Update campaign correctly in Customer Information page");
 
     }
 
 
-//    @AfterMethod
-//    public void cleanUp() {
-//        driver.quit();
-//    }
+    @AfterMethod
+    public void cleanUp() {
+        driver.quit();
+    }
 }
