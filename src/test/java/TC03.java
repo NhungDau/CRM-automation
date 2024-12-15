@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import page.*;
 
+import java.time.Duration;
 import java.util.Random;
 
 
@@ -36,7 +37,9 @@ public class TC03 {
         customerInformationPage = new CustomerInformationPage(driver);
 
         customer = Customer.random();
+        random = new Random();
         driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.get("http://14.176.232.213:8080/CRMweb/faces/login.xhtml");
 
     }
