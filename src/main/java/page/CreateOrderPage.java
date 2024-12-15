@@ -4,10 +4,7 @@ import model.ProductOrderInformation;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -15,14 +12,15 @@ import java.util.Random;
 
 public class CreateOrderPage  {
 
-    By getListProductByNameLocator = By.xpath("//tr[td/input[@type='checkbox']]/td[2]");
-    By getListCheckboxLocator = By.xpath("//tr/td/input[@type='checkbox']");
-    By getListQuantityTextBoxLocator = By.xpath("//tr[td/input[@type='checkbox']]/td[4]/input");
-    By getListProductPriceLocator = By.xpath("//tr[td/input[@type='checkbox']]/td[3]");
+    By productNameLocator = By.xpath("//tr[td/input[@type='checkbox']]/td[2]");
+    By checkboxLocator = By.xpath("//tr/td/input[@type='checkbox']");
+    By quantityTextBoxLocator = By.xpath("//tr[td/input[@type='checkbox']]/td[4]/input");
+    By priceLocator = By.xpath("//tr[td/input[@type='checkbox']]/td[3]");
     By paymentDateTextboxLocator = By.xpath("//input[@id='j_idt74:pd']");
     By createOrderButtonLocator = By.xpath("//input[@value='Create order']");
 
 
+    Random random;
     WebDriver driver;
 
     public CreateOrderPage(WebDriver driver) {
@@ -35,7 +33,7 @@ public class CreateOrderPage  {
     }
     //click checkbox
     public void clickCheckboxByIndex(int index){
-        List<WebElement> list = driver.findElements(getListCheckboxLocator);
+        List<WebElement> list = driver.findElements(checkboxLocator);
         list.get(index).click();
     }
     //enter product quantity
@@ -43,7 +41,7 @@ public class CreateOrderPage  {
         Random random = new Random();
         int quantity = random.nextInt(20)+1;
 
-        List<WebElement> list = driver.findElements(getListQuantityTextBoxLocator);
+        List<WebElement> list = driver.findElements(quantityTextBoxLocator);
         list.get(index).sendKeys(String.valueOf(quantity));
     }
 
@@ -53,19 +51,22 @@ public class CreateOrderPage  {
     }
     //get product price
     public double getProductPriceByIndex(int index){
-        List<WebElement> list = driver.findElements(getListProductPriceLocator);
+        List<WebElement> list = driver.findElements(priceLocator);
         return Double.parseDouble(list.get(index).getText());
     }
 
-    public void addOrderByIndex(int a){
+    //get total product in page
+    public int getTotalProduct(){
+        List<WebElement> list = driver.findElements(productNameLocator);
+        return list.size();
+    }
+
+    public void selectProductByRandomIndex(int a){
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-
-
-        List<WebElement> list = driver.findElements(getListProductByNameLocator);
 
         //enter payment date
         LocalDate today = LocalDate.now();
@@ -86,18 +87,25 @@ public class CreateOrderPage  {
 
         ProductOrderInformation product =  new ProductOrderInformation();
 
-        product.setProductName(driver.findElements(getListProductByNameLocator).get(a).getText());
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
 
-        Double price = Double.parseDouble(driver.findElements(getListProductPriceLocator).get(a).getText());
+
+        product.setProductName(driver.findElements(productNameLocator).get(a).getText());
+
+        Double price = Double.parseDouble(driver.findElements(priceLocator).get(a).getText());
         product.setProductPrice(price);
 
 
-        Integer quantity = Integer.parseInt(driver.findElements(getListQuantityTextBoxLocator).get(a).getAttribute("value"));
+        Integer quantity = Integer.parseInt(driver.findElements(quantityTextBoxLocator).get(a).getAttribute("value"));
         product.setProductQuantity(quantity);
 
         product.setTotalPrice(price*quantity);
 
-        product.setPaymentDate(driver.findElement(paymentDateTextboxLocator).getText());
+        product.setPaymentDate(driver.findElement(paymentDateTextboxLocator).getAttribute("value"));
 
         return product;
     }

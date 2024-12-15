@@ -2,6 +2,7 @@ package page;
 
 import model.OpportunityInformation;
 import model.Campaign;
+import model.OrderInformation;
 import model.ProductOrderInformation;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -58,24 +59,22 @@ super(driver);    }
         driver.findElement(addOpportunityButtonLocator).click();
     }
 
-//    //check newest order display
-//    public  getLatestOrderInformation() {
-//        try {
-//            Thread.sleep(2000);
-//        } catch (InterruptedException e) {
-//            throw new RuntimeException(e);
-//        }
-//
-//    }
+    //get latest order display
+    public OrderInformation getLatestOrderInformation() {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
 
-    //get payment date
-    public String getPaymentDate() {
-        return getPaymentDate();
-    }
+        OrderInformation orderInformation = new OrderInformation();
 
-    //get price
-    public String getProductPrice() {
-        return getProductPrice();
+        List<WebElement> list = driver.findElements(paymentDateLocator);
+        int a = list.size()-1;
+        orderInformation.setPaymentDate(driver.findElements(paymentDateLocator).get(a).getText());
+        orderInformation.setTotalPrice(Double.parseDouble(driver.findElements(priceLocator).get(a).getText()));
+
+        return orderInformation;
     }
 
 

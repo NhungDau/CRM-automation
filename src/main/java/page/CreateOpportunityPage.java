@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -27,9 +28,14 @@ public class CreateOpportunityPage {
     Random random;
     OpportunityInformation opportunityInformation;
 
+    //get total product in page
+    public int totalProductInPage(){
+        List<WebElement> list = driver.findElements(productNameLocator);
+        return list.size();
+    }
 
     //create opportunity
-    public void createOpportunityByIndex(int a) {
+    public void selectOpportunityByIndex(int a) {
 
         //click checkbox
         List<WebElement> checkboxlist = driver.findElements(checkboxLocator);
@@ -46,7 +52,7 @@ public class CreateOpportunityPage {
     }
 
     //get opportunity information
-    public OpportunityInformation getOpportunityInformationopportunityInformation(int a) {
+    public OpportunityInformation getOpportunityInformation(int a) {
         opportunityInformation = new OpportunityInformation();
         //get status
 
@@ -65,7 +71,7 @@ public class CreateOpportunityPage {
         return opportunityInformation;
     }
 
-    //click add oppotunity button
+    //click add opportunity button
     public void clickAddOpportunityButton() {
         driver.findElement(createOpportunityLocator).click();
     }

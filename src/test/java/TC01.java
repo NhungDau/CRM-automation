@@ -1,14 +1,14 @@
 import model.Customer;
+import model.ProductOrderInformation;
 import model.User;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import page.*;
 
-
+import java.util.Random;
 
 
 public class TC01 {
@@ -22,8 +22,13 @@ public class TC01 {
     BasePage basePage;
     ShowAllOrdersPage showAllOrdersPage;
     OrderInformationPage orderInformationPage;
-
+    ProductOrderInformation productOrderInformation1;
+    ProductOrderInformation productOrderInformation2;
+    ProductOrderInformation productOrderInformation3;
+    Random random;
     SoftAssert softAssert;
+
+    Integer index;
 
     @BeforeMethod
     public void initData() {
@@ -35,9 +40,14 @@ public class TC01 {
         basePage = new BasePage(driver);
         showAllOrdersPage = new ShowAllOrdersPage(driver);
         orderInformationPage = new OrderInformationPage(driver);
+        productOrderInformation1 = new ProductOrderInformation();
+        productOrderInformation2 = new ProductOrderInformation();
+        productOrderInformation3 = new ProductOrderInformation();
+
         driver.manage().window().maximize();
         driver.get("http://14.176.232.213:8080/CRMweb/faces/login.xhtml");
 
+        random = new Random();
         softAssert = new SoftAssert();
         customer = Customer.random();
     }
@@ -54,30 +64,55 @@ public class TC01 {
         //open the newly created customer to add new order
         showAllCustomerPage.clickGoToLastPageButton();
         showAllCustomerPage.openLastCustomer();
+
         customerInformationPage.clickAddOrderButton();
-        createOrderPage.addOrderByIndex(5);
-        createOrderPage.getProductOrderInformation(5);
+
+        index = random.nextInt(createOrderPage.getTotalProduct());
+        createOrderPage.selectProductByRandomIndex(index);
+
+        createOrderPage.getProductOrderInformation(index);
+        productOrderInformation1.setProductName(createOrderPage.getProductOrderInformation(index).getProductName());
+        productOrderInformation1.setProductPrice(createOrderPage.getProductOrderInformation(index).getProductPrice());
+        productOrderInformation1.setProductQuantity(createOrderPage.getProductOrderInformation(index).getProductQuantity());
+        productOrderInformation1.setPaymentDate(createOrderPage.getProductOrderInformation(index).getPaymentDate());
+        productOrderInformation1.setTotalPrice(productOrderInformation1.getProductPrice()*productOrderInformation1.getProductQuantity());
+
+
         createOrderPage.clickCreateOrderButton();
 
         //step 4.verify new order created successfully and display in customer information page
-//        customerInformationPage.isOrderDisplay();
-        customerInformationPage.getProductPrice();
-        softAssert.assertEquals(customerInformationPage.getPaymentDate(),createOrderPage.getProductOrderInformation(5).getPaymentDate(),"Payment date is not correct");
-        softAssert.assertEquals(customerInformationPage.getProductPrice(),createOrderPage.getProductOrderInformation(5).getProductPrice(),"Price is not correct");
+        customerInformationPage.getLatestOrderInformation();
+        productOrderInformation2.setPaymentDate(customerInformationPage.getLatestOrderInformation().getPaymentDate());
+        productOrderInformation2.setTotalPrice(customerInformationPage.getLatestOrderInformation().getTotalPrice());
 
-        //go to show all order page
-        showAllOrdersPage.openShowAllOrdersPage();
+        softAssert.assertEquals(productOrderInformation2.getPaymentDate()
+                                , productOrderInformation1.getPaymentDate()
+                                ,"Payment date is not correct");
+        softAssert.assertEquals(productOrderInformation2.getTotalPrice()
+                                , productOrderInformation1.getTotalPrice()
+                                ,"Price is not correct");
 
-        //search by customer name
-        showAllOrdersPage.searchByCustomerName(customer.getName());
 
-        //go to order information page
-        showAllOrdersPage.clickLastCustomerName();
+
+        //go to order information page to view lastest order information
         customerInformationPage.clickLastPaymentDate();
+
+        //get order information
         orderInformationPage.getCustomerOrderInformation();
 
+        productOrderInformation3.setProductName(orderInformationPage.getCustomerOrderInformation().getProductName());
+
+        productOrderInformation3.setProductPrice(orderInformationPage.getCustomerOrderInformation().getProductPrice());
+
+        productOrderInformation3.setProductQuantity(orderInformationPage.getCustomerOrderInformation().getProductQuantity());
+
+        productOrderInformation3.setTotalPrice(orderInformationPage.getCustomerOrderInformation().getTotalPrice());
+
+        productOrderInformation3.setPaymentDate(orderInformationPage.getCustomerOrderInformation().getPaymentDate());
+
+
         //verify after add new order in create order page, product name/price/quanity/total price are same in oder in formation page
-        softAssert.assertEquals(createOrderPage.getProductOrderInformation(5),orderInformationPage.getCustomerOrderInformation(),"Product information is not correct");
+        softAssert.assertEquals(productOrderInformation1,productOrderInformation3,"Product information is not correct");
         softAssert.assertAll();
 
     }

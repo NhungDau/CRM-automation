@@ -1,4 +1,5 @@
 import model.Customer;
+import model.OpportunityInformation;
 import model.User;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -6,6 +7,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import page.*;
+
+import java.util.Random;
 
 
 public class TC03 {
@@ -15,6 +18,12 @@ public class TC03 {
     ShowAllCustomerPage showAllCustomerPage;
     CustomerInformationPage customerInformationPage;
     CreateOpportunityPage createOpportunityPage;
+    OpportunityInformation opportunityInformation1;
+    OpportunityInformation opportunityInformation2;
+    Random random;
+    Customer customer;
+
+    Integer index;
 
     SoftAssert softAssert;
 
@@ -26,6 +35,7 @@ public class TC03 {
         createOpportunityPage = new CreateOpportunityPage(driver);
         customerInformationPage = new CustomerInformationPage(driver);
 
+        customer = Customer.random();
         driver.manage().window().maximize();
         driver.get("http://14.176.232.213:8080/CRMweb/faces/login.xhtml");
 
@@ -36,22 +46,38 @@ public class TC03 {
         //login
         loginPage.login(User.defaultUser());
 
-        //go to customer information page
-        showAllCustomerPage.getCustomerNameByIndex(4);
-        showAllCustomerPage.clickCustomerNameByIndex(4);
+
+        //create new customer
+        showAllCustomerPage.clickNewCustomerButton();
+        showAllCustomerPage.createCustomer(customer);
+
+        //open the newly created customer to add new opportunity
+        showAllCustomerPage.clickGoToLastPageButton();
+        showAllCustomerPage.openLastCustomer();
 
         //add opportunity
         customerInformationPage.clickAddOpportunityButton();
 
-        createOpportunityPage.createOpportunityByIndex(12);
-        createOpportunityPage.getOpportunityInformationopportunityInformation(12);
+            //get random index by product name
+        index = random.nextInt(createOpportunityPage.totalProductInPage());
+
+        createOpportunityPage.selectOpportunityByIndex(index);
+
+        createOpportunityPage.getOpportunityInformation(index);
+        opportunityInformation1.setStatus(createOpportunityPage.getOpportunityInformation(index).getStatus());
+        opportunityInformation1.setProductName(createOpportunityPage.getOpportunityInformation(index).getProductName());
+        opportunityInformation1.setPrice(createOpportunityPage.getOpportunityInformation(index).getPrice());
+
         createOpportunityPage.clickAddOpportunityButton();
 
         //get opportunity in customer information page
         customerInformationPage.getLastOpportunityInformation();
-        softAssert.assertEquals(customerInformationPage.getLastOpportunityInformation(),
-                                createOpportunityPage.getOpportunityInformationopportunityInformation(12),
-                                "Opportunity information is not consistent");
+        opportunityInformation2.setStatus(customerInformationPage.getLastOpportunityInformation().getStatus());
+        opportunityInformation2.setProductName(customerInformationPage.getLastOpportunityInformation().getProductName());
+        opportunityInformation2.setPrice(customerInformationPage.getLastOpportunityInformation().getPrice());
+
+        softAssert.assertEquals(opportunityInformation1, opportunityInformation2,
+                                                            "Opportunity information is not consistent");
 
 
         softAssert.assertAll();
