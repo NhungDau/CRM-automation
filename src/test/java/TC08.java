@@ -54,7 +54,7 @@ public class TC08 {
     }
 
     @Test
-    public void TC0() {
+    public void TC08() {
         //login
         loginPage.login(User.defaultUser());
 
