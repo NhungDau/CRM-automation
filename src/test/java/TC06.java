@@ -55,22 +55,22 @@ public class TC06 {
         loginPage.login(User.defaultUser());
 
         //create new customer
-        //Add new customer
         showAllCustomerPage.clickNewCustomerButton();
         showAllCustomerPage.createCustomer(customer);
 
         //create new campaign
         showAllCustomerPage.openCreateCampaignPage();
 
-        createCampaignPage.createNewCampaign(campaign); //ko nhap ten duoc??
+        createCampaignPage.createNewCampaign(campaign);
 
         createCampaignPage.enterDescription("abc");
 
         createCampaignPage.clickCreateButton();
 
         showAllCampaignsPage.openShowAllCustomersPage();
+
         //open customer information page
-        showAllCustomerPage.searchCustomerByName(customer); //null???
+        showAllCustomerPage.searchCustomerByName(customer);
 
         showAllCustomerPage.openCustomerInformationByName(customer);
 

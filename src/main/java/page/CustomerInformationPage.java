@@ -4,6 +4,7 @@ import model.OpportunityInformation;
 import model.Campaign;
 import model.OrderInformation;
 import model.ProductOrderInformation;
+import model.Reminder;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,6 +12,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 public class CustomerInformationPage extends BasePage {
@@ -29,10 +32,13 @@ public class CustomerInformationPage extends BasePage {
     By campaignExpectedRevenueLabelLocator = By.xpath("//h5[text()='Campaigns']/../../div[@class='ibox-content']//table//tbody//td[6]");
     By campaignBudgetedCostLabelLocator = By.xpath("//h5[text()='Campaigns']/../../div[@class='ibox-content']//table//tbody//td[7]");
     By campaignActualCostLabelLocator = By.xpath("//h5[text()='Campaigns']/../../div[@class='ibox-content']//table//tbody//td[8]");
-
     By opportunityStatusLocator = By.xpath("//div//h5[text()='Opportunity']/../following-sibling::div//tbody//tr//td[1]");
     By opportunityProductNameLocator = By.xpath("//div//h5[text()='Opportunity']/../following-sibling::div//tbody//tr//td[2]");
     By opportunityProductPriceLocator = By.xpath("//div//h5[text()='Opportunity']/../following-sibling::div//tbody//tr//td[3]");
+    By addReminderButtonLocator = By.xpath("//a[@class='btn btn-primary'][text()='Add reminder']");
+    By reminderDateLabelLocator = By.xpath("//h5[text()='Reminder']/../../div[@class='ibox-content']//table//td[1]");
+    By reminderTimeLabelLocator = By.xpath("//h5[text()='Reminder']/../../div[@class='ibox-content']//table//td[2]");
+    By reminderDescriptionLabelLocator = By.xpath("//h5[text()='Reminder']/../../div[@class='ibox-content']//table//td[3]");
 
 
 
@@ -137,4 +143,15 @@ super(driver);    }
         return o;
     }
 
+    public void openCreateReminderPage() {
+        driver.findElement(addReminderButtonLocator).click();
+    }
+
+    public Reminder getReminderInformation() {
+        Reminder reminder = new Reminder();
+        reminder.setDate(driver.findElement(reminderDateLabelLocator).getText());
+        reminder.setTime(driver.findElement(reminderTimeLabelLocator).getText());
+        reminder.setDescription(driver.findElement(reminderDescriptionLabelLocator).getText());
+        return reminder;
+    }
 }
