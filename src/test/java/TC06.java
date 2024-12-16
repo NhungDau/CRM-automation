@@ -11,6 +11,7 @@ import org.testng.asserts.SoftAssert;
 import page.*;
 
 import java.time.Duration;
+import java.util.Random;
 
 public class TC06 {
     LoginPage loginPage;
@@ -28,6 +29,7 @@ public class TC06 {
     Customer customer;
     WebDriver driver;
     Faker faker;
+    Random random;
 
     SoftAssert softAssert;
 
@@ -47,7 +49,9 @@ public class TC06 {
         campaignsInformationPage = new CampaignsInformationPage(driver);
         editCampaignInformationPage = new EditCampaignInformationPage(driver);
         customer = Customer.random();
-        campaign = new Campaign("Campaign01", "Sale", "Done", "2024-12-13", "2024-12-14", 10000.0, 1000.0, 5000.0);
+        random = new Random();
+        faker = new Faker();
+        campaign = new Campaign(faker.company().catchPhrase(),"Sale", "Done", "2024-12-13", "2024-12-14", 10000.0, 1000.0, 5000.0);
         campaignUpdated = new Campaign(null, null, null, null, null, 200.0, null, null);
         campaignAfterEdit = new Campaign();
         softAssert = new SoftAssert();
@@ -68,7 +72,7 @@ public class TC06 {
 
         createCampaignPage.createNewCampaign(campaign);
 
-        createCampaignPage.enterDescription("abc");
+        createCampaignPage.enterDescription(faker.lorem().sentence());
 
         createCampaignPage.clickCreateButton();
 

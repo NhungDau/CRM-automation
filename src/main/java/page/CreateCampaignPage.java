@@ -6,6 +6,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.List;
+
 public class CreateCampaignPage extends BasePage {
     By campaignNameTextBoxLocator = By.id("j_idt70:cn");
     By campaignTypeListLocator = By.name("j_idt70:j_idt74");
@@ -97,8 +99,16 @@ public class CreateCampaignPage extends BasePage {
         enterExpectedRevenue(campaign.getExpectedRevenue());
         enterBudgetedCost(campaign.getBudgetedCost());
         enterActualCost(campaign.getActualCost());
-       // enterDescription();
+    }
 
+    public List listStatusOption() {
+        Select statusOptions = new Select(driver.findElement(statusDropdownListLocator));
+        return statusOptions.getOptions();
+    }
+
+    public List listTypeOption() {
+        Select typeOptions = new Select(driver.findElement(campaignTypeListLocator));
+        return typeOptions.getOptions();
     }
 
 
