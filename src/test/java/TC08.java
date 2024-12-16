@@ -97,8 +97,8 @@ public class TC08 {
         softAssert.assertAll();
     }
 
-    @AfterMethod
-    public void cleanUp() {
-        driver.quit();
-    }
+//    @AfterMethod
+//    public void cleanUp() {
+//        driver.quit();
+//    }
 }
