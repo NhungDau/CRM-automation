@@ -21,33 +21,37 @@ public class CampaignReportPage {
 
     WebDriver driver;
 
+    public CampaignReportPage(WebDriver driver) {
+        this.driver = driver;
+    }
+
     //enter campaign name to search box
     public void searchByCampaignName(String campaignName){
-        driver.findElement(searchByCampaignNameTextboxLocator).click();
+//        driver.findElement(searchByCampaignNameTextboxLocator).click();
         driver.findElement(searchByCampaignNameTextboxLocator).sendKeys(campaignName);
     }
 
     //enter campaign type to search box
     public void searchByCampaignType(String campaginType){
-        driver.findElement(searchByCampaignTypeTextboxLocator).click();
+//        driver.findElement(searchByCampaignTypeTextboxLocator).click();
         driver.findElement(searchByCampaignTypeTextboxLocator).sendKeys();
     }
 
     //enter status to search box
     public void searchByStatus(String status){
-        driver.findElement(searchByStatusTextboxLocator).click();
+//        driver.findElement(searchByStatusTextboxLocator).click();
         driver.findElement(searchByStatusTextboxLocator).sendKeys(status);
     }
 
     //enter start date to search box
     public void searchByStartDate(String startDate){
-        driver.findElement(searchByStartDateTextboxLocator).click();
+//        driver.findElement(searchByStartDateTextboxLocator).click();
         driver.findElement(searchByStartDateTextboxLocator).sendKeys(startDate);
     }
 
     //enter end date to search box
     public void searchByEndDate(String endDate){
-        driver.findElement(searchByEndDateTextboxLocator).click();
+//        driver.findElement(searchByEndDateTextboxLocator).click();
         driver.findElement(searchByEndDateTextboxLocator).sendKeys(endDate);
     }
 

@@ -22,4 +22,6 @@ public class AddCampaignIntoCustomerPage {
     public void clickToAddButton() {
         driver.findElement(addButtonLocator).click();
     }
+
+
 }

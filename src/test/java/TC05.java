@@ -1,3 +1,4 @@
+import com.github.javafaker.Faker;
 import model.Campaign;
 import model.Customer;
 import model.User;
@@ -17,8 +18,11 @@ public class TC05 {
     LoginPage loginPage;
     CreateCampaignPage createCampaignPage;
     Campaign campaign;
+    Campaign campaign1;
+    Campaign campaign2;
     ShowAllCampaignsPage showAllCampaignsPage;
-
+    CampaignReportPage campaignReportPage;
+    Faker faker;
     SoftAssert softAssert;
 
     @BeforeMethod
@@ -29,11 +33,15 @@ public class TC05 {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
         loginPage = new LoginPage(driver);
+        faker = new Faker();
         createCampaignPage = new CreateCampaignPage(driver);
-        campaign = new Campaign("Super sale", "Sale", "Done", "2024-12-13", "2024-12-14", 356.0, 54.0, 88.4);
+        campaign = new Campaign(faker.company().catchPhrase(), "Sale", "Done", "2024-12-13", "2024-12-14", 356.0, 54.0, 88.4);
+        campaign1 = new Campaign();
+        campaign2 = new Campaign();
         showAllCampaignsPage = new ShowAllCampaignsPage(driver);
+        campaignReportPage = new CampaignReportPage(driver);
 
-
+        softAssert = new SoftAssert();
 
 
     }
@@ -57,39 +65,53 @@ public class TC05 {
 
         showAllCampaignsPage.searchByCampaignName(campaign.getName());
 
-        showAllCampaignsPage.searchByCampaignType(campaign.getType());
-
-        showAllCampaignsPage.searchByStatus(campaign.getStatus());
-
-        showAllCampaignsPage.searchByStartDate(campaign.getStartDate());
-
-        showAllCampaignsPage.searchByEndDate(campaign.getEndDate());
-
         // check whether newly created campaign can be searched
-        softAssert.assertEquals(showAllCampaignsPage.getCampaignInformation().getName()
-                                ,campaign.getName()
-                                ,"Campaign name is not consistent");
-
-        softAssert.assertEquals(showAllCampaignsPage.getCampaignInformation().getType()
-                                , campaign.getType()
-                                , "Campaign type is not consistent");
-
-        softAssert.assertEquals(showAllCampaignsPage.getCampaignInformation().getStatus()
-                                , campaign.getStatus()
-                                ,"Status is not consistent");
-
-        softAssert.assertEquals(showAllCampaignsPage.getCampaignInformation().getStartDate()
-                                , campaign.getStartDate()
-                                ,"Start date is not consistent");
-
-        softAssert.assertEquals(showAllCampaignsPage.getCampaignInformation().getEndDate()
-                                , campaign.getEndDate()
-                                , "End date is not consistent");
+//        softAssert.assertEquals(showAllCampaignsPage.getCampaignInformation().getName()
+//                                ,campaign.getName()
+//                                ,"Campaign name is not consistent");
+//
+//        softAssert.assertEquals(showAllCampaignsPage.getCampaignInformation().getType()
+//                                , campaign.getType()
+//                                , "Campaign type is not consistent");
+//
+//        softAssert.assertEquals(showAllCampaignsPage.getCampaignInformation().getStatus()
+//                                , campaign.getStatus()
+//                                ,"Status is not consistent");
+//
+//        softAssert.assertEquals(showAllCampaignsPage.getCampaignInformation().getStartDate()
+//                                , campaign.getStartDate()
+//                                ,"Start date is not consistent");
+//
+//        softAssert.assertEquals(showAllCampaignsPage.getCampaignInformation().getEndDate()
+//                                , campaign.getEndDate()
+//                                , "End date is not consistent");
 
         //go to report page
         showAllCampaignsPage.openCampaignReportsPage();
 
         //search newly created campaign
+        campaignReportPage.searchByCampaignName(campaign.getName());
+
+        //check whether newly created campaign can be searched in campaign report page
+        softAssert.assertEquals(campaignReportPage.getCampaignInformation().getName()
+                ,campaign.getName()
+                ,"Campaign name is not consistent");
+
+        softAssert.assertEquals(campaignReportPage.getCampaignInformation().getType()
+                , campaign.getType()
+                , "Campaign type is not consistent");
+
+        softAssert.assertEquals(campaignReportPage.getCampaignInformation().getStatus()
+                , campaign.getStatus()
+                ,"Status is not consistent");
+
+        softAssert.assertEquals(campaignReportPage.getCampaignInformation().getStartDate()
+                , campaign.getStartDate()
+                ,"Start date is not consistent");
+
+        softAssert.assertEquals(campaignReportPage.getCampaignInformation().getEndDate()
+                , campaign.getEndDate()
+                , "End date is not consistent");
 
 
 

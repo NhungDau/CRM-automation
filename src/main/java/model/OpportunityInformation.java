@@ -50,5 +50,15 @@ public class OpportunityInformation {
     public int hashCode() {
         return Objects.hash(status, productName, price);
     }
+
+    @Override
+    public String toString() {
+        return "OpportunityInformation{" +
+                "status='" + status + '\'' +
+                ", productName='" + productName + '\'' +
+                ", price=" + price +
+                '}';
+    }
+
     public OpportunityInformation(){}
 }

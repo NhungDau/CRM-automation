@@ -36,7 +36,11 @@ public class TC03 {
         showAllCustomerPage = new ShowAllCustomerPage(driver);
         createOpportunityPage = new CreateOpportunityPage(driver);
         customerInformationPage = new CustomerInformationPage(driver);
+        opportunityInformation1 = new OpportunityInformation();
+        opportunityInformation2 = new OpportunityInformation();
         createCustomer = new CreateCustomer(driver);
+
+        softAssert = new SoftAssert();
 
         customer = Customer.random();
         random = new Random();

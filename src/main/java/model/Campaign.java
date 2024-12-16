@@ -1,8 +1,15 @@
 package model;
 
+import com.github.javafaker.Faker;
+
 import java.util.Objects;
+import java.util.Random;
 
 public class Campaign {
+
+    private static final Faker faker = new Faker();
+    Random random = new Random();
+
     String name;
     String type;
     String status;
@@ -89,6 +96,11 @@ public class Campaign {
 
     public Campaign() {
     }
+//
+//    public static Campaign random() {
+//        return new Campaign(faker.company().catchPhrase(), );
+//    }
+
 
     @Override
     public boolean equals(Object o) {
