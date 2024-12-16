@@ -24,11 +24,6 @@ public class ShowAllReminderPage {
 
     public void searchReminderByDescription(String description) {
         driver.findElement(searchDescriptionTextBoxLocator).sendKeys(description);
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
         wait.until(ExpectedConditions.textToBePresentInElementLocated(reminderDescriptionLabelLocator, description));
     }
 

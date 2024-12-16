@@ -81,7 +81,7 @@ public class TC08 {
         reminderInCustomerInformationPage = customerInformationPage.getReminderInformation();
 
         softAssert.assertEquals(reminderInCustomerInformationPage, reminder, "Reminder is not correct");
-        System.out.println("New reminder is added correctly");
+        System.out.println("New reminder is added correctly in Customer Information Page");
 
         //Verify that new reminder display at Reminder page
         customerInformationPage.openShowAllRemindersPage();
@@ -91,7 +91,7 @@ public class TC08 {
         reminderInShowAllReminderPage = showAllReminderPage.getReminderInformation();
 
         softAssert.assertEquals(reminderInShowAllReminderPage, reminder, "Reminder is not correct");
-        System.out.println("New reminder is added correctly");
+        System.out.println("New reminder is added correctly in Show All Reminder Page");
 
 
         softAssert.assertAll();

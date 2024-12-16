@@ -1,3 +1,4 @@
+import com.github.javafaker.Faker;
 import model.Campaign;
 import model.Customer;
 import model.User;
@@ -26,6 +27,7 @@ public class TC06 {
     Campaign campaignAfterEdit;
     Customer customer;
     WebDriver driver;
+    Faker faker;
 
     SoftAssert softAssert;
 
