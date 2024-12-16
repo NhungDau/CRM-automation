@@ -45,7 +45,7 @@ public class TC06 {
         campaignsInformationPage = new CampaignsInformationPage(driver);
         editCampaignInformationPage = new EditCampaignInformationPage(driver);
         customer = Customer.random();
-        campaign = new Campaign("Campaign01", "Sale", "Done", "2024-12-13", "2024-12-14", 100000.0, 10000.0, 50000.0);
+        campaign = new Campaign("Campaign01", "Sale", "Done", "2024-12-13", "2024-12-14", 10000.0, 1000.0, 5000.0);
         campaignUpdated = new Campaign(null, null, null, null, null, 200.0, null, null);
         campaignAfterEdit = new Campaign();
         softAssert = new SoftAssert();
@@ -128,8 +128,8 @@ public class TC06 {
     }
 
 
-//    @AfterMethod
-//    public void cleanUp() {
-//        driver.quit();
-//    }
+    @AfterMethod
+    public void cleanUp() {
+        driver.quit();
+    }
 }

@@ -24,7 +24,6 @@ public class CampaignsInformationPage extends BasePage {
     By newlyAddedCustomerLocator = By.xpath("//tr/td/a");
     By customerNameLabelLocator = By.xpath("//table/tbody//td/a");
     By editCampaignInformationButtonLocator = By.xpath("//a[@class='btn btn-primary'][text()='Edit']");
-    WebDriver driver;
 
     public CampaignsInformationPage(WebDriver driver) {
         super(driver);
@@ -63,6 +62,11 @@ public class CampaignsInformationPage extends BasePage {
 
     //open edit campaign information page
     public void openEditCampaignInformationPage() {
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         driver.findElement(editCampaignInformationButtonLocator).click();
     }
 }

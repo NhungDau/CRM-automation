@@ -100,14 +100,14 @@ public class EditCampaignInformationPage {
 
     public Campaign getCampaignInformationAfterEdit() {
         Campaign campaign = new Campaign();
-        campaign.setName(driver.findElement(campaignNameTextBoxLocator).getText());
-        campaign.setType(driver.findElement(campaignTypeListLocator).getText());
-        campaign.setStatus(driver.findElement(statusDropdownListLocator).getText());
-        campaign.setStartDate(driver.findElement(startDateTextBoxLocator).getText());
-        campaign.setEndDate(driver.findElement(endDateTextBoxLocator).getText());
-        campaign.setExpectedRevenue(Double.parseDouble(driver.findElement(expectedRevenueTextBoxLocator).getText()));
-        campaign.setBudgetedCost(Double.parseDouble(driver.findElement(budgetedCostTextBoxLocator).getText()));
-        campaign.setActualCost(Double.parseDouble(driver.findElement(actualCostTextBoxLocator).getText()));
+        campaign.setName(driver.findElement(campaignNameTextBoxLocator).getAttribute("value"));
+        campaign.setType(driver.findElement(campaignTypeListLocator).getAttribute("value"));
+        campaign.setStatus(driver.findElement(statusDropdownListLocator).getAttribute("value"));
+        campaign.setStartDate(driver.findElement(startDateTextBoxLocator).getAttribute("value"));
+        campaign.setEndDate(driver.findElement(endDateTextBoxLocator).getAttribute("value"));
+        campaign.setExpectedRevenue(Double.parseDouble(driver.findElement(expectedRevenueTextBoxLocator).getAttribute("value")));
+        campaign.setBudgetedCost(Double.parseDouble(driver.findElement(budgetedCostTextBoxLocator).getAttribute("value").replace(",","")));
+        campaign.setActualCost(Double.parseDouble(driver.findElement(actualCostTextBoxLocator).getAttribute("value").replace(",","")));
         return campaign;
     }
 }
