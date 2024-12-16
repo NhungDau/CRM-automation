@@ -8,6 +8,8 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import page.*;
 
+import java.time.Duration;
+
 public class TC05 {
 
 
@@ -22,13 +24,16 @@ public class TC05 {
     @BeforeMethod
     public void initData() {
         driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.get("http://14.176.232.213:8080/CRMweb/faces/login.xhtml");
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+
         loginPage = new LoginPage(driver);
         createCampaignPage = new CreateCampaignPage(driver);
         campaign = new Campaign("Super sale", "Sale", "Done", "2024-12-13", "2024-12-14", 356.0, 54.0, 88.4);
         showAllCampaignsPage = new ShowAllCampaignsPage(driver);
 
-        driver.manage().window().maximize();
-        driver.get("http://14.176.232.213:8080/CRMweb/faces/login.xhtml");
+
 
 
     }

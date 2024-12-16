@@ -44,9 +44,9 @@ public class ShowAllCampaignsPage extends BasePage {
 
     //enter campaign name to search box
     public void searchByCampaignName(String campaignName) {
-        driver.findElement(searchByCampaignNameTextboxLocator).click();
+//        driver.findElement(searchByCampaignNameTextboxLocator).click();
         driver.findElement(searchByCampaignNameTextboxLocator).sendKeys(campaignName);
-        wait.until(ExpectedConditions.textToBePresentInElementLocated(searchByCampaignNameTextboxLocator, campaignName));
+//        wait.until(ExpectedConditions.textToBePresentInElementLocated(searchByCampaignNameTextboxLocator, campaignName));
     }
 
     //enter campaign type to search box

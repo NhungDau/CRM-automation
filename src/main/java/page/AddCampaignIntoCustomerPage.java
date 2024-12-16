@@ -13,8 +13,8 @@ public class AddCampaignIntoCustomerPage {
         this.driver = driver;
     }
 
-    public void selectCampainByCampainName(Campaign campaign) {
-        String xpathValue = String.format("//tbody//td[2][text()='%s']..//input[@type='checkbox']", campaign.getName());
+    public void selectCampainByCampainName(String campaignName) {
+        String xpathValue = String.format("//tbody//td[2][text()='%s']//..//input[@type='checkbox']", campaignName);
         dynamicCheckBoxByCampaignNameLocator = By.xpath(xpathValue);
         driver.findElement(dynamicCheckBoxByCampaignNameLocator).click();
     }

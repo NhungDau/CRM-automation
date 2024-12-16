@@ -80,7 +80,7 @@ public class TC06 {
         //add new campaign
         customerInformationPage.clickAddCampaignButton();
 
-        addCampaignIntoCustomerPage.selectCampainByCampainName(campaign);
+        addCampaignIntoCustomerPage.selectCampainByCampainName(campaign.getName());
 
         addCampaignIntoCustomerPage.clickToAddButton();
 
@@ -128,8 +128,8 @@ public class TC06 {
     }
 
 
-    @AfterMethod
-    public void cleanUp() {
-        driver.quit();
-    }
+//    @AfterMethod
+//    public void cleanUp() {
+//        driver.quit();
+//    }
 }
