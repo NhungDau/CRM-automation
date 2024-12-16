@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Objects;
 
 public class Reminder {
     private String description;
@@ -42,5 +43,27 @@ public class Reminder {
     }
 
     public Reminder() {
+    }
+
+    @Override
+    public String toString() {
+        return "Reminder{" +
+                "description='" + description + '\'' +
+                ", date='" + date + '\'' +
+                ", time='" + time + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Reminder reminder = (Reminder) o;
+        return Objects.equals(description, reminder.description) && Objects.equals(date, reminder.date) && Objects.equals(time, reminder.time);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(description, date, time);
     }
 }

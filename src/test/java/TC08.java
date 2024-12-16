@@ -13,6 +13,7 @@ import page.*;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
 public class TC08 {
@@ -50,7 +51,8 @@ public class TC08 {
         faker = new Faker();
         random = new Random();
         randomDate = random.nextInt(366);
-        reminder = new Reminder(faker.hipster().word(),LocalDate.now().plusDays(randomDate).toString(), LocalTime.now().toString());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        reminder = new Reminder(faker.hipster().word(),LocalDate.now().plusDays(randomDate).toString(), LocalTime.now().format(formatter));
         softAssert = new SoftAssert();
 
     }

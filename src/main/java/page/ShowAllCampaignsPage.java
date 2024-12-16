@@ -17,7 +17,7 @@ public class ShowAllCampaignsPage extends BasePage {
     By statusLabelLocator = By.xpath("//a[@class='ui-link ui-widget']/../following-sibling::td[2]");
     By startDateLocator = By.xpath("//a[@class='ui-link ui-widget']/../following-sibling::td[3]");
     By endDateLocator = By.xpath("//a[@class='ui-link ui-widget']/../following-sibling::td[4]");
-    By searchByCampaignNameTextboxLocator = By.xpath("//span[text()='Campaign Name']//..//input[@class='ui-column-filter ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all']");
+    By searchByCampaignNameTextboxLocator = By.xpath("//span[text()='Campaign Name']//..//input");
     By searchByCampaignTypeTextboxLocator = By.xpath("//span[text()='Type']//..//input[@class='ui-column-filter ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all']");
     By searchByStatusTextboxLocator = By.xpath("//span[text()='Status']//..//input[@class='ui-column-filter ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all']");
     By searchByStartDateTextboxLocator = By.xpath("//span[text()='Start Date']//..//input[@class='ui-column-filter ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all']");
@@ -44,9 +44,9 @@ public class ShowAllCampaignsPage extends BasePage {
 
     //enter campaign name to search box
     public void searchByCampaignName(String campaignName) {
-//        driver.findElement(searchByCampaignNameTextboxLocator).click();
+        driver.findElement(searchByCampaignNameTextboxLocator).click();
         driver.findElement(searchByCampaignNameTextboxLocator).sendKeys(campaignName);
-        wait.until(ExpectedConditions.textToBePresentInElementLocated(searchByCampaignNameTextboxLocator, campaignName));
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(campaignNameLabelLocator, campaignName));
     }
 
     //enter campaign type to search box
@@ -87,8 +87,8 @@ public class ShowAllCampaignsPage extends BasePage {
         Campaign campaign = new Campaign();
 
         campaign.setName(driver.findElement(campaignNameLabelLocator).getText());
-//        campaign.setStatus(driver.findElement(statusLabelLocator).getText());
-        campaign.setStatus(driver.findElement(statusLabelLocator).getAttribute("value"));
+        campaign.setStatus(driver.findElement(statusLabelLocator).getText());
+//        campaign.setStatus(driver.findElement(statusLabelLocator).getAttribute("value"));
         campaign.setType(driver.findElement(campaignTypeLabelLocator).getText());
         campaign.setStartDate(driver.findElement(startDateLocator).getText());
         campaign.setEndDate(driver.findElement(endDateLocator).getText());

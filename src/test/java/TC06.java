@@ -69,7 +69,7 @@ public class TC06 {
 
         //create new campaign
         showAllCustomerPage.openCreateCampaignPage();
-
+//get list - random - set campaign type
         createCampaignPage.createNewCampaign(campaign);
 
         createCampaignPage.enterDescription(faker.lorem().sentence());
@@ -131,6 +131,7 @@ public class TC06 {
         softAssert.assertEquals(customerInformationPage.getCampaignInformation(), campaignAfterEdit, "Update incorrectly");
         System.out.println("Update campaign correctly in Customer Information page");
 
+        softAssert.assertAll();
     }
 
 

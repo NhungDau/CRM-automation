@@ -16,10 +16,11 @@ public class ShowAllReminderPage {
 
 
     WebDriver driver;
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    WebDriverWait wait ;
 
     public ShowAllReminderPage(WebDriver driver) {
         this.driver = driver;
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     public void searchReminderByDescription(String description) {
