@@ -20,6 +20,7 @@ public class TC06 {
     ShowAllCampaignsPage showAllCampaignsPage;
     CampaignsInformationPage campaignsInformationPage;
     EditCampaignInformationPage editCampaignInformationPage;
+    CreateCustomer createCustomer;
     Campaign campaign;
     Campaign campaignUpdated;
     Campaign campaignAfterEdit;
@@ -39,6 +40,7 @@ public class TC06 {
         createCampaignPage = new CreateCampaignPage(driver);
         customerInformationPage = new CustomerInformationPage(driver);
         addCampaignIntoCustomerPage = new AddCampaignIntoCustomerPage(driver);
+        createCustomer = new CreateCustomer(driver);
         showAllCampaignsPage = new ShowAllCampaignsPage(driver);
         campaignsInformationPage = new CampaignsInformationPage(driver);
         editCampaignInformationPage = new EditCampaignInformationPage(driver);
@@ -56,7 +58,8 @@ public class TC06 {
 
         //create new customer
         showAllCustomerPage.clickNewCustomerButton();
-        showAllCustomerPage.createCustomer(customer);
+
+        createCustomer.createCustomer(customer);
 
         //create new campaign
         showAllCustomerPage.openCreateCampaignPage();

@@ -16,11 +16,6 @@ public class ShowAllCustomerPage extends BasePage {
     By showAllCampaignsLabelLocator = By.xpath("//ul[@class='nav nav-second-level collapse in']//a[text()='Show All Campaigns']");
 
     By newCustomerButtonLocator = By.xpath("//a[text()='New Customer']");
-    By nameTextboxLocator = By.xpath("//input[@id='j_idt70:name']");
-    By emailTextboxLocator = By.id("j_idt70:email");
-    By phoneTextboxLocator = By.id("j_idt70:phone");
-    By addressTextboxLocator = By.id("j_idt70:address");
-    By createCustomerLocator = By.xpath("//input[@value='Create a customer']");
     By lastPageButtonLocator = By.xpath("//span[@class='ui-icon ui-icon-seek-end']");
     By getListCustomerByNameLocator = By.xpath("//a[@class='ui-link ui-widget']");
     By searchByCustomerNameTextboxLocator = By.xpath("//input[@id='j_idt71:tbl:j_idt72:filter']");
@@ -35,40 +30,6 @@ public class ShowAllCustomerPage extends BasePage {
     //click New Customer button
     public void clickNewCustomerButton() {
         driver.findElement(newCustomerButtonLocator).click();
-    }
-
-    //enter name
-    public void enterName(String name) {
-        driver.findElement(nameTextboxLocator).sendKeys(name);
-    }
-
-    //enter email
-    public void enterEmail(String email) {
-
-        driver.findElement(emailTextboxLocator).sendKeys(email);
-    }
-
-    //enter phone
-    public void enterPhone(String phone) {
-
-        driver.findElement(phoneTextboxLocator).sendKeys(phone);
-    }
-
-    //enter address
-    public void enterAddress(String address) {
-
-        driver.findElement(addressTextboxLocator).sendKeys(address);
-    }
-
-    //create new customer
-    public void createCustomer(Customer customer) {
-        //enter value
-        enterName(customer.getName());
-        enterEmail(customer.getEmail());
-        enterPhone(customer.getPhone());
-        enterAddress(customer.getAddress());
-        //click create a customer button
-        driver.findElement(createCustomerLocator).click();
     }
 
 

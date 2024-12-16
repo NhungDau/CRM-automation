@@ -62,12 +62,6 @@ public class CreateOpportunityPage {
     public OpportunityInformation getOpportunityInformation(int a) {
         opportunityInformation = new OpportunityInformation();
 
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
         List<WebElement> statusDropdown = driver.findElements(statusDropdownLocator);
         WebElement dropdownByIndex = statusDropdown.get(a);
         Select dropdown = new Select(dropdownByIndex);

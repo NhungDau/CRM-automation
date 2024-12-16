@@ -18,6 +18,7 @@ public class TC03 {
     LoginPage loginPage;
     ShowAllCustomerPage showAllCustomerPage;
     CustomerInformationPage customerInformationPage;
+    CreateCustomer createCustomer;
     CreateOpportunityPage createOpportunityPage;
     OpportunityInformation opportunityInformation1;
     OpportunityInformation opportunityInformation2;
@@ -35,6 +36,7 @@ public class TC03 {
         showAllCustomerPage = new ShowAllCustomerPage(driver);
         createOpportunityPage = new CreateOpportunityPage(driver);
         customerInformationPage = new CustomerInformationPage(driver);
+        createCustomer = new CreateCustomer(driver);
 
         customer = Customer.random();
         random = new Random();
@@ -52,7 +54,7 @@ public class TC03 {
 
         //create new customer
         showAllCustomerPage.clickNewCustomerButton();
-        showAllCustomerPage.createCustomer(customer);
+        createCustomer.createCustomer(customer);
 
         //open the newly created customer to add new opportunity
         showAllCustomerPage.clickGoToLastPageButton();

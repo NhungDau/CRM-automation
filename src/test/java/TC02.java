@@ -19,6 +19,7 @@ public class TC02 {
     AddCustomerIntoCampaignPage addCustomerIntoCampaignPage;
     CustomerInformationPage customerInformationPage;
     EditCustomerInformationPage editCustomerInformationPage;
+    CreateCustomer createCustomer;
     Customer customer;
     Customer customerUpdatedName;
     String newCustomerName;
@@ -39,6 +40,7 @@ public class TC02 {
         addCustomerIntoCampaignPage = new AddCustomerIntoCampaignPage(driver);
         customerInformationPage = new CustomerInformationPage(driver);
         editCustomerInformationPage = new EditCustomerInformationPage(driver);
+        createCustomer = new CreateCustomer(driver);
         customer = Customer.random();
         customerUpdatedName = new Customer();
         faker = new Faker();
@@ -53,7 +55,7 @@ public class TC02 {
 
         //Add new customer
         showAllCustomerPage.clickNewCustomerButton();
-        showAllCustomerPage.createCustomer(customer);
+        createCustomer.createCustomer(customer);
 
 
         showAllCustomerPage.openShowAllCampaignsPage();

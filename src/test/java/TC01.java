@@ -16,6 +16,7 @@ public class TC01 {
     WebDriver driver;
     LoginPage loginPage;
     ShowAllCustomerPage showAllCustomerPage;
+    CreateCustomer createCustomer;
     Customer customer;
     CreateOrderPage createOrderPage;
     CustomerInformationPage customerInformationPage;
@@ -37,6 +38,7 @@ public class TC01 {
         showAllCustomerPage = new ShowAllCustomerPage(driver);
         createOrderPage = new CreateOrderPage(driver);
         customerInformationPage = new CustomerInformationPage(driver);
+        createCustomer = new CreateCustomer(driver);
         basePage = new BasePage(driver);
         showAllOrdersPage = new ShowAllOrdersPage(driver);
         orderInformationPage = new OrderInformationPage(driver);
@@ -59,7 +61,8 @@ public class TC01 {
 
         //create new customer
         showAllCustomerPage.clickNewCustomerButton();
-        showAllCustomerPage.createCustomer(customer);
+
+        createCustomer.createCustomer(customer);
 
         //open the newly created customer to add new order
         showAllCustomerPage.clickGoToLastPageButton();

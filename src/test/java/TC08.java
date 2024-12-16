@@ -26,6 +26,7 @@ public class TC08 {
     Reminder reminder;
     Reminder reminderInCustomerInformationPage;
     Reminder reminderInShowAllReminderPage;
+    CreateCustomer createCustomer;
     Faker faker;
     Random random;
     int randomDate;
@@ -44,6 +45,7 @@ public class TC08 {
         customerInformationPage = new CustomerInformationPage(driver);
         createReminderPage = new CreateReminderPage(driver);
         showAllReminderPage = new ShowAllReminderPage(driver);
+        createCustomer = new CreateCustomer(driver);
         customer = Customer.random();
         faker = new Faker();
         random = new Random();
@@ -61,7 +63,7 @@ public class TC08 {
         //create new customer
         showAllCustomerPage.clickNewCustomerButton();
 
-        showAllCustomerPage.createCustomer(customer);
+        createCustomer.createCustomer(customer);
 
         //open customer information page
         showAllCustomerPage.searchCustomerByName(customer);
