@@ -20,6 +20,7 @@ public class TC10 {
     LoginPage loginPage;
     ShowAllCustomerPage showAllCustomerPage;
     CreateRevenuePage createRevenuePage;
+    RevenueInformationPage revenueInformationPage;
     Random random;
     Revenue revenue;
     int currentYear;
@@ -37,6 +38,7 @@ public class TC10 {
         loginPage = new LoginPage(driver);
         showAllCustomerPage = new ShowAllCustomerPage(driver);
         createRevenuePage = new CreateRevenuePage(driver);
+        revenueInformationPage = new RevenueInformationPage(driver);
         currentYear = LocalDate.now().getYear();
         revenue = new Revenue(currentYear + random.nextInt(100), random.nextInt(1000), random.nextInt(1000), random.nextInt(1000), random.nextInt(1000), random.nextInt(1000), random.nextInt(1000), random.nextInt(1000), random.nextInt(1000), random.nextInt(1000), random.nextInt(1000), random.nextInt(1000), random.nextInt(1000));
         random = new Random();
@@ -55,6 +57,9 @@ public class TC10 {
         createRevenuePage.createRevenue(revenue);
 
         createRevenuePage.clickSaveButton();
+
+        //open search revenue page
+
 
 
         softAssert.assertAll();

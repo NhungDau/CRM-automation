@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public class Revenue {
     private int year;
     private int jan;
@@ -133,5 +135,21 @@ public class Revenue {
 
     public void setDec(int dec) {
         this.dec = dec;
+    }
+
+    public Revenue() {
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Revenue revenue = (Revenue) o;
+        return jan == revenue.jan && feb == revenue.feb && mar == revenue.mar && apr == revenue.apr && may == revenue.may && jun == revenue.jun && jul == revenue.jul && aug == revenue.aug && sep == revenue.sep && oct == revenue.oct && nov == revenue.nov && dec == revenue.dec;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(jan, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec);
     }
 }

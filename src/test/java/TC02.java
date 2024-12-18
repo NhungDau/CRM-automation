@@ -1,4 +1,5 @@
 import com.github.javafaker.Faker;
+import model.Campaign;
 import model.Customer;
 import model.User;
 import org.openqa.selenium.WebDriver;
@@ -7,6 +8,9 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import page.*;
+
+import java.time.LocalDate;
+import java.util.Random;
 
 
 public class TC02 {
@@ -19,11 +23,15 @@ public class TC02 {
     AddCustomerIntoCampaignPage addCustomerIntoCampaignPage;
     CustomerInformationPage customerInformationPage;
     EditCustomerInformationPage editCustomerInformationPage;
+    CreateCampaignPage createCampaignPage;
     CreateCustomer createCustomer;
+    Campaign campaign;
     Customer customer;
     Customer customerUpdatedName;
     String newCustomerName;
     Faker faker;
+    Random random;
+    LocalDate randomDate;
     WebDriver driver;
     SoftAssert softAssert;
 
@@ -40,10 +48,14 @@ public class TC02 {
         addCustomerIntoCampaignPage = new AddCustomerIntoCampaignPage(driver);
         customerInformationPage = new CustomerInformationPage(driver);
         editCustomerInformationPage = new EditCustomerInformationPage(driver);
+        createCampaignPage = new CreateCampaignPage(driver);
         createCustomer = new CreateCustomer(driver);
         customer = Customer.random();
+        campaign = new Campaign();
         customerUpdatedName = new Customer();
         faker = new Faker();
+        random = new Random();
+        randomDate = LocalDate.now().plusDays(random.nextInt(366));
         newCustomerName = faker.name().lastName();
         softAssert = new SoftAssert();
     }
@@ -55,10 +67,29 @@ public class TC02 {
 
         //Add new customer
         showAllCustomerPage.clickNewCustomerButton();
+
         createCustomer.createCustomer(customer);
 
+        //create a new campaign
+        showAllCustomerPage.openCreateCampaignPage();
 
-        showAllCustomerPage.openShowAllCampaignsPage();
+        campaign.setName(faker.company().catchPhrase());
+        campaign.setType((createCampaignPage.listTypeOption().get(random.nextInt(createCampaignPage.listTypeOption().size()))).toString());
+        campaign.setStatus(createCampaignPage.listStatusOption().get(random.nextInt(createCampaignPage.listStatusOption().size())).toString());
+        campaign.setStartDate(randomDate.toString());
+        campaign.setEndDate(randomDate.plusDays(random.nextInt(366)).toString());
+        campaign.setExpectedRevenue((double)random.nextInt(9000));
+        campaign.setBudgetedCost((double)random.nextInt(9000));
+        campaign.setActualCost((double)random.nextInt(9000));
+
+        createCampaignPage.createNewCampaign(campaign);
+
+        createCampaignPage.enterDescription(faker.lorem().sentence());
+
+        createCampaignPage.clickCreateButton();
+
+
+
         showAllCampaignsPage.openCampaignInformationPage();
         campaignsInformationPage.goToAddCustomerIntoCampaignPage();
         addCustomerIntoCampaignPage.selectTheNewestCustomer();
