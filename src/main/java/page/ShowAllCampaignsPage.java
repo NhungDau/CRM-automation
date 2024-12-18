@@ -18,10 +18,7 @@ public class ShowAllCampaignsPage extends BasePage {
     By startDateLocator = By.xpath("//a[@class='ui-link ui-widget']/../following-sibling::td[3]");
     By endDateLocator = By.xpath("//a[@class='ui-link ui-widget']/../following-sibling::td[4]");
     By searchByCampaignNameTextboxLocator = By.xpath("//span[text()='Campaign Name']//..//input");
-    By searchByCampaignTypeTextboxLocator = By.xpath("//span[text()='Type']//..//input[@class='ui-column-filter ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all']");
-    By searchByStatusTextboxLocator = By.xpath("//span[text()='Status']//..//input[@class='ui-column-filter ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all']");
-    By searchByStartDateTextboxLocator = By.xpath("//span[text()='Start Date']//..//input[@class='ui-column-filter ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all']");
-    By searchByEndDateTextboxLocator = By.xpath("//span[text()='End Date']//..//input[@class='ui-column-filter ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all']");
+
     Random random = new Random();
 
 
