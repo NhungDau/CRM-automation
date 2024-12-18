@@ -49,39 +49,6 @@ public class ShowAllCampaignsPage extends BasePage {
         wait.until(ExpectedConditions.textToBePresentInElementLocated(campaignNameLabelLocator, campaignName));
     }
 
-    //enter campaign type to search box
-    public void searchByCampaignType(String campaginType) {
-//        driver.findElement(searchByCampaignTypeTextboxLocator).click();
-        driver.findElement(searchByCampaignTypeTextboxLocator).sendKeys(campaginType);
-//        wait.until(ExpectedConditions.textToBePresentInElementLocated(searchByCampaignTypeTextboxLocator, campaginType));
-
-    }
-
-    //enter status to search box
-    public void searchByStatus(String status){
-//        driver.findElement(searchByStatusTextboxLocator).click();
-        driver.findElement(searchByStatusTextboxLocator).sendKeys(status);
-//        wait.until(ExpectedConditions.textToBePresentInElementLocated(searchByStatusTextboxLocator, status));
-
-    }
-
-    //enter start date to search box
-    public void searchByStartDate(String startDate){
-//        driver.findElement(searchByStartDateTextboxLocator).click();
-        driver.findElement(searchByStartDateTextboxLocator).sendKeys(startDate);
-//        wait.until(ExpectedConditions.textToBePresentInElementLocated(searchByStartDateTextboxLocator, startDate));
-
-    }
-
-    //enter end date to search box
-    public void searchByEndDate(String endDate){
-//        driver.findElement(searchByEndDateTextboxLocator).click();
-        driver.findElement(searchByEndDateTextboxLocator).sendKeys(endDate);
-//        wait.until(ExpectedConditions.textToBePresentInElementLocated(searchByEndDateTextboxLocator, endDate));
-
-    }
-
-
     //get campaign information
     public  Campaign getCampaignInformation(){
         Campaign campaign = new Campaign();

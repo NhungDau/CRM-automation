@@ -36,31 +36,12 @@ public class CampaignReportPage {
     public void searchByCampaignName(String campaignName){
 //        driver.findElement(searchByCampaignNameTextboxLocator).click();
         driver.findElement(searchByCampaignNameTextboxLocator).sendKeys(campaignName);
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         wait.until(ExpectedConditions.textToBePresentInElementLocated(campaignNameLabelLocator, campaignName));
-    }
-
-    //enter campaign type to search box
-    public void searchByCampaignType(String campaginType){
-//        driver.findElement(searchByCampaignTypeTextboxLocator).click();
-        driver.findElement(searchByCampaignTypeTextboxLocator).sendKeys();
-    }
-
-    //enter status to search box
-    public void searchByStatus(String status){
-//        driver.findElement(searchByStatusTextboxLocator).click();
-        driver.findElement(searchByStatusTextboxLocator).sendKeys(status);
-    }
-
-    //enter start date to search box
-    public void searchByStartDate(String startDate){
-//        driver.findElement(searchByStartDateTextboxLocator).click();
-        driver.findElement(searchByStartDateTextboxLocator).sendKeys(startDate);
-    }
-
-    //enter end date to search box
-    public void searchByEndDate(String endDate){
-//        driver.findElement(searchByEndDateTextboxLocator).click();
-        driver.findElement(searchByEndDateTextboxLocator).sendKeys(endDate);
     }
 
 
