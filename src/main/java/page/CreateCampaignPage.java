@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -111,6 +112,16 @@ public class CreateCampaignPage extends BasePage {
     public List listTypeOption() {
         Select typeOptions = new Select(driver.findElement(campaignTypeListLocator));
         return typeOptions.getOptions().stream().map(WebElement::getText).collect(Collectors.toList());
+    }
+
+    public List getListTypeOption() {
+        Select typeOptions = new Select(driver.findElement(campaignTypeListLocator));
+        List<WebElement> options = typeOptions.getOptions();
+        List<String> listDropdownValue = new ArrayList<>();
+        for (WebElement option : options){
+            listDropdownValue.add(option.getAttribute("value"));
+        }
+        return listDropdownValue;
     }
 
 

@@ -40,13 +40,13 @@ public class TC07 {
         createCustomer = new CreateCustomer(driver);
         createCampaignPage = new CreateCampaignPage(driver);
         showAllCampaignsPage = new ShowAllCampaignsPage(driver);
-        campaign = new Campaign(faker.company().catchPhrase(), "Sale", "Done", "2024-12-13", "2024-12-14", 356.0, 54.0, 88.4);
+        campaign = new Campaign();
         campaignsInformationPage = new CampaignsInformationPage(driver);
         addCustomerIntoCampaignPage = new AddCustomerIntoCampaignPage(driver);
         softAssert = new SoftAssert();
-
         customer = Customer.random();
         random = new Random();
+        faker = new Faker();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.get("http://14.176.232.213:8080/CRMweb/faces/login.xhtml");
@@ -68,7 +68,12 @@ public class TC07 {
         createCampaignPage.openCreateCampaignPage();
 
         //create campaign
+        createCampaignPage.getListTypeOption();
+
+
+
         createCampaignPage.createNewCampaign(campaign);
+
 
         createCampaignPage.enterDescription("campaign");
 
