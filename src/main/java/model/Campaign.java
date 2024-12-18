@@ -7,9 +7,6 @@ import java.util.Random;
 
 public class Campaign {
 
-    private static final Faker faker = new Faker();
-    Random random = new Random();
-
     String name;
     String type;
     String status;
@@ -113,5 +110,19 @@ public class Campaign {
     @Override
     public int hashCode() {
         return Objects.hash(name, type, status, startDate, endDate, expectedRevenue, budgetedCost, actualCost);
+    }
+
+    @Override
+    public String toString() {
+        return "Campaign{" +
+                "name='" + name + '\'' +
+                ", type='" + type + '\'' +
+                ", status='" + status + '\'' +
+                ", startDate='" + startDate + '\'' +
+                ", endDate='" + endDate + '\'' +
+                ", expectedRevenue=" + expectedRevenue +
+                ", budgetedCost=" + budgetedCost +
+                ", actualCost=" + actualCost +
+                '}';
     }
 }

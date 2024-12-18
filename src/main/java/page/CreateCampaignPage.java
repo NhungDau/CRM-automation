@@ -4,9 +4,11 @@ import model.Campaign;
 import model.CampaignType;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CreateCampaignPage extends BasePage {
     By campaignNameTextBoxLocator = By.id("j_idt70:cn");
@@ -87,7 +89,7 @@ public class CreateCampaignPage extends BasePage {
 
     public void createNewCampaign(Campaign campaign) {
         try {
-            Thread.sleep(2000);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -103,12 +105,12 @@ public class CreateCampaignPage extends BasePage {
 
     public List listStatusOption() {
         Select statusOptions = new Select(driver.findElement(statusDropdownListLocator));
-        return statusOptions.getOptions();
+        return statusOptions.getOptions().stream().map(WebElement::getText).collect(Collectors.toList());
     }
 
     public List listTypeOption() {
         Select typeOptions = new Select(driver.findElement(campaignTypeListLocator));
-        return typeOptions.getOptions();
+        return typeOptions.getOptions().stream().map(WebElement::getText).collect(Collectors.toList());
     }
 
 

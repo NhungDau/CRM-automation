@@ -11,6 +11,8 @@ import org.testng.asserts.SoftAssert;
 import page.*;
 
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
 public class TC06 {
@@ -30,6 +32,7 @@ public class TC06 {
     WebDriver driver;
     Faker faker;
     Random random;
+    LocalDate randomDate;
 
     SoftAssert softAssert;
 
@@ -51,9 +54,12 @@ public class TC06 {
         customer = Customer.random();
         random = new Random();
         faker = new Faker();
-        campaign = new Campaign(faker.company().catchPhrase(),"Sale", "Done", "2024-12-13", "2024-12-14", 10000.0, 1000.0, 5000.0);
-        campaignUpdated = new Campaign(null, null, null, null, null, 200.0, null, null);
+        campaign = new Campaign();
+        campaignUpdated = new Campaign();
         campaignAfterEdit = new Campaign();
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        randomDate = LocalDate.now().plusDays(random.nextInt(366));
+
         softAssert = new SoftAssert();
     }
 
@@ -69,7 +75,16 @@ public class TC06 {
 
         //create new campaign
         showAllCustomerPage.openCreateCampaignPage();
-//get list - random - set campaign type
+
+        campaign.setName(faker.company().catchPhrase());
+        campaign.setType((createCampaignPage.listTypeOption().get(random.nextInt(createCampaignPage.listTypeOption().size()))).toString());
+        campaign.setStatus(createCampaignPage.listStatusOption().get(random.nextInt(createCampaignPage.listStatusOption().size())).toString());
+        campaign.setStartDate(randomDate.toString());
+        campaign.setEndDate(randomDate.plusDays(random.nextInt(366)).toString());
+        campaign.setExpectedRevenue(random.nextDouble());
+        campaign.setBudgetedCost(random.nextDouble());
+        campaign.setActualCost(random.nextDouble());
+
         createCampaignPage.createNewCampaign(campaign);
 
         createCampaignPage.enterDescription(faker.lorem().sentence());
@@ -100,6 +115,9 @@ public class TC06 {
         showAllCampaignsPage.openCampaignInformationPageByCampaignName(campaign.getName());
 
         campaignsInformationPage.openEditCampaignInformationPage();
+
+        //modify campaign
+        campaignUpdated.setExpectedRevenue(random.nextDouble());
 
         editCampaignInformationPage.editCampaignInformation(campaignUpdated);
 
@@ -135,8 +153,8 @@ public class TC06 {
     }
 
 
-    @AfterMethod
-    public void cleanUp() {
-        driver.quit();
-    }
+//    @AfterMethod
+//    public void cleanUp() {
+//        driver.quit();
+//    }
 }
