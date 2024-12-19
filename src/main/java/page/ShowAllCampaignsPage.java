@@ -32,7 +32,7 @@ public class ShowAllCampaignsPage extends BasePage {
         listOfCampaign.get(randomIndex).click();
     }
 
-    public void openCampaignInformationPageByCampaignName(String campaignName) {
+    public void openCampaignInformationPage(String campaignName) {
         driver.findElement(searchByCampaignNameTextboxLocator).sendKeys(campaignName);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.textToBePresentInElementLocated(campaignNameLabelLocator, campaignName));

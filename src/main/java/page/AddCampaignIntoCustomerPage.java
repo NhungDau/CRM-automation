@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 public class AddCampaignIntoCustomerPage {
     By dynamicCheckBoxByCampaignNameLocator;
     By addButtonLocator = By.name("j_idt72:j_idt103");
+
     WebDriver driver;
 
     public AddCampaignIntoCustomerPage(WebDriver driver) {
@@ -18,6 +19,8 @@ public class AddCampaignIntoCustomerPage {
         dynamicCheckBoxByCampaignNameLocator = By.xpath(xpathValue);
         driver.findElement(dynamicCheckBoxByCampaignNameLocator).click();
     }
+
+
 
     public void clickToAddButton() {
         driver.findElement(addButtonLocator).click();

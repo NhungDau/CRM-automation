@@ -114,12 +114,23 @@ public class CreateCampaignPage extends BasePage {
         return typeOptions.getOptions().stream().map(WebElement::getText).collect(Collectors.toList());
     }
 
-    public List getListTypeOption() {
+    public List<String> getListStatusOption() {
+        Select typeOptions = new Select(driver.findElement(statusDropdownListLocator));
+        List<WebElement> options = typeOptions.getOptions();
+        List<String> listDropdownValue = new ArrayList<>();
+        for (WebElement option : options){
+            listDropdownValue.add(option.getText());
+        }
+        return listDropdownValue;
+    }
+
+
+    public List<String> getListTypeOption() {
         Select typeOptions = new Select(driver.findElement(campaignTypeListLocator));
         List<WebElement> options = typeOptions.getOptions();
         List<String> listDropdownValue = new ArrayList<>();
         for (WebElement option : options){
-            listDropdownValue.add(option.getAttribute("value"));
+            listDropdownValue.add(option.getText());
         }
         return listDropdownValue;
     }
