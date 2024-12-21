@@ -4,6 +4,10 @@ import model.Revenue;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.devtools.v125.domsnapshot.model.StringIndex;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class CreateRevenuePage {
     By yearTextBoxLocator = By.id("bookForm:year");
@@ -22,57 +26,59 @@ public class CreateRevenuePage {
     By saveButtonLocator = By.name("bookForm:j_idt97");
 
     WebDriver driver;
+    WebDriverWait wait;
 
     public CreateRevenuePage(WebDriver driver) {
         this.driver = driver;
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     public void enterJan(int jan) {
-        driver.findElement(yearTextBoxLocator).sendKeys(Integer.toString(jan));
+        driver.findElement(janTextBoxLocator).sendKeys(Integer.toString(jan));
     }
 
     public void enterFeb(int feb) {
-        driver.findElement(yearTextBoxLocator).sendKeys(Integer.toString(feb));
+        driver.findElement(febTextBoxLocator).sendKeys(Integer.toString(feb));
     }
 
     public void enterMar(int mar) {
-        driver.findElement(yearTextBoxLocator).sendKeys(Integer.toString(mar));
+        driver.findElement(marTextBoxLocator).sendKeys(Integer.toString(mar));
     }
 
     public void enterApr(int apr) {
-        driver.findElement(yearTextBoxLocator).sendKeys(Integer.toString(apr));
+        driver.findElement(aprTextBoxLocator).sendKeys(Integer.toString(apr));
     }
 
     public void enterMay(int may) {
-        driver.findElement(yearTextBoxLocator).sendKeys(Integer.toString(may));
+        driver.findElement(mayTextBoxLocator).sendKeys(Integer.toString(may));
     }
 
     public void enterJun(int jun) {
-        driver.findElement(yearTextBoxLocator).sendKeys(Integer.toString(jun));
+        driver.findElement(junTextBoxLocator).sendKeys(Integer.toString(jun));
     }
 
     public void enterJul(int jul) {
-        driver.findElement(yearTextBoxLocator).sendKeys(Integer.toString(jul));
+        driver.findElement(julTextBoxLocator).sendKeys(Integer.toString(jul));
     }
 
     public void enterAug(int aug) {
-        driver.findElement(yearTextBoxLocator).sendKeys(Integer.toString(aug));
+        driver.findElement(augTextBoxLocator).sendKeys(Integer.toString(aug));
     }
 
     public void enterSep(int sep) {
-        driver.findElement(yearTextBoxLocator).sendKeys(Integer.toString(sep));
+        driver.findElement(sepTextBoxLocator).sendKeys(Integer.toString(sep));
     }
 
     public void enterOct(int oct) {
-        driver.findElement(yearTextBoxLocator).sendKeys(Integer.toString(oct));
+        driver.findElement(octTextBoxLocator).sendKeys(Integer.toString(oct));
     }
 
     public void enterNov(int nov) {
-        driver.findElement(yearTextBoxLocator).sendKeys(Integer.toString(nov));
+        driver.findElement(novTextBoxLocator).sendKeys(Integer.toString(nov));
     }
 
     public void enterDec(int dec) {
-        driver.findElement(yearTextBoxLocator).sendKeys(Integer.toString(dec));
+        driver.findElement(decTextBoxLocator).sendKeys(Integer.toString(dec));
     }
 
     public void enterYear(int year) {
@@ -97,5 +103,6 @@ public class CreateRevenuePage {
 
     public void clickSaveButton() {
         driver.findElement(saveButtonLocator).click();
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(saveButtonLocator));
     }
 }

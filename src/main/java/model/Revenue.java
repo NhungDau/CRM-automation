@@ -3,19 +3,19 @@ package model;
 import java.util.Objects;
 
 public class Revenue {
-    private int year;
-    private int jan;
-    private int feb;
-    private int mar;
-    private int apr;
-    private int may;
-    private int jun;
-    private int jul;
-    private int aug;
-    private int sep;
-    private int oct;
-    private int nov;
-    private int dec;
+     int year;
+     int jan;
+     int feb;
+     int mar;
+     int apr;
+     int may;
+     int jun;
+     int jul;
+     int aug;
+     int sep;
+     int oct;
+     int nov;
+     int dec;
 
     public Revenue(int year, int jan, int feb, int mar, int apr, int may, int jun, int jul, int aug, int sep, int oct, int nov, int dec) {
         this.year = year;
