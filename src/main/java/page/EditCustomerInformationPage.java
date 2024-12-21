@@ -16,36 +16,54 @@ public class EditCustomerInformationPage {
         this.driver = driver;
     }
 
-    public String getCustomerName() {
-        return driver.findElement(customerNameTextBoxLocator).getText();
-    }
 
-    public String getCustomerEmail() {
-        return driver.findElement(customerEmailTextBoxLocator).getText();
-    }
-
-    public String getCustomerAddress() {
-        return driver.findElement(customerAddressTextBoxLocator).getText();
-    }
-
-    public String getCustomerPhone() {
-        return driver.findElement(customerPhoneTextBoxLocator).getText();
-    }
-    public void editCustomerName(String newCustomerName) {
+    public void editCustomerName(String name) {
         driver.findElement(customerNameTextBoxLocator).clear();
-        driver.findElement(customerNameTextBoxLocator).sendKeys(newCustomerName);
+        driver.findElement(customerNameTextBoxLocator).sendKeys(name);
+    }
 
+    public void editCustomerEmail(String email) {
+        driver.findElement(customerEmailTextBoxLocator).clear();
+        driver.findElement(customerEmailTextBoxLocator).sendKeys(email);
+    }
+
+    public void editCustomerAddress(String address) {
+        driver.findElement(customerAddressTextBoxLocator).clear();
+        driver.findElement(customerAddressTextBoxLocator).sendKeys(address);
+    }
+
+    public void editCustomerPhone(String phone) {
+        driver.findElement(customerPhoneTextBoxLocator).clear();
+        driver.findElement(customerPhoneTextBoxLocator).sendKeys(phone);
     }
 
     public void clickSaveButton() {
         driver.findElement(saveButtonLocator).click();
     }
 
-    public void editCustomer(Customer customer) {
-        if (customer.getEmail() != null) {
-        }
+    public void editCustomerInformation(Customer customer) {
         if (customer.getName() != null) {
             editCustomerName(customer.getName());
         }
+        if (customer.getEmail() != null) {
+            editCustomerEmail(customer.getEmail());
+        }
+        if (customer.getAddress() != null) {
+            editCustomerAddress(customer.getAddress());
+        }
+        if (customer.getPhone() != null) {
+            editCustomerPhone(customer.getPhone());
+        }
     }
+
+    public Customer getCustomerInformation() {
+        Customer customer = new Customer();
+        customer.setName(driver.findElement(customerNameTextBoxLocator).getAttribute("value"));
+        customer.setEmail(driver.findElement(customerEmailTextBoxLocator).getAttribute("value"));
+        customer.setAddress(driver.findElement(customerAddressTextBoxLocator).getAttribute("value"));
+        customer.setPhone(driver.findElement(customerPhoneTextBoxLocator).getAttribute("value"));
+        return customer;
+    }
+
+
 }

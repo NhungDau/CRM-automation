@@ -28,6 +28,9 @@ public class TC02 {
     Campaign campaign;
     Customer customer;
     Customer customerUpdatedName;
+    Customer customerAfterUpdate;
+    Customer customerInCustomerInformationPage;
+    Customer customerInCampaignInformationPage;
     String newCustomerName;
     Faker faker;
     Random random;
@@ -53,6 +56,9 @@ public class TC02 {
         customer = Customer.random();
         campaign = new Campaign();
         customerUpdatedName = new Customer();
+        customerAfterUpdate = new Customer();
+        customerInCustomerInformationPage = new Customer();
+        customerInCampaignInformationPage = new Customer();
         faker = new Faker();
         random = new Random();
         randomDate = LocalDate.now().plusDays(random.nextInt(366));
@@ -88,31 +94,54 @@ public class TC02 {
 
         createCampaignPage.clickCreateButton();
 
+        //Add new customer into new campaign
+        showAllCampaignsPage.searchByCampaignName(campaign.getName());
 
+        showAllCampaignsPage.openCampaignInformationPageByCampaignName(campaign.getName());
 
-        showAllCampaignsPage.openCampaignInformationPage();
         campaignsInformationPage.goToAddCustomerIntoCampaignPage();
-        addCustomerIntoCampaignPage.selectTheNewestCustomer();
-        addCustomerIntoCampaignPage.clickToAddButton();
-        campaignsInformationPage.openTheLastCustomerInformationPage();
-        customerInformationPage.openEditCustomerInformationPage();
-        editCustomerInformationPage.editCustomerName(newCustomerName); //edit
 
-        customerUpdatedName.setName("abc");
+        addCustomerIntoCampaignPage.selectCustomerByName(customer.getName());
+
+        addCustomerIntoCampaignPage.clickToAddButton();
+
+        //Edit customer information
+        campaignsInformationPage.openCustomerInformationPageByName(customer.getName());
+
+        customerInformationPage.openEditCustomerInformationPage();
+
+        //edit customer name
+        customerUpdatedName.setName(faker.name().lastName());
+        customerUpdatedName.setPhone(null);
+        customerUpdatedName.setAddress(null);
+        customerUpdatedName.setEmail(null);
+
+        editCustomerInformationPage.editCustomerInformation(customerUpdatedName);
+
+        //get new customer information
+        customerAfterUpdate = editCustomerInformationPage.getCustomerInformation();
 
         editCustomerInformationPage.clickSaveButton();
-        customerUpdatedName.setName(newCustomerName);
 
-        //verify that New customer name display correctly at customer page
-        softAssert.assertEquals(customerInformationPage.getCustomerName(), customerUpdatedName.getName(),"Name has not updated");
-        System.out.println("Customer name is updated: " + newCustomerName);
+        //Verify that customer name is updated in customer information page
+        customerInCampaignInformationPage = customerInformationPage.getCustomerInformation();
 
-//        customerInformationPage.openCampaignInformationPage();
+        softAssert.assertEquals(customerInCustomerInformationPage, customerAfterUpdate, "Customer information isn't updated correctly in Customer Information page.");
+        System.out.println("Customer information is updated correctly in Customer Information page.");
+
+//        //Go to Campaign information page
+//        customerInformationPage.openShowAllCampaignsPage();
 //
-//        //Customer name is updated in customer table in Campaign information page
-//        softAssert.assertEquals(campaignsInformationPage.getLastCustomerName(), newCustomerName, "Name has not updated");
-//        System.out.println("Customer name is updated in customer table: " + newCustomerName);
-
+//        showAllCampaignsPage.searchByCampaignName(campaign.getName());
+//
+//        showAllCampaignsPage.openCampaignInformationPageByCampaignName(campaign.getName());
+//
+//        //Verify that customer name is updated in campaign information page
+//        customerInCampaignInformationPage = campaignsInformationPage.getCustomerInformation();
+//
+//        softAssert.assertEquals(customerInCampaignInformationPage, customerAfterUpdate,"Customer information isn't updated correctly in Campaign Information page.");
+//        System.out.println("Customer information is updated correctly in Campaign Information page.");
+//
         softAssert.assertAll();
     }
 

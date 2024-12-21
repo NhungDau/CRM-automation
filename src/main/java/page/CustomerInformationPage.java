@@ -1,10 +1,6 @@
 package page;
 
-import model.OpportunityInformation;
-import model.Campaign;
-import model.OrderInformation;
-import model.ProductOrderInformation;
-import model.Reminder;
+import model.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -24,6 +20,9 @@ public class CustomerInformationPage extends BasePage {
     By campaignNameLabelLocator = By.xpath("//h5[text()='Campaigns']/../../div[@class='ibox-content']//table//td/a");
     By editCustomerInformationButtonLocator = By.xpath("//a[@class='btn btn-primary'][text()='Edit']");
     By customerNameLabelLocator = By.xpath("//label[@class='col-lg-1'][text()='Name:']/../div/span");
+    By customerEmailLabelLocator = By.xpath("//label[@class='col-lg-1'][text()='Email:']/../div/span");
+    By customerPhoneLabelLocator = By.xpath("//label[@class='col-lg-1'][text()='Phone:']/../div/span");
+    By customerAddressLabelLocator = By.xpath("//label[@class='col-lg-1'][text()='Address:']/../div/span");
     By addCampaignButtonLocator = By.xpath("//a[@class='btn btn-primary'][text()='Add campaign']");
     By campaignTypeLabelLocator = By.xpath("//h5[text()='Campaigns']/../../div[@class='ibox-content']//table//tbody//td[2]");
     By campaignStatusLabelLocator = By.xpath("//h5[text()='Campaigns']/../../div[@class='ibox-content']//table//tbody//td[3]");
@@ -41,12 +40,11 @@ public class CustomerInformationPage extends BasePage {
     By reminderDescriptionLabelLocator = By.xpath("//h5[text()='Reminder']/../../div[@class='ibox-content']//table//td[3]");
 
 
-
-
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
     public CustomerInformationPage(WebDriver driver) {
-super(driver);    }
+        super(driver);
+    }
 
 
     //click add order button
@@ -76,13 +74,12 @@ super(driver);    }
         OrderInformation orderInformation = new OrderInformation();
 
         List<WebElement> list = driver.findElements(paymentDateLocator);
-        int a = list.size()-1;
+        int a = list.size() - 1;
         orderInformation.setPaymentDate(driver.findElements(paymentDateLocator).get(a).getText());
         orderInformation.setTotalPrice(Double.parseDouble(driver.findElements(priceLocator).get(a).getText()));
 
         return orderInformation;
     }
-
 
 
     public void openEditCustomerInformationPage() {
@@ -91,6 +88,15 @@ super(driver);    }
 
     public String getCustomerName() {
         return driver.findElement(customerNameLabelLocator).getText();
+    }
+
+    public Customer getCustomerInformation() {
+        Customer customer = new Customer();
+        customer.setName(driver.findElement(customerNameLabelLocator).getText());
+        customer.setEmail(driver.findElement(customerEmailLabelLocator).getText());
+        customer.setPhone(driver.findElement(customerPhoneLabelLocator).getText());
+        customer.setAddress(driver.findElement(customerAddressLabelLocator).getText());
+        return customer;
     }
 
     public void openCampaignInformationPage() {
@@ -122,7 +128,7 @@ super(driver);    }
     }
 
 
-    public OpportunityInformation getLastOpportunityInformation(){
+    public OpportunityInformation getLastOpportunityInformation() {
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
@@ -131,14 +137,14 @@ super(driver);    }
 
         OpportunityInformation o = new OpportunityInformation();
         List<WebElement> status = driver.findElements(opportunityStatusLocator);
-        o.setStatus(status.get(status.size()-1).getText());
+        o.setStatus(status.get(status.size() - 1).getText());
 
         List<WebElement> name = driver.findElements(opportunityProductNameLocator);
-        o.setProductName(name.get(name.size()-1).getText());
+        o.setProductName(name.get(name.size() - 1).getText());
 
         List<WebElement> price = driver.findElements(opportunityProductPriceLocator);
-        String stringPrice = price.get(name.size()-1).getText();
-        o.setPrice(Double.parseDouble(stringPrice.substring(0,stringPrice.length()-3)));
+        String stringPrice = price.get(name.size() - 1).getText();
+        o.setPrice(Double.parseDouble(stringPrice.substring(0, stringPrice.length() - 3)));
 
         return o;
     }

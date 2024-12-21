@@ -1,6 +1,7 @@
 package page;
 
 import model.Campaign;
+import model.Customer;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -23,6 +24,10 @@ public class CampaignsInformationPage extends BasePage {
     By addCustomerButtonLocator = By.xpath("//a[@class='btn btn-primary'][text()='Add customer']");
     By newlyAddedCustomerLocator = By.xpath("//tr/td/a");
     By customerNameLabelLocator = By.xpath("//table/tbody//td/a");
+    By customerEmailLabelLocator = By.xpath("//table/tbody//td[2]");
+    By customerAddressLabelLocator = By.xpath("//table/tbody//td[3]");
+    By customerPhoneLabelLocator = By.xpath("//table/tbody//td[4]");
+    By dynamicCustomerNameLocator;
     By editCampaignInformationButtonLocator = By.xpath("//a[@class='btn btn-primary'][text()='Edit']");
 
     public CampaignsInformationPage(WebDriver driver) {
@@ -41,10 +46,20 @@ public class CampaignsInformationPage extends BasePage {
         listCustomer.get(listCustomer.size() - 1).click();
     }
 
-    //get latest customer name
-    public String getLastCustomerName() {
-        List<WebElement> listCustomer = driver.findElements(customerNameLabelLocator);
-        return listCustomer.get(listCustomer.size() - 1).getText();
+    //open customer information page by name
+    public void openCustomerInformationPageByName(String customerName) {
+        String xpathValue = String.format("//table/tbody//td/a[text()='%s']", customerName);
+        dynamicCustomerNameLocator = By.xpath(xpathValue);
+        driver.findElement(dynamicCustomerNameLocator).click();
+    }
+
+    public Customer getCustomerInformation() {
+        Customer customer = new Customer();
+        customer.setName(driver.findElement(customerNameLabelLocator).getText());
+        customer.setEmail(driver.findElement(customerEmailLabelLocator).getText());
+        customer.setAddress(driver.findElement(customerAddressLabelLocator).getText());
+        customer.setPhone(driver.findElement(customerPhoneLabelLocator).getText());
+        return customer;
     }
 
     public Campaign getCampaignInformation() {

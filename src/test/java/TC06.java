@@ -110,7 +110,7 @@ public class TC06 {
         //Edit campaign information
         customerInformationPage.openShowAllCampaignsPage();
 
-        showAllCampaignsPage.openCampaignInformationPage(campaign.getName());
+        showAllCampaignsPage.openCampaignInformationPageByCampaignName(campaign.getName());
 
         campaignsInformationPage.openEditCampaignInformationPage();
 

@@ -98,6 +98,7 @@ public class EditCampaignInformationPage {
         driver.findElement(saveButtonLocator).click();
     }
 
+
     public Campaign getCampaignInformationAfterEdit() {
         Campaign campaign = new Campaign();
         campaign.setName(driver.findElement(campaignNameTextBoxLocator).getAttribute("value"));

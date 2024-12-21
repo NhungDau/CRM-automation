@@ -96,7 +96,7 @@ public class TC07 {
         //search newly created campaign and go to the campaign information page
         showAllCampaignsPage.searchByCampaignName(campaign.getName());
 
-        showAllCampaignsPage.openCampaignInformationPage(campaign.getName());
+        showAllCampaignsPage.openCampaignInformationPageByCampaignName(campaign.getName());
 
         //go to add customer in to campaign page
         campaignsInformationPage.goToAddCustomerIntoCampaignPage();

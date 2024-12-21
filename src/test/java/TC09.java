@@ -73,7 +73,7 @@ public class TC09 {
         //search newly created customer and go to customer information page
         showAllCampaignsPage.searchByCampaignName(campaign.getName());
 
-        showAllCustomerPage.
+//        showAllCustomerPage.
 
 
         softAssert.assertAll();
