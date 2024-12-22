@@ -3,6 +3,10 @@ package page;
 import model.Revenue;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class RevenueInformationPage extends BasePage {
     By searchButtonLocator = By.xpath("//input[@class='btn btn-primary'][@value='Search']");
@@ -20,16 +24,24 @@ public class RevenueInformationPage extends BasePage {
     By expectedRevenueOfNovLocator = By.xpath("//table[@class=\"table table-striped table-bordered table-hover dataTables-example\"]/tbody/tr[12]/td[2]");
     By expectedRevenueOfDecLocator = By.xpath("//table[@class=\"table table-striped table-bordered table-hover dataTables-example\"]/tbody/tr[13]/td[2]");
 
-    WebDriver driver;
+    WebDriverWait wait;
+
 
     public RevenueInformationPage(WebDriver driver) {
         super(driver);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    public void searchRevenueByYear(String year) {
-        driver.findElement(searchYearTextBoxLocator).click();
-        driver.findElement(searchYearTextBoxLocator).clear();
-        driver.findElement(searchYearTextBoxLocator).sendKeys(year);
+    public void searchRevenueByYear(int year) {
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(searchYearTextBoxLocator));
+//        driver.findElement(searchYearTextBoxLocator).click();
+//        driver.findElement(searchYearTextBoxLocator).clear();
+        driver.findElement(searchYearTextBoxLocator).sendKeys(String.valueOf(year));
         driver.findElement(searchButtonLocator).click();
     }
 

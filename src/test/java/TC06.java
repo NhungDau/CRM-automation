@@ -26,6 +26,7 @@ public class TC06 {
     Campaign campaign;
     Campaign campaignUpdated;
     Campaign campaignAfterEdit;
+    Campaign campaignInCustomerInformationPage;
     Customer customer;
     WebDriver driver;
     Faker faker;
@@ -55,6 +56,7 @@ public class TC06 {
         campaign = new Campaign();
         campaignUpdated = new Campaign();
         campaignAfterEdit = new Campaign();
+        campaignInCustomerInformationPage = new Campaign();
 //        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         randomDate = LocalDate.now().plusDays(random.nextInt(366));
 
@@ -144,7 +146,12 @@ public class TC06 {
 
         showAllCustomerPage.openCustomerInformationByName(customer);
 
-        softAssert.assertEquals(customerInformationPage.getCampaignInformation(), campaignAfterEdit, "Update incorrectly");
+        campaignInCustomerInformationPage = customerInformationPage.getCampaignInformation();
+
+        System.out.println(campaignAfterEdit);
+        System.out.println(campaignInCustomerInformationPage);
+
+        softAssert.assertEquals(campaignInCustomerInformationPage, campaignAfterEdit, "Update incorrectly in Customer Information page.");
         System.out.println("Update campaign correctly in Customer Information page");
 
         softAssert.assertAll();

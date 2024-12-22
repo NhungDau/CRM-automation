@@ -120,6 +120,11 @@ public class CustomerInformationPage extends BasePage {
     }
 
     public Campaign getCampaignInformation() {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         Campaign campaign = new Campaign();
         campaign.setName(driver.findElement(campaignNameLabelLocator).getText());
         campaign.setType(driver.findElement(campaignTypeLabelLocator).getText());
