@@ -74,7 +74,7 @@ public class TC06 {
         //create new campaign
         showAllCustomerPage.openCreateCampaignPage();
 
-        campaign.setName(faker.company().catchPhrase());
+        campaign.setName(faker.company().buzzword());
         campaign.setType((createCampaignPage.listTypeOption().get(random.nextInt(createCampaignPage.listTypeOption().size()))).toString());
         campaign.setStatus(createCampaignPage.listStatusOption().get(random.nextInt(createCampaignPage.listStatusOption().size())).toString());
         campaign.setStartDate(randomDate.toString());
