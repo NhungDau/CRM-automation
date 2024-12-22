@@ -160,4 +160,12 @@ public class CustomerInformationPage extends BasePage {
         reminder.setDescription(driver.findElement(reminderDescriptionLabelLocator).getText());
         return reminder;
     }
+
+    public boolean isReminderDisplay(String description){
+        boolean display = true;
+        String a = driver.findElement(reminderDescriptionLabelLocator).getText();
+        if (a.equalsIgnoreCase(description)){
+            return display;
+        }else return false;
+    }
 }

@@ -17,7 +17,7 @@ public class ShowAllCustomerPage extends BasePage {
 
     By newCustomerButtonLocator = By.xpath("//a[text()='New Customer']");
     By lastPageButtonLocator = By.xpath("//span[@class='ui-icon ui-icon-seek-end']");
-    By getListCustomerByNameLocator = By.xpath("//a[@class='ui-link ui-widget']");
+    By customerNameLocator = By.xpath("//a[@class='ui-link ui-widget']");
     By searchByCustomerNameTextboxLocator = By.xpath("//input[@id='j_idt71:tbl:j_idt72:filter']");
     By dynamicCustomerNameLocator;
 
@@ -42,13 +42,13 @@ public class ShowAllCustomerPage extends BasePage {
     //click to the newest customer
     public void openLastCustomer() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.elementToBeClickable(getListCustomerByNameLocator));
+        wait.until(ExpectedConditions.elementToBeClickable(customerNameLocator));
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        List<WebElement> list = driver.findElements(getListCustomerByNameLocator);
+        List<WebElement> list = driver.findElements(customerNameLocator);
         list.get(list.size() - 1).click();
     }
 
@@ -62,23 +62,19 @@ public class ShowAllCustomerPage extends BasePage {
     //search customer name by object
     public void searchCustomerByName(Customer customer) {
         driver.findElement(searchByCustomerNameTextboxLocator).sendKeys(customer.getName());
-        wait.until(ExpectedConditions.textToBePresentInElementLocated(getListCustomerByNameLocator, customer.getName()));
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(customerNameLocator, customer.getName()));
         driver.findElement(searchByCustomerNameTextboxLocator).sendKeys(Keys.ENTER);
     }
 
     //click to customer name by random index
     public void getCustomerNameByIndex(int a) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.elementToBeClickable(getListCustomerByNameLocator));
+        wait.until(ExpectedConditions.elementToBeClickable(customerNameLocator));
 
-        List<WebElement> list = driver.findElements(getListCustomerByNameLocator);
+        List<WebElement> list = driver.findElements(customerNameLocator);
         Customer customer = new Customer();
         customer.setName(list.get(a).getText());
     }
 
-    //click to customer name link by index
-    public void clickCustomerNameByIndex(int a){
-        driver.findElements(getListCustomerByNameLocator).get(a).click();
-    }
 
 }

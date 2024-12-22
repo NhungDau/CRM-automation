@@ -52,7 +52,6 @@ public class ShowAllCampaignsPage extends BasePage {
 
         campaign.setName(driver.findElement(campaignNameLabelLocator).getText());
         campaign.setStatus(driver.findElement(statusLabelLocator).getText());
-//        campaign.setStatus(driver.findElement(statusLabelLocator).getAttribute("value"));
         campaign.setType(driver.findElement(campaignTypeLabelLocator).getText());
         campaign.setStartDate(driver.findElement(startDateLocator).getText());
         campaign.setEndDate(driver.findElement(endDateLocator).getText());
