@@ -124,24 +124,24 @@ public class TC02 {
         editCustomerInformationPage.clickSaveButton();
 
         //Verify that customer name is updated in customer information page
-        customerInCampaignInformationPage = customerInformationPage.getCustomerInformation();
+        customerInCustomerInformationPage = customerInformationPage.getCustomerInformation();
 
         softAssert.assertEquals(customerInCustomerInformationPage, customerAfterUpdate, "Customer information isn't updated correctly in Customer Information page.");
         System.out.println("Customer information is updated correctly in Customer Information page.");
 
-//        //Go to Campaign information page
-//        customerInformationPage.openShowAllCampaignsPage();
-//
-//        showAllCampaignsPage.searchByCampaignName(campaign.getName());
-//
-//        showAllCampaignsPage.openCampaignInformationPageByCampaignName(campaign.getName());
-//
-//        //Verify that customer name is updated in campaign information page
-//        customerInCampaignInformationPage = campaignsInformationPage.getCustomerInformation();
-//
-//        softAssert.assertEquals(customerInCampaignInformationPage, customerAfterUpdate,"Customer information isn't updated correctly in Campaign Information page.");
-//        System.out.println("Customer information is updated correctly in Campaign Information page.");
-//
+        //Go to Campaign information page
+        customerInformationPage.openShowAllCampaignsPage();
+
+        showAllCampaignsPage.searchByCampaignName(campaign.getName());
+
+        showAllCampaignsPage.openCampaignInformationPageByCampaignName(campaign.getName());
+
+        //Verify that customer name is updated in campaign information page
+        customerInCampaignInformationPage = campaignsInformationPage.getCustomerInformation();
+
+        softAssert.assertEquals(customerInCampaignInformationPage, customerAfterUpdate,"Customer information isn't updated correctly in Campaign Information page.");
+        System.out.println("Customer information is updated correctly in Campaign Information page.");
+
         softAssert.assertAll();
     }
 

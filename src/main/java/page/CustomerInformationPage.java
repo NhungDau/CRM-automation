@@ -91,6 +91,11 @@ public class CustomerInformationPage extends BasePage {
     }
 
     public Customer getCustomerInformation() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         Customer customer = new Customer();
         customer.setName(driver.findElement(customerNameLabelLocator).getText());
         customer.setEmail(driver.findElement(customerEmailLabelLocator).getText());
