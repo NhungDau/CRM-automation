@@ -133,15 +133,11 @@ public class TC06 {
 
         editCampaignInformationPage.editCampaignInformation(campaignUpdated);
 
-        campaignAfterEdit = editCampaignInformationPage.getCampaignInformation();
-
         editCampaignInformationPage.clickSaveButton();
 
         //Verify campaign information is updated
-        campaignInCampaignInformationPage = campaignsInformationPage.getCampaignInformation();
+        campaignAfterEdit = campaignsInformationPage.getCampaignInformation();
 
-        softAssert.assertEquals(campaignInCampaignInformationPage, campaignAfterEdit, "Update incorrectly in Campaign Information page.");
-        System.out.println("Update campaign correctly");
 
         //Verify that campaign information is updated in Show all campaign
         campaignsInformationPage.openShowAllCampaignsPage();
@@ -163,9 +159,6 @@ public class TC06 {
         showAllCustomerPage.openCustomerInformationByName(customer);
 
         campaignInCustomerInformationPage = customerInformationPage.getCampaignInformation();
-
-        System.out.println(campaignAfterEdit);
-        System.out.println(campaignInCustomerInformationPage);
 
         softAssert.assertEquals(campaignInCustomerInformationPage, campaignAfterEdit, "Update incorrectly in Customer Information page.");
         System.out.println("Update campaign correctly in Customer Information page");

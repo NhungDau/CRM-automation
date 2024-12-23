@@ -48,18 +48,18 @@ public class RevenueInformationPage extends BasePage {
     public Revenue getRevenueResult() {
         Revenue revenue = new Revenue();
 
-        revenue.setJan(Integer.parseInt(driver.findElement(expectedRevenueOfJanLocator).getText().replace("VND", "")));
-        revenue.setFeb(Integer.parseInt(driver.findElement(expectedRevenueOfFebLocator).getText().replace("VND", "")));
-        revenue.setMar(Integer.parseInt(driver.findElement(expectedRevenueOfMarLocator).getText().replace("VND", "")));
-        revenue.setApr(Integer.parseInt(driver.findElement(expectedRevenueOfAprLocator).getText().replace("VND", "")));
-        revenue.setMay(Integer.parseInt(driver.findElement(expectedRevenueOfMayLocator).getText().replace("VND", "")));
-        revenue.setJun(Integer.parseInt(driver.findElement(expectedRevenueOfJunLocator).getText().replace("VND", "")));
-        revenue.setJul(Integer.parseInt(driver.findElement(expectedRevenueOfJulLocator).getText().replace("VND", "")));
-        revenue.setAug(Integer.parseInt(driver.findElement(expectedRevenueOfAugLocator).getText().replace("VND", "")));
-        revenue.setSep(Integer.parseInt(driver.findElement(expectedRevenueOfSepLocator).getText().replace("VND", "")));
-        revenue.setOct(Integer.parseInt(driver.findElement(expectedRevenueOfOctLocator).getText().replace("VND", "")));
-        revenue.setNov(Integer.parseInt(driver.findElement(expectedRevenueOfNovLocator).getText().replace("VND", "")));
-        revenue.setDec(Integer.parseInt(driver.findElement(expectedRevenueOfDecLocator).getText().replace("VND", "")));
+        revenue.setJan(Integer.parseInt(driver.findElement(expectedRevenueOfJanLocator).getText().replace(" VND", "")));
+        revenue.setFeb(Integer.parseInt(driver.findElement(expectedRevenueOfFebLocator).getText().replace(" VND", "")));
+        revenue.setMar(Integer.parseInt(driver.findElement(expectedRevenueOfMarLocator).getText().replace(" VND", "")));
+        revenue.setApr(Integer.parseInt(driver.findElement(expectedRevenueOfAprLocator).getText().replace(" VND", "")));
+        revenue.setMay(Integer.parseInt(driver.findElement(expectedRevenueOfMayLocator).getText().replace(" VND", "")));
+        revenue.setJun(Integer.parseInt(driver.findElement(expectedRevenueOfJunLocator).getText().replace(" VND", "")));
+        revenue.setJul(Integer.parseInt(driver.findElement(expectedRevenueOfJulLocator).getText().replace(" VND", "")));
+        revenue.setAug(Integer.parseInt(driver.findElement(expectedRevenueOfAugLocator).getText().replace(" VND", "")));
+        revenue.setSep(Integer.parseInt(driver.findElement(expectedRevenueOfSepLocator).getText().replace(" VND", "")));
+        revenue.setOct(Integer.parseInt(driver.findElement(expectedRevenueOfOctLocator).getText().replace(" VND", "")));
+        revenue.setNov(Integer.parseInt(driver.findElement(expectedRevenueOfNovLocator).getText().replace(" VND", "")));
+        revenue.setDec(Integer.parseInt(driver.findElement(expectedRevenueOfDecLocator).getText().replace(" VND", "")));
 
         return revenue;
     }

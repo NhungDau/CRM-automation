@@ -121,7 +121,7 @@ public class CustomerInformationPage extends BasePage {
 
     public Campaign getCampaignInformation() {
         try {
-            Thread.sleep(2000);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -131,9 +131,9 @@ public class CustomerInformationPage extends BasePage {
         campaign.setStatus(driver.findElement(campaignStatusLabelLocator).getText());
         campaign.setStartDate(driver.findElement(campaignStartDateLabelLocator).getText());
         campaign.setEndDate(driver.findElement(campaignEndDateLabelLocator).getText());
-        campaign.setExpectedRevenue(Integer.parseInt(driver.findElement(campaignExpectedRevenueLabelLocator).getText().replace(".","")));
-        campaign.setBudgetedCost(Integer.parseInt(driver.findElement(campaignBudgetedCostLabelLocator).getText().replace(".0","")));
-        campaign.setActualCost(Integer.parseInt(driver.findElement(campaignActualCostLabelLocator).getText().replace(".0","")));
+        campaign.setExpectedRevenue((int)Double.parseDouble(driver.findElement(campaignExpectedRevenueLabelLocator).getText()));
+        campaign.setBudgetedCost((int)Double.parseDouble(driver.findElement(campaignBudgetedCostLabelLocator).getText()));
+        campaign.setActualCost((int)Double.parseDouble(driver.findElement(campaignActualCostLabelLocator).getText()));
         return campaign;
     }
 
