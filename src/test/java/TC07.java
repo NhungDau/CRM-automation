@@ -55,7 +55,7 @@ public class TC07 {
         random = new Random();
         faker = new Faker();
         today = LocalDate.now();
-        formatter = DateTimeFormatter.ofPattern("yyy-MM-dd");
+        formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 //        decimalFormat = new DecimalFormat("#.00");
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
@@ -80,21 +80,26 @@ public class TC07 {
         //create campaign
         createCampaignPage.getListTypeOption();
 
-        campaign.setName(faker.company().catchPhrase());
-        campaign.setType(createCampaignPage.getListTypeOption().get(random.nextInt(createCampaignPage.getListTypeOption().size())).toString());
-        campaign.setStatus(createCampaignPage.getListStatusOption().get(random.nextInt(createCampaignPage.getListStatusOption().size())).toString());
-        campaign.setStartDate(today.format(formatter));
-        campaign.setEndDate(today.plusDays(random.nextInt(366)).format(formatter));
+        campaign.setName(faker.company().buzzword());
+
+        campaign.setType(faker.options().nextElement(createCampaignPage.getListTypeOption()));
+
+        campaign.setStatus(faker.options().nextElement(createCampaignPage.getListStatusOption()));
+
+        campaign.setStartDate(String.valueOf(today));
+
+        campaign.setEndDate(String.valueOf(today.plusDays(15)));
+
         campaign.setExpectedRevenue(random.nextInt(9000));
+
         campaign.setBudgetedCost(random.nextInt(9000));
+
         campaign.setActualCost(random.nextInt(9000));
 
+        campaign.setDescription(faker.lorem().sentence());
+
+
         createCampaignPage.createNewCampaign(campaign);
-
-
-        createCampaignPage.enterDescription("campaign");
-
-        createCampaignPage.clickCreateButton();
 
         //search newly created campaign and go to the campaign information page
         showAllCampaignsPage.searchByCampaignName(campaign.getName());

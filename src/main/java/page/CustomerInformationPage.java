@@ -173,9 +173,9 @@ public class CustomerInformationPage extends BasePage {
 
     public boolean isReminderDisplay(String description){
         boolean display = true;
-        String a = driver.findElement(reminderDescriptionLabelLocator).getText();
-        if (a.equalsIgnoreCase(description)){
-            return display;
-        }else return false;
+        List<WebElement> list = driver.findElements(reminderDescriptionLabelLocator);
+        for (WebElement a : list){
+//            if (a.getText())
+        }
     }
 }
