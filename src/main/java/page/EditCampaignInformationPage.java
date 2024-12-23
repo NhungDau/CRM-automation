@@ -1,7 +1,6 @@
 package page;
 
 import model.Campaign;
-import model.CampaignType;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
@@ -32,6 +31,16 @@ public class EditCampaignInformationPage {
     public void selectTypeOption(String type) {
         Select campaignTypeOption = new Select(driver.findElement(campaignTypeListLocator));
         campaignTypeOption.selectByVisibleText(type);
+    }
+
+    public String getSelectedType(){
+        Select campaignTypeOption = new Select(driver.findElement(campaignTypeListLocator));
+        return campaignTypeOption.getFirstSelectedOption().getText();
+    }
+
+    public String getSelectedStatus(){
+        Select campaignStatusOption = new Select(driver.findElement(statusDropdownListLocator));
+        return campaignStatusOption.getFirstSelectedOption().getText();
     }
 
     public void selectStatusOption(String status) {
@@ -99,11 +108,11 @@ public class EditCampaignInformationPage {
     }
 
 
-    public Campaign getCampaignInformationAfterEdit() {
+    public Campaign getCampaignInformation() {
         Campaign campaign = new Campaign();
         campaign.setName(driver.findElement(campaignNameTextBoxLocator).getAttribute("value"));
-        campaign.setType(driver.findElement(campaignTypeListLocator).getAttribute("value"));
-        campaign.setStatus(driver.findElement(statusDropdownListLocator).getAttribute("value"));
+        campaign.setType(getSelectedType());
+        campaign.setStatus(getSelectedStatus());
         campaign.setStartDate(driver.findElement(startDateTextBoxLocator).getAttribute("value"));
         campaign.setEndDate(driver.findElement(endDateTextBoxLocator).getAttribute("value"));
         campaign.setExpectedRevenue(Double.parseDouble(driver.findElement(expectedRevenueTextBoxLocator).getAttribute("value")));

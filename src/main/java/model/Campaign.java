@@ -15,6 +15,9 @@ public class Campaign {
     Double expectedRevenue;
     Double budgetedCost;
     Double actualCost;
+    String description;
+
+
 
     public String getName() {
         return name;
@@ -78,6 +81,26 @@ public class Campaign {
 
     public void setActualCost(Double actualCost) {
         this.actualCost = actualCost;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Campaign(String name, String type, String status, String startDate, String endDate, Double expectedRevenue, Double budgetedCost, Double actualCost, String description) {
+        this.name = name;
+        this.type = type;
+        this.status = status;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.expectedRevenue = expectedRevenue;
+        this.budgetedCost = budgetedCost;
+        this.actualCost = actualCost;
+        this.description = description;
     }
 
     public Campaign(String name, String type, String status, String startDate, String endDate, Double expectedRevenue, Double budgetedCost, Double actualCost) {

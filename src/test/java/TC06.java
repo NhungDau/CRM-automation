@@ -12,6 +12,7 @@ import page.*;
 import java.text.DecimalFormat;
 import java.time.Duration;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Random;
 
 public class TC06 {
@@ -35,6 +36,7 @@ public class TC06 {
     Random random;
     String formattedValue;
     LocalDate randomDate;
+    List<String> typeOption;
 
     SoftAssert softAssert;
 
@@ -82,19 +84,27 @@ public class TC06 {
         showAllCustomerPage.openCreateCampaignPage();
 
         campaign.setName(faker.company().buzzword());
-        campaign.setType((createCampaignPage.getListTypeOption().get(random.nextInt(createCampaignPage.getListTypeOption().size()))).toString());
-        campaign.setStatus(createCampaignPage.getListStatusOption().get(random.nextInt(createCampaignPage.getListStatusOption().size())).toString());
+        //c1
+        typeOption = createCampaignPage.getListTypeOption();
+        //c2
+        faker.options().nextElement(typeOption);
+        //c3
+//        campaign.setType((createCampaignPage.getListTypeOption().get(random.nextInt(createCampaignPage.getListTypeOption().size()))).toString());
+        campaign.setType(faker.options().nextElement(typeOption));
+//        campaign.setStatus(createCampaignPage.getListStatusOption().get(random.nextInt(createCampaignPage.getListStatusOption().size())).toString());
+        campaign.setStatus(faker.options().nextElement(createCampaignPage.getListStatusOption()));
         campaign.setStartDate(randomDate.toString());
         campaign.setEndDate(randomDate.plusDays(random.nextInt(366)).toString());
         campaign.setExpectedRevenue(Double.parseDouble(formattedValue));
         campaign.setBudgetedCost(Double.parseDouble(formattedValue));
         campaign.setActualCost(Double.parseDouble(formattedValue));
+        campaign.setDescription(faker.lorem().sentence());
 
         createCampaignPage.createNewCampaign(campaign);
 
-        createCampaignPage.enterDescription(faker.lorem().sentence());
-
-        createCampaignPage.clickCreateButton();
+//        createCampaignPage.enterDescription(faker.lorem().sentence());
+//
+//        createCampaignPage.clickCreateButton();
 
         showAllCampaignsPage.openShowAllCustomersPage();
 
@@ -126,7 +136,7 @@ public class TC06 {
 
         editCampaignInformationPage.editCampaignInformation(campaignUpdated);
 
-        campaignAfterEdit = editCampaignInformationPage.getCampaignInformationAfterEdit();
+        campaignAfterEdit = editCampaignInformationPage.getCampaignInformation();
 
         editCampaignInformationPage.clickSaveButton();
 

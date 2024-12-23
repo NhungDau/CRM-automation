@@ -24,7 +24,7 @@ public class ShowAllReminderPage extends BasePage {
 
     public void searchReminderByDescription(String description) {
         driver.findElement(searchDescriptionTextBoxLocator).sendKeys(description);
-        wait.until(ExpectedConditions.textToBePresentInElementLocated(reminderDescriptionLabelLocator, description));
+//        wait.until(ExpectedConditions.textToBePresentInElementLocated(reminderDescriptionLabelLocator, description));
     }
 
     public void searchReminderByDescription2(String description) {

@@ -102,6 +102,8 @@ public class CreateCampaignPage extends BasePage {
         enterExpectedRevenue(campaign.getExpectedRevenue());
         enterBudgetedCost(campaign.getBudgetedCost());
         enterActualCost(campaign.getActualCost());
+        enterDescription(campaign.getDescription());
+        clickCreateButton();
     }
 
 //    public List listStatusOption() {

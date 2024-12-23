@@ -107,7 +107,6 @@ public class TC09 {
 
         showAllCustomerPage.openLastCustomer();
 
-        customerInformationPage.isReminderDisplay(reminder.getDescription());
 
         //verify whether reminder displayed in reminder
         softAssert.assertFalse(customerInformationPage.isReminderDisplay(reminder.getDescription()),"Still display reminder");

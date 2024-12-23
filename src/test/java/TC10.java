@@ -66,8 +66,8 @@ public class TC10 {
         revenueInformationPage.searchRevenueByYear(revenue.getYear());
 
 //        //Verify that the result is correct
-//        softAssert.assertEquals(revenueInformationPage.getRevenueResult(),revenue,"The search result is not correct");
-//        System.out.println("The revenue display corresponding to expected revenue.");
+        softAssert.assertEquals(revenueInformationPage.getRevenueResult(),revenue,"The search result is not correct");
+        System.out.println("The revenue display corresponding to expected revenue.");
 
         softAssert.assertAll();
     }
