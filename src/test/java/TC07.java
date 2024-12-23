@@ -56,7 +56,7 @@ public class TC07 {
         faker = new Faker();
         today = LocalDate.now();
         formatter = DateTimeFormatter.ofPattern("yyy-MM-dd");
-        decimalFormat = new DecimalFormat("#.00");
+//        decimalFormat = new DecimalFormat("#.00");
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.get("http://14.176.232.213:8080/CRMweb/faces/login.xhtml");
@@ -85,9 +85,9 @@ public class TC07 {
         campaign.setStatus(createCampaignPage.getListStatusOption().get(random.nextInt(createCampaignPage.getListStatusOption().size())).toString());
         campaign.setStartDate(today.format(formatter));
         campaign.setEndDate(today.plusDays(random.nextInt(366)).format(formatter));
-        campaign.setExpectedRevenue(Double.valueOf(decimalFormat.format(random.nextDouble())));
-        campaign.setBudgetedCost(Double.valueOf(decimalFormat.format(random.nextDouble())));
-        campaign.setActualCost(Double.valueOf(decimalFormat.format(random.nextDouble())));
+        campaign.setExpectedRevenue(random.nextInt(9000));
+        campaign.setBudgetedCost(random.nextInt(9000));
+        campaign.setActualCost(random.nextInt(9000));
 
         createCampaignPage.createNewCampaign(campaign);
 

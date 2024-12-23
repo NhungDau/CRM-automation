@@ -115,9 +115,9 @@ public class EditCampaignInformationPage {
         campaign.setStatus(getSelectedStatus());
         campaign.setStartDate(driver.findElement(startDateTextBoxLocator).getAttribute("value"));
         campaign.setEndDate(driver.findElement(endDateTextBoxLocator).getAttribute("value"));
-        campaign.setExpectedRevenue(Double.parseDouble(driver.findElement(expectedRevenueTextBoxLocator).getAttribute("value")));
-        campaign.setBudgetedCost(Double.parseDouble(driver.findElement(budgetedCostTextBoxLocator).getAttribute("value").replace(",","")));
-        campaign.setActualCost(Double.parseDouble(driver.findElement(actualCostTextBoxLocator).getAttribute("value").replace(",","")));
+        campaign.setExpectedRevenue(Integer.parseInt(driver.findElement(expectedRevenueTextBoxLocator).getAttribute("value").replace(".0","")));
+        campaign.setBudgetedCost(Integer.parseInt(driver.findElement(budgetedCostTextBoxLocator).getAttribute("value").replace(",","")));
+        campaign.setActualCost(Integer.parseInt(driver.findElement(actualCostTextBoxLocator).getAttribute("value").replace(",","")));
         return campaign;
     }
 }

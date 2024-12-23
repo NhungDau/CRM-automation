@@ -62,9 +62,6 @@ public class TC06 {
         campaignUpdated = new Campaign();
         campaignAfterEdit = new Campaign();
         campaignInCustomerInformationPage = new Campaign();
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        DecimalFormat df = new DecimalFormat("###.#");
-        formattedValue = df.format(random.nextDouble());
         randomDate = LocalDate.now().plusDays(random.nextInt(366));
 
         softAssert = new SoftAssert();
@@ -95,9 +92,9 @@ public class TC06 {
         campaign.setStatus(faker.options().nextElement(createCampaignPage.getListStatusOption()));
         campaign.setStartDate(randomDate.toString());
         campaign.setEndDate(randomDate.plusDays(random.nextInt(366)).toString());
-        campaign.setExpectedRevenue(Double.parseDouble(formattedValue));
-        campaign.setBudgetedCost(Double.parseDouble(formattedValue));
-        campaign.setActualCost(Double.parseDouble(formattedValue));
+        campaign.setExpectedRevenue(random.nextInt(9000));
+        campaign.setBudgetedCost(random.nextInt(9000));
+        campaign.setActualCost(random.nextInt(9000));
         campaign.setDescription(faker.lorem().sentence());
 
         createCampaignPage.createNewCampaign(campaign);
@@ -132,7 +129,7 @@ public class TC06 {
         campaignsInformationPage.openEditCampaignInformationPage();
 
         //modify campaign
-        campaignUpdated.setExpectedRevenue(random.nextDouble());
+        campaignUpdated.setExpectedRevenue(random.nextInt(9000));
 
         editCampaignInformationPage.editCampaignInformation(campaignUpdated);
 
@@ -148,6 +145,8 @@ public class TC06 {
 
         //Verify that campaign information is updated in Show all campaign
         campaignsInformationPage.openShowAllCampaignsPage();
+
+        showAllCampaignsPage.searchByCampaignName(campaignAfterEdit.getName());
 
         softAssert.assertEquals(showAllCampaignsPage.getCampaignInformation().getName(), campaignAfterEdit.getName(),"Campaign name is not updated");
         softAssert.assertEquals(showAllCampaignsPage.getCampaignInformation().getType(), campaignAfterEdit.getType(),"Campaign type is not updated");

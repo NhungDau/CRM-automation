@@ -12,9 +12,9 @@ public class Campaign {
     String status;
     String startDate;
     String endDate;
-    Double expectedRevenue;
-    Double budgetedCost;
-    Double actualCost;
+    Integer expectedRevenue;
+    Integer budgetedCost;
+    Integer actualCost;
     String description;
 
 
@@ -59,27 +59,27 @@ public class Campaign {
         this.endDate = endDate;
     }
 
-    public Double getExpectedRevenue() {
+    public Integer getExpectedRevenue() {
         return expectedRevenue;
     }
 
-    public void setExpectedRevenue(Double expectedRevenue) {
+    public void setExpectedRevenue(Integer expectedRevenue) {
         this.expectedRevenue = expectedRevenue;
     }
 
-    public Double getBudgetedCost() {
+    public Integer getBudgetedCost() {
         return budgetedCost;
     }
 
-    public void setBudgetedCost(Double budgetedCost) {
+    public void setBudgetedCost(Integer budgetedCost) {
         this.budgetedCost = budgetedCost;
     }
 
-    public Double getActualCost() {
+    public Integer getActualCost() {
         return actualCost;
     }
 
-    public void setActualCost(Double actualCost) {
+    public void setActualCost(Integer actualCost) {
         this.actualCost = actualCost;
     }
 
@@ -91,7 +91,7 @@ public class Campaign {
         this.description = description;
     }
 
-    public Campaign(String name, String type, String status, String startDate, String endDate, Double expectedRevenue, Double budgetedCost, Double actualCost, String description) {
+    public Campaign(String name, String type, String status, String startDate, String endDate, Integer expectedRevenue, Integer budgetedCost, Integer actualCost, String description) {
         this.name = name;
         this.type = type;
         this.status = status;
@@ -103,23 +103,10 @@ public class Campaign {
         this.description = description;
     }
 
-    public Campaign(String name, String type, String status, String startDate, String endDate, Double expectedRevenue, Double budgetedCost, Double actualCost) {
-        this.name = name;
-        this.type = type;
-        this.status = status;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.expectedRevenue = expectedRevenue;
-        this.budgetedCost = budgetedCost;
-        this.actualCost = actualCost;
-    }
 
     public Campaign() {
     }
-//
-//    public static Campaign random() {
-//        return new Campaign(faker.company().catchPhrase(), );
-//    }
+
 
 
     @Override

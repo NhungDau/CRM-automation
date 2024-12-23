@@ -69,9 +69,9 @@ public class CampaignsInformationPage extends BasePage {
         campaign.setStatus(driver.findElement(campaignStatusLabelLocator).getText());
         campaign.setStartDate(driver.findElement(campaignStartDateLocator).getText());
         campaign.setEndDate(driver.findElement(campaignEndDateLocator).getText());
-        campaign.setExpectedRevenue(Double.parseDouble(driver.findElement(campaignExpectedRevenueLocator).getText()));
-        campaign.setBudgetedCost(Double.parseDouble(driver.findElement(campaignBudgetedCostLocator).getText()));
-        campaign.setActualCost(Double.parseDouble(driver.findElement(campaignActualCostLocator).getText()));
+        campaign.setExpectedRevenue(Integer.parseInt(driver.findElement(campaignExpectedRevenueLocator).getText().replace(".","")));
+        campaign.setBudgetedCost(Integer.parseInt(driver.findElement(campaignBudgetedCostLocator).getText().replace(".","")));
+        campaign.setActualCost(Integer.parseInt(driver.findElement(campaignActualCostLocator).getText().replace(".","")));
         return campaign;
     }
 

@@ -35,7 +35,7 @@ public class TC05 {
         loginPage = new LoginPage(driver);
         faker = new Faker();
         createCampaignPage = new CreateCampaignPage(driver);
-        campaign = new Campaign(faker.company().catchPhrase(), "Sale", "Done", "2024-12-13", "2024-12-14", 356.0, 54.0, 88.4);
+//        campaign = new Campaign(faker.company().catchPhrase(), "Sale", "Done", "2024-12-13", "2024-12-14", 356.0, 54.0, 88.4);
         campaign1 = new Campaign();
         campaign2 = new Campaign();
         showAllCampaignsPage = new ShowAllCampaignsPage(driver);

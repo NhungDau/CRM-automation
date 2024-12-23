@@ -61,8 +61,6 @@ public class TC10 {
         createRevenuePage.clickSaveButton();
 
         //open search revenue page
-        revenueInformationPage.openSearchRevenuePage();
-
         revenueInformationPage.searchRevenueByYear(revenue.getYear());
 
 //        //Verify that the result is correct

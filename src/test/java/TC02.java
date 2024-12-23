@@ -84,9 +84,9 @@ public class TC02 {
         campaign.setStatus(createCampaignPage.getListStatusOption().get(random.nextInt(createCampaignPage.getListStatusOption().size())).toString());
         campaign.setStartDate(randomDate.toString());
         campaign.setEndDate(randomDate.plusDays(random.nextInt(366)).toString());
-        campaign.setExpectedRevenue((double)random.nextInt(9000));
-        campaign.setBudgetedCost((double)random.nextInt(9000));
-        campaign.setActualCost((double)random.nextInt(9000));
+        campaign.setExpectedRevenue(random.nextInt(9000));
+        campaign.setBudgetedCost(random.nextInt(9000));
+        campaign.setActualCost(random.nextInt(9000));
 
         createCampaignPage.createNewCampaign(campaign);
 
