@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import page.*;
 
+import java.text.DecimalFormat;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -32,6 +33,7 @@ public class TC07 {
     Faker faker;
     LocalDate today;
     DateTimeFormatter formatter;
+    DecimalFormat decimalFormat;
 
     SoftAssert softAssert;
     @BeforeMethod
@@ -54,6 +56,7 @@ public class TC07 {
         faker = new Faker();
         today = LocalDate.now();
         formatter = DateTimeFormatter.ofPattern("yyy-MM-dd");
+        decimalFormat = new DecimalFormat("#.00");
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.get("http://14.176.232.213:8080/CRMweb/faces/login.xhtml");
@@ -82,9 +85,9 @@ public class TC07 {
         campaign.setStatus(createCampaignPage.getListStatusOption().get(random.nextInt(createCampaignPage.getListStatusOption().size())).toString());
         campaign.setStartDate(today.format(formatter));
         campaign.setEndDate(today.plusDays(random.nextInt(366)).format(formatter));
-        campaign.setExpectedRevenue(random.nextDouble());
-        campaign.setBudgetedCost(random.nextDouble());
-        campaign.setActualCost(random.nextDouble());
+        campaign.setExpectedRevenue(Double.valueOf(decimalFormat.format(random.nextDouble())));
+        campaign.setBudgetedCost(Double.valueOf(decimalFormat.format(random.nextDouble())));
+        campaign.setActualCost(Double.valueOf(decimalFormat.format(random.nextDouble())));
 
         createCampaignPage.createNewCampaign(campaign);
 
