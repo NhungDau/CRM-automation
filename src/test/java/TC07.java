@@ -78,8 +78,8 @@ public class TC07 {
         createCampaignPage.getListTypeOption();
 
         campaign.setName(faker.company().catchPhrase());
-        campaign.setType(createCampaignPage.getListTypeOption().get(random.nextInt(createCampaignPage.listTypeOption().size())).toString());
-        campaign.setStatus(createCampaignPage.getListStatusOption().get(random.nextInt(createCampaignPage.listStatusOption().size())).toString());
+        campaign.setType(createCampaignPage.getListTypeOption().get(random.nextInt(createCampaignPage.getListTypeOption().size())).toString());
+        campaign.setStatus(createCampaignPage.getListStatusOption().get(random.nextInt(createCampaignPage.getListStatusOption().size())).toString());
         campaign.setStartDate(today.format(formatter));
         campaign.setEndDate(today.plusDays(random.nextInt(366)).format(formatter));
         campaign.setExpectedRevenue(random.nextDouble());

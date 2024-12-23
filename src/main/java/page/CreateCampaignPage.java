@@ -104,15 +104,15 @@ public class CreateCampaignPage extends BasePage {
         enterActualCost(campaign.getActualCost());
     }
 
-    public List listStatusOption() {
-        Select statusOptions = new Select(driver.findElement(statusDropdownListLocator));
-        return statusOptions.getOptions().stream().map(WebElement::getText).collect(Collectors.toList());
-    }
-
-    public List listTypeOption() {
-        Select typeOptions = new Select(driver.findElement(campaignTypeListLocator));
-        return typeOptions.getOptions().stream().map(WebElement::getText).collect(Collectors.toList());
-    }
+//    public List listStatusOption() {
+//        Select statusOptions = new Select(driver.findElement(statusDropdownListLocator));
+//        return statusOptions.getOptions().stream().map(WebElement::getText).collect(Collectors.toList());
+//    }
+//
+//    public List listTypeOption() {
+//        Select typeOptions = new Select(driver.findElement(campaignTypeListLocator));
+//        return typeOptions.getOptions().stream().map(WebElement::getText).collect(Collectors.toList());
+//    }
 
     public List<String> getListStatusOption() {
         Select typeOptions = new Select(driver.findElement(statusDropdownListLocator));

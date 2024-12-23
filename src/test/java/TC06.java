@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import page.*;
 
+import java.text.DecimalFormat;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.util.Random;
@@ -27,10 +28,12 @@ public class TC06 {
     Campaign campaignUpdated;
     Campaign campaignAfterEdit;
     Campaign campaignInCustomerInformationPage;
+    Campaign campaignInCampaignInformationPage;
     Customer customer;
     WebDriver driver;
     Faker faker;
     Random random;
+    String formattedValue;
     LocalDate randomDate;
 
     SoftAssert softAssert;
@@ -58,6 +61,8 @@ public class TC06 {
         campaignAfterEdit = new Campaign();
         campaignInCustomerInformationPage = new Campaign();
 //        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DecimalFormat df = new DecimalFormat("###.#");
+        formattedValue = df.format(random.nextDouble());
         randomDate = LocalDate.now().plusDays(random.nextInt(366));
 
         softAssert = new SoftAssert();
@@ -77,13 +82,13 @@ public class TC06 {
         showAllCustomerPage.openCreateCampaignPage();
 
         campaign.setName(faker.company().buzzword());
-        campaign.setType((createCampaignPage.listTypeOption().get(random.nextInt(createCampaignPage.listTypeOption().size()))).toString());
-        campaign.setStatus(createCampaignPage.listStatusOption().get(random.nextInt(createCampaignPage.listStatusOption().size())).toString());
+        campaign.setType((createCampaignPage.getListTypeOption().get(random.nextInt(createCampaignPage.getListTypeOption().size()))).toString());
+        campaign.setStatus(createCampaignPage.getListStatusOption().get(random.nextInt(createCampaignPage.getListStatusOption().size())).toString());
         campaign.setStartDate(randomDate.toString());
         campaign.setEndDate(randomDate.plusDays(random.nextInt(366)).toString());
-        campaign.setExpectedRevenue((double)random.nextInt(9000));
-        campaign.setBudgetedCost((double)random.nextInt(9000));
-        campaign.setActualCost((double)random.nextInt(9000));
+        campaign.setExpectedRevenue(Double.parseDouble(formattedValue));
+        campaign.setBudgetedCost(Double.parseDouble(formattedValue));
+        campaign.setActualCost(Double.parseDouble(formattedValue));
 
         createCampaignPage.createNewCampaign(campaign);
 
@@ -126,7 +131,9 @@ public class TC06 {
         editCampaignInformationPage.clickSaveButton();
 
         //Verify campaign information is updated
-        softAssert.assertEquals(campaignsInformationPage.getCampaignInformation(), campaignAfterEdit, "Update incorrectly");
+        campaignInCampaignInformationPage = campaignsInformationPage.getCampaignInformation();
+
+        softAssert.assertEquals(campaignInCampaignInformationPage, campaignAfterEdit, "Update incorrectly in Campaign Information page.");
         System.out.println("Update campaign correctly");
 
         //Verify that campaign information is updated in Show all campaign
