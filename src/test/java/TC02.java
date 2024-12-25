@@ -1,4 +1,5 @@
 import com.github.javafaker.Faker;
+import io.qameta.allure.Allure;
 import model.Campaign;
 import model.Customer;
 import model.User;
@@ -69,6 +70,7 @@ public class TC02 {
     @Test
     public void TC02() {
         //login
+        Allure.step("Login CRM system");
         loginPage.login(User.defaultUser());
 
         //Add new customer
@@ -80,8 +82,8 @@ public class TC02 {
         showAllCustomerPage.openCreateCampaignPage();
 
         campaign.setName(faker.company().catchPhrase());
-        campaign.setType((createCampaignPage.getListTypeOption().get(random.nextInt(createCampaignPage.getListTypeOption().size()))).toString());
-        campaign.setStatus(createCampaignPage.getListStatusOption().get(random.nextInt(createCampaignPage.getListStatusOption().size())).toString());
+        campaign.setType(faker.options().nextElement(createCampaignPage.getListTypeOption()));
+        campaign.setStatus(faker.options().nextElement(createCampaignPage.getListStatusOption()));
         campaign.setStartDate(randomDate.toString());
         campaign.setEndDate(randomDate.plusDays(random.nextInt(366)).toString());
         campaign.setExpectedRevenue(random.nextInt(9000));
@@ -139,7 +141,7 @@ public class TC02 {
         //Verify that customer name is updated in campaign information page
         customerInCampaignInformationPage = campaignsInformationPage.getCustomerInformation();
 
-        softAssert.assertEquals(customerInCampaignInformationPage, customerAfterUpdate,"Customer information isn't updated correctly in Campaign Information page.");
+        softAssert.assertEquals(customerInCampaignInformationPage, customerAfterUpdate, "Customer information isn't updated correctly in Campaign Information page.");
         System.out.println("Customer information is updated correctly in Campaign Information page.");
 
         softAssert.assertAll();
