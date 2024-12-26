@@ -1,4 +1,5 @@
 import com.github.javafaker.Faker;
+import io.qameta.allure.Allure;
 import model.Campaign;
 import model.Customer;
 import model.User;
@@ -65,18 +66,21 @@ public class TC07 {
 
     @Test
     public void TC07() {
+        Allure.step("Login successfully");
         //login
         loginPage.login(User.defaultUser());
 
-
+        Allure.step("Create new customer successfully");
         //create new customer
         showAllCustomerPage.clickNewCustomerButton();
+
         createCustomer.createCustomer(customer);
 
         //create new campagin
         //go to create campaign page
         showAllCustomerPage.openCreateCampaignPage();
 
+        Allure.step("Create campaign successfully");
         //create campaign
         createCampaignPage.getListTypeOption();
 
@@ -98,14 +102,16 @@ public class TC07 {
 
         campaign.setDescription(faker.lorem().sentence());
 
-
         createCampaignPage.createNewCampaign(campaign);
 
+        Allure.step("Search newly created campaign successfully");
         //search newly created campaign and go to the campaign information page
         showAllCampaignsPage.searchByCampaignName(campaign.getName());
 
+        Allure.step("Go to the campaign information page");
         showAllCampaignsPage.openCampaignInformationPageByCampaignName(campaign.getName());
 
+        Allure.step("Add newly created customer to the campaign");
         //go to add customer in to campaign page
         campaignsInformationPage.goToAddCustomerIntoCampaignPage();
 
@@ -115,12 +121,14 @@ public class TC07 {
         //click add button
         addCustomerIntoCampaignPage.clickToAddButton();
 
+        Allure.step("Go to customer information by clicking customer name");
         //click customer name to open customer information page
         campaignsInformationPage.openTheLastCustomerInformationPage();
 
         //get campaign information
         customerInformationPage.getCampaignInformation();
 
+        Allure.step("Verify the campaign information is same between when create and when view in customer information page");
         //verify the campaign information is displayed same as when created
         customerInformationPage.getCampaignInformation();
 

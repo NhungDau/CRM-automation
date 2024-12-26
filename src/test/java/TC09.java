@@ -1,4 +1,5 @@
 import com.github.javafaker.Faker;
+import io.qameta.allure.Allure;
 import model.Campaign;
 import model.Customer;
 import model.Reminder;
@@ -63,20 +64,25 @@ public class TC09 {
 
     @Test
     public void TC09() {
+        Allure.step("Login successfully");
         //login
         loginPage.login(User.defaultUser());
 
-
+        Allure.step("Create new customer successfully");
         //create new customer
         showAllCustomerPage.clickNewCustomerButton();
+
         createCustomer.createCustomer(customer);
 
+        Allure.step("Search newly created customer");
         //search newly created customer and go to customer information page
         showAllCustomerPage.searchCustomerByName(customer);
 
+        Allure.step("Go to customer information page");
         //go to customer information page
         showAllCustomerPage.openCustomerInformationByName(customer);
 
+        Allure.step("Add remider");
         //add reminder
         customerInformationPage.openCreateReminderPage();
 
@@ -84,19 +90,22 @@ public class TC09 {
 
         createReminderPage.clickCreateAReminderButton();
 
+        Allure.step("Search by reminder description");
         //search by reminder description in show all reminder page
         customerInformationPage.openShowAllRemindersPage();
 
         showAllReminderPage.searchReminderByDescription(reminder.getDescription());
 
+        Allure.step("Delete reminder");
+        //delete reminder
         showAllReminderPage.clickDeleteButton();
 
+        Allure.step("Search the newly deleted reminder");
+        //search the newly deleted reminder
+        showAllReminderPage.searchReminderByDescription(reminder.getDescription());
 
-        //re-search the newly deleted reminder
-        showAllReminderPage.searchReminderByDescription2(reminder.getDescription());
-
+        Allure.step("Verify the reminder whether displays in show all reminder page");
         //verify whether reminder displayed in reminder
-        showAllReminderPage.isReminderDisplay(reminder.getDescription());
 
         softAssert.assertFalse(showAllReminderPage.isReminderDisplay(reminder.getDescription()),"Still display reminder");
 

@@ -3,10 +3,12 @@ package page;
 import model.Reminder;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 public class ShowAllReminderPage extends BasePage {
     By searchDescriptionTextBoxLocator = By.id("j_idt70:j_idt71:j_idt72:filter");
@@ -24,11 +26,11 @@ public class ShowAllReminderPage extends BasePage {
 
     public void searchReminderByDescription(String description) {
         driver.findElement(searchDescriptionTextBoxLocator).sendKeys(description);
-//        wait.until(ExpectedConditions.textToBePresentInElementLocated(reminderDescriptionLabelLocator, description));
-    }
-
-    public void searchReminderByDescription2(String description) {
-        driver.findElement(searchDescriptionTextBoxLocator).sendKeys(description);
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
@@ -40,12 +42,14 @@ public class ShowAllReminderPage extends BasePage {
         return reminder;
     }
 
-    public boolean isReminderDisplay(String description){
-        boolean display = true;
-        String a = driver.findElement(reminderDescriptionLabelLocator).getText();
-        if (a.equalsIgnoreCase(description)){
-            return display;
-        }else return false;
+    public boolean isReminderDisplay(String description) {
+        List<WebElement> list = driver.findElements(reminderDescriptionLabelLocator);
+        for (WebElement a : list) {
+            if (a.getText().equals(description)){
+                return true;
+            }
+        }
+        return false;
     }
 
     public void clickDeleteButton(){

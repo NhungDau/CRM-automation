@@ -1,4 +1,5 @@
 import com.github.javafaker.Faker;
+import io.qameta.allure.Allure;
 import model.Campaign;
 import model.Customer;
 import model.User;
@@ -66,12 +67,14 @@ public class TC05 {
 
     @Test
     public void TC05() {
+        Allure.step("Login successfully");
         //login
         loginPage.login(User.defaultUser());
 
         //go to create campaign page
         createCampaignPage.openCreateCampaignPage();
 
+        Allure.step("Create new campaign successfully");
         //create campaign
 
         campaign.setName(faker.company().buzzword());
@@ -93,12 +96,14 @@ public class TC05 {
 
         createCampaignPage.createNewCampaign(campaign);
 
+        Allure.step("Search newly cretaed campaign successfully");
         //search newly created campaign
 
         showAllCampaignsPage.searchByCampaignName(campaign.getName());
 
         showAllCampaignsPage.getCampaignInformation();
 
+        Allure.step("Verity the newly created campaign can be search successfully in show all campaign page");
         // check whether newly created campaign can be searched
         softAssert.assertEquals(showAllCampaignsPage.getCampaignInformation().getName()
                                 ,campaign.getName()
@@ -128,6 +133,7 @@ public class TC05 {
 
         campaignReportPage.getCampaignInformation();
 
+        Allure.step("Verity the newly created campaign can be search successfully in campaign report page");
         //check whether newly created campaign can be searched in campaign report page
 
         softAssert.assertEquals(campaignReportPage.getCampaignInformation().getName()

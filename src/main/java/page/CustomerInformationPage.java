@@ -171,11 +171,14 @@ public class CustomerInformationPage extends BasePage {
         return reminder;
     }
 
-    public boolean isReminderDisplay(String description){
-        boolean display = true;
+    public boolean isReminderDisplay(String description) {
         List<WebElement> list = driver.findElements(reminderDescriptionLabelLocator);
-        for (WebElement a : list){
-//            if (a.getText())
+        for (WebElement a : list) {
+            if (a.getText().equals(description)){
+                return true;
+            }
         }
+        return false;
     }
+
 }

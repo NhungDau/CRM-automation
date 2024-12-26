@@ -1,6 +1,11 @@
+import io.qameta.allure.Allure;
+import io.qameta.allure.Attachment;
+import io.qameta.allure.Step;
 import model.Customer;
 import model.ProductOrderInformation;
 import model.User;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.BeforeMethod;
@@ -56,14 +61,17 @@ public class TC01 {
 
     @Test
     public void TC01() {
+        Allure.step("Login successfully");
         //login
         loginPage.login(User.defaultUser());
 
+        Allure.step("Create new customer successfully");
         //create new customer
         showAllCustomerPage.clickNewCustomerButton();
 
         createCustomer.createCustomer(customer);
 
+        Allure.step("Add new order successfully");
         //open the newly created customer to add new order
         showAllCustomerPage.clickGoToLastPageButton();
         showAllCustomerPage.openLastCustomer();
@@ -83,8 +91,11 @@ public class TC01 {
 
         createOrderPage.clickCreateOrderButton();
 
+        Allure.step("New oder is displayed in customer information page successfully");
         //step 4.verify new order created successfully and display in customer information page
         customerInformationPage.getLatestOrderInformation();
+
+
         productOrderInformation2.setPaymentDate(customerInformationPage.getLatestOrderInformation().getPaymentDate());
         productOrderInformation2.setTotalPrice(customerInformationPage.getLatestOrderInformation().getTotalPrice());
 
@@ -96,7 +107,7 @@ public class TC01 {
                                 ,"Price is not correct");
 
 
-
+        Allure.step("View last order information successfully");
         //go to order information page to view lastest order information
         customerInformationPage.clickLastPaymentDate();
 
@@ -113,8 +124,8 @@ public class TC01 {
 
         productOrderInformation3.setPaymentDate(orderInformationPage.getCustomerOrderInformation().getPaymentDate());
 
-
-        //verify after add new order in create order page, product name/price/quanity/total price are same in oder in formation page
+        Allure.step("Product information is displayed correctly between order information page and when create");
+        //verify after add new order in create order page, product name/price/quanity/total price are same in oder information page
         softAssert.assertEquals(productOrderInformation1,productOrderInformation3,"Product information is not correct");
         softAssert.assertAll();
 

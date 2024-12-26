@@ -1,3 +1,4 @@
+import io.qameta.allure.Allure;
 import model.Customer;
 import model.OpportunityInformation;
 import model.User;
@@ -52,18 +53,21 @@ public class TC03 {
 
     @Test
     public void TC03() {
+        Allure.step("Login successfully");
         //login
         loginPage.login(User.defaultUser());
 
-
+        Allure.step("Create new customer successfully");
         //create new customer
         showAllCustomerPage.clickNewCustomerButton();
         createCustomer.createCustomer(customer);
+
 
         //open the newly created customer to add new opportunity
         showAllCustomerPage.clickGoToLastPageButton();
         showAllCustomerPage.openLastCustomer();
 
+        Allure.step("Add new opportunity successfully");
         //add opportunity
         customerInformationPage.clickAddOpportunityButton();
 
@@ -85,6 +89,7 @@ public class TC03 {
         opportunityInformation2.setProductName(customerInformationPage.getLastOpportunityInformation().getProductName());
         opportunityInformation2.setPrice(customerInformationPage.getLastOpportunityInformation().getPrice());
 
+        Allure.step("The opportunity value between when view in opportunity information and when create is same");
         softAssert.assertEquals(opportunityInformation1, opportunityInformation2,
                                                             "Opportunity information is not consistent");
 
