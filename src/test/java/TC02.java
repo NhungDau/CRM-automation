@@ -89,12 +89,9 @@ public class TC02 {
         campaign.setExpectedRevenue(random.nextInt(9000));
         campaign.setBudgetedCost(random.nextInt(9000));
         campaign.setActualCost(random.nextInt(9000));
+        campaign.setDescription(faker.lorem().sentence());
 
         createCampaignPage.createNewCampaign(campaign);
-
-        createCampaignPage.enterDescription(faker.lorem().sentence());
-
-        createCampaignPage.clickCreateButton();
 
         //Add new customer into new campaign
         showAllCampaignsPage.searchByCampaignName(campaign.getName());
