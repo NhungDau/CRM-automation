@@ -1,4 +1,5 @@
 import com.github.javafaker.Faker;
+import io.qameta.allure.Allure;
 import model.Customer;
 import model.Reminder;
 import model.Revenue;
@@ -51,9 +52,13 @@ public class TC10 {
     @Test
     public void TC10() {
         //login
+        Allure.step("Login CRM system.");
+
         loginPage.login(User.defaultUser());
 
         //create new revenue
+        Allure.step("Go to create reveunue page, create new revenue.");
+
         showAllCustomerPage.openCreateRevenuePage();
 
         createRevenuePage.createRevenue(revenue);
@@ -63,7 +68,9 @@ public class TC10 {
         //open search revenue page
         revenueInformationPage.searchRevenueByYear(revenue.getYear());
 
-//        //Verify that the result is correct
+        //Verify that the result is correct
+        Allure.step("Search by newly create revenue, verify that the result is correct.");
+
         softAssert.assertEquals(revenueInformationPage.getRevenueResult(),revenue,"The search result is not correct");
         System.out.println("The revenue display corresponding to expected revenue.");
 

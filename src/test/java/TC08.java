@@ -1,4 +1,5 @@
 import com.github.javafaker.Faker;
+import io.qameta.allure.Allure;
 import model.Customer;
 import model.Reminder;
 import model.User;
@@ -60,9 +61,13 @@ public class TC08 {
     @Test
     public void TC08() {
         //login
+        Allure.step("Login CRM system.");
+
         loginPage.login(User.defaultUser());
 
         //create new customer
+        Allure.step("Add new customer into system.");
+
         showAllCustomerPage.clickNewCustomerButton();
 
         createCustomer.createCustomer(customer);
@@ -73,6 +78,8 @@ public class TC08 {
         showAllCustomerPage.openCustomerInformationByName(customer);
 
         //create reminder
+        Allure.step("Go to customer information page, create new reminder.");
+
         customerInformationPage.openCreateReminderPage();
 
         createReminderPage.createNewReminder(reminder);
@@ -80,12 +87,16 @@ public class TC08 {
         createReminderPage.clickCreateAReminderButton();
 
         //Verify that new reminder display at customer information page
+        Allure.step("Verify that new reminder display at customer information page.");
+
         reminderInCustomerInformationPage = customerInformationPage.getReminderInformation();
 
         softAssert.assertEquals(reminderInCustomerInformationPage, reminder, "Reminder is not correct");
         System.out.println("New reminder is added correctly in Customer Information Page");
 
         //Verify that new reminder display at Reminder page
+        Allure.step("Go to Reminder page, verify that new reminder display at Reminder page.");
+
         customerInformationPage.openShowAllRemindersPage();
 
         showAllReminderPage.searchReminderByDescription(reminder.getDescription());

@@ -1,3 +1,4 @@
+import io.qameta.allure.Allure;
 import model.CampaignType;
 import model.User;
 import org.openqa.selenium.WebDriver;
@@ -36,9 +37,13 @@ public class TC04 {
     @Test
     public void TC04() {
         //login
+        Allure.step("Login CRM system.");
+
         loginPage.login(User.defaultUser());
 
         //access to create campaign type page
+        Allure.step("Create new campaign type.");
+
         showAllCustomerPage.openCreateCampaignTypePage();
 
         //Enter campaign type and click Save
@@ -47,7 +52,9 @@ public class TC04 {
         createCampaignsTypePage.clickSaveButton();
 
         //Check newly created campaign type in Show all campaign type page
-        showAllCampaignTypePage.searchByCampaignType(campaignType);  //lỗi null??
+        Allure.step("Verify that newly created campaign type in Show all campaign type page.");
+
+        showAllCampaignTypePage.searchByCampaignType(campaignType);
 
         softAssert.assertTrue(showAllCampaignTypePage.isSearchResultCorrect(campaignType), "No found newly campaign type");
         System.out.println("New campaign type is created successfully");
@@ -59,6 +66,8 @@ public class TC04 {
         createCampaignPage.selectTypeOptionByCampaignType(campaignType);
 
         //Verify that new campaign type can be selected
+        Allure.step("Newly created campaign type can be selected when create campaign.");
+
         softAssert.assertEquals(createCampaignPage.getSelectedCampaignType(), campaignType.getTypeName(), "Not found new camaign type");
         //getSelected nhưng lại ra full list type??
 

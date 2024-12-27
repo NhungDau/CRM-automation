@@ -71,15 +71,17 @@ public class TC02 {
     @Test
     public void TC02() {
         //login
-        Allure.step("Login CRM system");
+        Allure.step("Login CRM system.");
         loginPage.login(User.defaultUser());
 
         //Add new customer
+        Allure.step("Add new customer into system.");
         showAllCustomerPage.clickNewCustomerButton();
 
         createCustomer.createCustomer(customer);
 
         //create a new campaign
+        Allure.step("Access to create Campaign page, and create new campaign.");
         showAllCustomerPage.openCreateCampaignPage();
 
         campaign.setName(faker.company().catchPhrase());
@@ -95,6 +97,8 @@ public class TC02 {
         createCampaignPage.createNewCampaign(campaign);
 
         //Add new customer into new campaign
+        Allure.step("Add new customer into new campaign.");
+
         showAllCampaignsPage.searchByCampaignName(campaign.getName());
 
         showAllCampaignsPage.openCampaignInformationPageByCampaignName(campaign.getName());
@@ -106,6 +110,8 @@ public class TC02 {
         addCustomerIntoCampaignPage.clickToAddButton();
 
         //Edit customer information
+        Allure.step("Access to Customer Information page, edit customer name.");
+
         campaignsInformationPage.openCustomerInformationPageByName(customer.getName());
 
         customerInformationPage.openEditCustomerInformationPage();
@@ -124,6 +130,8 @@ public class TC02 {
         editCustomerInformationPage.clickSaveButton();
 
         //Verify that customer name is updated in customer information page
+        Allure.step("Verify that customer name is updated in customer information page.");
+
         customerInCustomerInformationPage = customerInformationPage.getCustomerInformation();
 
         softAssert.assertEquals(customerInCustomerInformationPage, customerAfterUpdate, "Customer information isn't updated correctly in Customer Information page.");
@@ -137,6 +145,8 @@ public class TC02 {
         showAllCampaignsPage.openCampaignInformationPageByCampaignName(campaign.getName());
 
         //Verify that customer name is updated in campaign information page
+        Allure.step("Verify that customer name is updated in campaign information page.");
+
         customerInCampaignInformationPage = campaignsInformationPage.getCustomerInformation();
 
         softAssert.assertEquals(customerInCampaignInformationPage, customerAfterUpdate, "Customer information isn't updated correctly in Campaign Information page.");

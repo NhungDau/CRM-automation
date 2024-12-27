@@ -1,4 +1,5 @@
 import com.github.javafaker.Faker;
+import io.qameta.allure.Allure;
 import model.Campaign;
 import model.Customer;
 import model.User;
@@ -71,14 +72,20 @@ public class TC06 {
     @Test
     public void TC06() {
         //login
+        Allure.step("Login CRM system.");
+
         loginPage.login(User.defaultUser());
 
         //create new customer
+        Allure.step("Add new customer into system.");
+
         showAllCustomerPage.clickNewCustomerButton();
 
         createCustomer.createCustomer(customer);
 
         //create new campaign
+        Allure.step("Access to create Campaign page, and create new campaign.");
+
         showAllCustomerPage.openCreateCampaignPage();
 
         campaign.setName(faker.company().buzzword());
@@ -112,6 +119,8 @@ public class TC06 {
         showAllCustomerPage.openCustomerInformationByName(customer);
 
         //add new campaign
+        Allure.step("Access to Customer information page, and add new campaign into customer.");
+
         customerInformationPage.clickAddCampaignButton();
 
         addCampaignIntoCustomerPage.selectCampainByCampainName(campaign.getName());
@@ -123,6 +132,8 @@ public class TC06 {
         System.out.println("All columns of new campaign display correctly");
 
         //Edit campaign information
+        Allure.step("Go to Campaign information page, and add edit campaign information.");
+
         customerInformationPage.openShowAllCampaignsPage();
 
         showAllCampaignsPage.openCampaignInformationPageByCampaignName(campaign.getName());
@@ -136,11 +147,12 @@ public class TC06 {
 
         editCampaignInformationPage.clickSaveButton();
 
-        //Verify campaign information is updated
         campaignAfterEdit = campaignsInformationPage.getCampaignInformation();
 
 
         //Verify that campaign information is updated in Show all campaign
+        Allure.step("Campaign information is updated correctly in Show all campaign.");
+
         campaignsInformationPage.openShowAllCampaignsPage();
 
         showAllCampaignsPage.searchByCampaignName(campaignAfterEdit.getName());
@@ -153,6 +165,8 @@ public class TC06 {
         System.out.println("Update campaign correctly in Show All Campaign page");
 
         //Verify that campaign information is updated in Customer information
+        Allure.step("Verify that campaign information is updated in Customer information.");
+
         showAllCampaignsPage.openShowAllCustomersPage();
 
         showAllCustomerPage.searchCustomerByName(customer);
