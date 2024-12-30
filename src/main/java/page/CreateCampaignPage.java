@@ -1,5 +1,6 @@
 package page;
 
+import io.qameta.allure.Step;
 import model.Campaign;
 import model.CampaignType;
 import org.openqa.selenium.By;
@@ -88,6 +89,7 @@ public class CreateCampaignPage extends BasePage {
         driver.findElement(createButtonLocator).click();
     }
 
+    @Step("Create a new campaign")
     public void createNewCampaign(Campaign campaign) {
         try {
             Thread.sleep(1000);

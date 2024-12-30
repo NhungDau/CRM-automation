@@ -1,5 +1,6 @@
 package page;
 
+import io.qameta.allure.Step;
 import model.User;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -29,6 +30,7 @@ public class LoginPage {
         driver.findElement(loginButtonLocator).click();
     }
 
+    @Step ("Login in CRM system")
     public void login(User user) {
         enterEmail(user.getEmail());
         enterPassword(user.getPassword());

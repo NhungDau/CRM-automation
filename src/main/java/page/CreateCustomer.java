@@ -1,5 +1,6 @@
 package page;
 
+import io.qameta.allure.Step;
 import model.Customer;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -42,6 +43,7 @@ public class CreateCustomer {
     }
 
     //create new customer
+    @Step ("Create new customer into system.")
     public void createCustomer(Customer customer) {
         //enter value
         enterName(customer.getName());
