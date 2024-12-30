@@ -78,7 +78,7 @@ public class TC05 {
         Allure.step("Create new campaign successfully");
         //create campaign
 
-        campaign.setName(faker.company().buzzword());
+        campaign.setName(faker.company().buzzword()+random.nextInt(100));
 
         campaign.setType(faker.options().nextElement(createCampaignPage.getListTypeOption()));
 

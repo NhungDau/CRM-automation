@@ -53,7 +53,7 @@ public class TC08 {
         random = new Random();
         randomDate = random.nextInt(366);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-        reminder = new Reminder(faker.lorem().sentence(),LocalDate.now().plusDays(randomDate).toString(), LocalTime.now().format(formatter));
+        reminder = new Reminder(faker.lorem().sentence()+random.nextInt(100),LocalDate.now().plusDays(randomDate).toString(), LocalTime.now().format(formatter));
         softAssert = new SoftAssert();
 
     }

@@ -9,6 +9,8 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import page.*;
 
+import java.util.Random;
+
 public class TC04 {
     LoginPage loginPage;
     ShowAllCustomerPage showAllCustomerPage;
@@ -16,6 +18,7 @@ public class TC04 {
     CampaignType campaignType;
     ShowAllCampaignTypePage showAllCampaignTypePage;
     CreateCampaignPage createCampaignPage;
+    Random random;
     WebDriver driver;
     SoftAssert softAssert;
 
@@ -30,7 +33,8 @@ public class TC04 {
         createCampaignsTypePage = new CreateCampaignsTypePage(driver);
         showAllCampaignTypePage = new ShowAllCampaignTypePage(driver);
         createCampaignPage = new CreateCampaignPage(driver);
-        campaignType = new CampaignType("Sale06");
+        random = new Random();
+        campaignType = new CampaignType("Sale"+random.nextInt(100));
         softAssert = new SoftAssert();
     }
 

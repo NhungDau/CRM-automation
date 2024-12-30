@@ -44,7 +44,7 @@ public class TC10 {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy");
         currentYear = Integer.parseInt(LocalDate.now().format(formatter));
         random = new Random();
-        revenue = new Revenue(currentYear + random.nextInt(100), random.nextInt(1000), random.nextInt(1000), random.nextInt(1000), random.nextInt(1000), random.nextInt(1000), random.nextInt(1000), random.nextInt(1000), random.nextInt(1000), random.nextInt(1000), random.nextInt(1000), random.nextInt(1000), random.nextInt(1000));
+        revenue = new Revenue(currentYear + random.nextInt(999), random.nextInt(1000), random.nextInt(1000), random.nextInt(1000), random.nextInt(1000), random.nextInt(1000), random.nextInt(1000), random.nextInt(1000), random.nextInt(1000), random.nextInt(1000), random.nextInt(1000), random.nextInt(1000), random.nextInt(1000));
         softAssert = new SoftAssert();
 
     }

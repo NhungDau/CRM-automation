@@ -84,7 +84,7 @@ public class TC02 {
         Allure.step("Access to create Campaign page, and create new campaign.");
         showAllCustomerPage.openCreateCampaignPage();
 
-        campaign.setName(faker.company().catchPhrase());
+        campaign.setName(faker.company().catchPhrase()+random.nextInt(100));
         campaign.setType(faker.options().nextElement(createCampaignPage.getListTypeOption()));
         campaign.setStatus(faker.options().nextElement(createCampaignPage.getListStatusOption()));
         campaign.setStartDate(randomDate.toString());
@@ -117,7 +117,7 @@ public class TC02 {
         customerInformationPage.openEditCustomerInformationPage();
 
         //edit customer name
-        customerUpdatedName.setName(faker.name().lastName());
+        customerUpdatedName.setName(faker.name().fullName());
         customerUpdatedName.setPhone(null);
         customerUpdatedName.setAddress(null);
         customerUpdatedName.setEmail(null);

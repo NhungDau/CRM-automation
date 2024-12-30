@@ -88,7 +88,7 @@ public class TC06 {
 
         showAllCustomerPage.openCreateCampaignPage();
 
-        campaign.setName(faker.company().buzzword());
+        campaign.setName(faker.company().buzzword()+random.nextInt(100));
         //c1
         typeOption = createCampaignPage.getListTypeOption();
         //c2

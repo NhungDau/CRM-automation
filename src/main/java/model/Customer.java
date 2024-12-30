@@ -54,7 +54,7 @@ public class Customer {
     }
 
     public static Customer random() {
-        return new Customer(faker.name().firstName(),faker.internet().emailAddress("ivietech"),faker.numerify("#########"),faker.address().fullAddress());
+        return new Customer(faker.name().fullName(),faker.internet().emailAddress("ivietech"),faker.numerify("#########"),faker.address().fullAddress());
     }
 
     @Override
