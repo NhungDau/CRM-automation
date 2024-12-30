@@ -67,11 +67,11 @@ public class TC07 {
 
     @Test
     public void TC07() {
-        Allure.step("Login successfully");
+        Allure.step("Login to CRM system");
         //login
         loginPage.login(User.defaultUser());
 
-        Allure.step("Create new customer successfully");
+        Allure.step("Create new customer");
         //create new customer
         showAllCustomerPage.clickNewCustomerButton();
 
@@ -81,7 +81,7 @@ public class TC07 {
         //go to create campaign page
         showAllCustomerPage.openCreateCampaignPage();
 
-        Allure.step("Create campaign successfully");
+        Allure.step("Create campaign");
         //create campaign
         createCampaignPage.getListTypeOption();
 
@@ -105,7 +105,7 @@ public class TC07 {
 
         createCampaignPage.createNewCampaign(campaign);
 
-        Allure.step("Search newly created campaign successfully");
+        Allure.step("Search newly created campaign");
         //search newly created campaign and go to the campaign information page
         showAllCampaignsPage.searchByCampaignName(campaign.getName());
 

@@ -62,17 +62,17 @@ public class TC01 {
 
     @Test
     public void TC01() {
-        Allure.step("Login successfully");
+        Allure.step("Login to CRM system");
         //login
         loginPage.login(User.defaultUser());
 
-        Allure.step("Create new customer successfully");
+        Allure.step("Create new customer");
         //create new customer
         showAllCustomerPage.clickNewCustomerButton();
 
         createCustomer.createCustomer(customer);
 
-        Allure.step("Add new order successfully");
+        Allure.step("Add new order");
         //open the newly created customer to add new order
         showAllCustomerPage.clickGoToLastPageButton();
         showAllCustomerPage.openLastCustomer();
@@ -92,7 +92,7 @@ public class TC01 {
 
         createOrderPage.clickCreateOrderButton();
 
-        Allure.step("New oder is displayed in customer information page successfully");
+        Allure.step("Verify new oder is displayed in customer information page");
         //step 4.verify new order created successfully and display in customer information page
         customerInformationPage.getLatestOrderInformation();
 
@@ -108,7 +108,7 @@ public class TC01 {
                                 ,"Price is not correct");
 
 
-        Allure.step("View last order information successfully");
+        Allure.step("View last order information");
         //go to order information page to view lastest order information
         customerInformationPage.clickLastPaymentDate();
 
@@ -125,7 +125,7 @@ public class TC01 {
 
         productOrderInformation3.setPaymentDate(orderInformationPage.getCustomerOrderInformation().getPaymentDate());
 
-        Allure.step("Product information is displayed correctly between order information page and when create");
+        Allure.step("Verify product information is displayed correctly between order information page and when create");
         //verify after add new order in create order page, product name/price/quanity/total price are same in oder information page
         softAssert.assertEquals(productOrderInformation1,productOrderInformation3,"Product information is not correct");
         softAssert.assertAll();

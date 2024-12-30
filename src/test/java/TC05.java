@@ -68,14 +68,14 @@ public class TC05 {
 
     @Test
     public void TC05() {
-        Allure.step("Login successfully");
+        Allure.step("Login to CRM system");
         //login
         loginPage.login(User.defaultUser());
 
         //go to create campaign page
         createCampaignPage.openCreateCampaignPage();
 
-        Allure.step("Create new campaign successfully");
+        Allure.step("Create new campaign");
         //create campaign
 
         campaign.setName(faker.company().buzzword()+random.nextInt(100));
@@ -97,7 +97,7 @@ public class TC05 {
 
         createCampaignPage.createNewCampaign(campaign);
 
-        Allure.step("Search newly cretaed campaign successfully");
+        Allure.step("Search newly cretaed campaign");
         //search newly created campaign
 
         showAllCampaignsPage.searchByCampaignName(campaign.getName());

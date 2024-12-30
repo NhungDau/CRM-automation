@@ -54,11 +54,11 @@ public class TC03 {
 
     @Test
     public void TC03() {
-        Allure.step("Login successfully");
+        Allure.step("Login to CRM system");
         //login
         loginPage.login(User.defaultUser());
 
-        Allure.step("Create new customer successfully");
+        Allure.step("Create new customer");
         //create new customer
         showAllCustomerPage.clickNewCustomerButton();
         createCustomer.createCustomer(customer);
@@ -68,7 +68,7 @@ public class TC03 {
         showAllCustomerPage.clickGoToLastPageButton();
         showAllCustomerPage.openLastCustomer();
 
-        Allure.step("Add new opportunity successfully");
+        Allure.step("Add new opportunity");
         //add opportunity
         customerInformationPage.clickAddOpportunityButton();
 
@@ -90,7 +90,7 @@ public class TC03 {
         opportunityInformation2.setProductName(customerInformationPage.getLastOpportunityInformation().getProductName());
         opportunityInformation2.setPrice(customerInformationPage.getLastOpportunityInformation().getPrice());
 
-        Allure.step("The opportunity value between when view in opportunity information and when create is same");
+        Allure.step("Verify whether the opportunity value between when view in opportunity information and when create is same");
         softAssert.assertEquals(opportunityInformation1, opportunityInformation2,
                                                             "Opportunity information is not consistent");
 
