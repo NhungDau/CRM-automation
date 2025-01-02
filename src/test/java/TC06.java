@@ -72,12 +72,10 @@ public class TC06 {
     @Test
     public void TC06() {
         //login
-        Allure.step("Login CRM system.");
 
         loginPage.login(User.defaultUser());
 
         //create new customer
-        Allure.step("Add new customer into system.");
 
         showAllCustomerPage.clickNewCustomerButton();
 

@@ -77,15 +77,14 @@ public class TC07 {
 
         createCustomer.createCustomer(customer);
 
-        //create new campagin
+        //create new campaign
         //go to create campaign page
         showAllCustomerPage.openCreateCampaignPage();
 
-        Allure.step("Create campaign");
         //create campaign
         createCampaignPage.getListTypeOption();
 
-        campaign.setName(faker.company().buzzword());
+        campaign.setName(faker.company().buzzword()+random.nextInt(999));
 
         campaign.setType(faker.options().nextElement(createCampaignPage.getListTypeOption()));
 

@@ -68,14 +68,12 @@ public class TC05 {
 
     @Test
     public void TC05() {
-        Allure.step("Login to CRM system");
         //login
         loginPage.login(User.defaultUser());
 
         //go to create campaign page
         createCampaignPage.openCreateCampaignPage();
 
-        Allure.step("Create new campaign");
         //create campaign
 
         campaign.setName(faker.company().buzzword()+random.nextInt(100));

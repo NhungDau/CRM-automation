@@ -52,7 +52,6 @@ public class TC10 {
     @Test
     public void TC10() {
         //login
-        Allure.step("Login CRM system.");
 
         loginPage.login(User.defaultUser());
 
